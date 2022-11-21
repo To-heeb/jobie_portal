@@ -21,15 +21,10 @@
     <!-- Favicon icon -->
 	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
-	
-		
-		 <link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css"/>	
-		
-		 <link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
-			
-		 <link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
-		
-		 <link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
 		
 </head>
 <body>
@@ -590,12 +585,9 @@
 
 				<ul class="navbar-nav header-right">
 					<li class="nav-item">
-						<div class="input-group search-area d-xl-inline-flex d-none">
-							<input type="text" class="form-control" placeholder="Search something here...">
-							<div class="input-group-append">
-								<button class="input-group-text"><i class="flaticon-381-search-2"></i></button>
-							</div>
-						</div>
+						<form action="">
+							<x-search-card />
+						</form>
 					</li>
 					<li class="nav-item dropdown notification_dropdown">
 						<a class="nav-link bell bell-link" href="#">
@@ -724,15 +716,12 @@
 <div class="deznav">
 	<div class="deznav-scroll">
 		<ul class="metismenu" id="menu">
-			<li><a href="/" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
-			<li><a href="applications" ><i class="flaticon-381-file"></i> <span class="nav-text">Application</span></a></li>
-			<li><a href="search_job"><i class="flaticon-381-search"></i> <span class="nav-text">Search Job</span></a></li>
-			<li><a href="companies"> <i class="flaticon-381-home"></i> <span class="nav-text">Companies</span></a></li>
-			<li><a href="profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>
-			
-			<li><a href="statistics"><i class="flaticon-381-layer"></i> <span class="nav-text">Statistics</span></a></li>
-			
-			
+			<li><a href="/user/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
+			<li><a href="/user/applications" ><i class="flaticon-381-file"></i> <span class="nav-text">Application</span></a></li>
+			<li><a href="/user/search_job"><i class="flaticon-381-search"></i> <span class="nav-text">Search Job</span></a></li>
+			<li><a href="/user/companies"> <i class="flaticon-381-home"></i> <span class="nav-text">Companies</span></a></li>
+			<li><a href="/user/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
+			<li><a href="/user/statistics"><i class="flaticon-381-layer"></i> <span class="nav-text">Statistics</span></a></li>
 			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 					<i class="flaticon-381-settings"></i>
 					<span class="nav-text">Settings</span>

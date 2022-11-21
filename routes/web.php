@@ -5,6 +5,7 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,9 @@ use App\Http\Controllers\AdminController;
 // destroy - Delete listing  
 
 
-// Route::get('/', function () {
-//     return view('user.dashboard', [
-//         'featured_companies' => Company::all(),
-//     ]);
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 
@@ -40,17 +39,32 @@ Route::group([
     'prefix' => '/admin',
     'as' => 'admin.',
 ], function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index']);
 });
 
 Route::group([
-    'prefix' => '/user',
+    'prefix' => '/employer',
+    'as' => 'employer.',
+], function () {
+    Route::get('/', [EmployerController::class, 'index']);
+    Route::get('/dashboard', [EmployerController::class, 'index']);
+    Route::get('/login', [EmployerController::class, 'login']);
+    Route::get('/profile', [EmployerController::class, 'profile']);
+    Route::get('/register', [EmployerController::class, 'create']);
+});
+
+Route::group([
+    'prefix' => 'user',
     'as' => 'user.',
 ], function () {
     Route::get('/', [UserController::class, 'index']);
+    Route::get('/dashboard', [UserController::class, 'index']);
     Route::get('/login', [UserController::class, 'login']);
+    Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/register', [UserController::class, 'create']);
     Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/search_job', [UserController::class, 'search_job']);
     Route::get('/companies', [UserController::class, 'companies']);
+    Route::get('/campany/{:id}', [UserController::class, 'companies']);
 });

@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
-use App\Models\Company;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class EmployerController extends Controller
 {
-
-
-    private $title = 'User';
+    private $title = 'Employer';
     /**
      * Display a listing of the resource.
      *
@@ -19,12 +15,11 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('user.dashboard', [
-            'featured_companies' => Company::all(),
-            'title' => "User"
+        return view('employer.dashboard', [
+            //'featured_companies' => Company::all(),
+            'title' => $this->title,
         ]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +30,7 @@ class UserController extends Controller
     {
         //
         $title = $this->title;
-        return view('auth.user.register', compact('title'));
+        return view('auth.employer.register', compact('title'));
     }
 
     /**
@@ -94,55 +89,10 @@ class UserController extends Controller
         //
     }
 
-
     // Show Login Form
     public function login()
     {
         $title = $this->title;
-        return view('auth.user.login', compact('title'));
-    }
-
-
-    public function applications()
-    {
-        //
-        return view('user.applications', [
-            'featured_companies' => Company::all(),
-            'title' => $this->title
-        ]);
-    }
-
-    public function search_job()
-    {
-        //
-        $jobs = Job::latest()->filter(request(['tag', 'search']))->simplePaginate(20);
-        $title = $this->title;
-        return view('user.search_job', compact('jobs', 'title'));
-    }
-
-    public function companies()
-    {
-        // 
-        return view('user.companies', [
-            'featured_companies' => Company::all(),
-            'title' => $this->title,
-        ]);
-    }
-
-    public function show_company()
-    {
-        // 
-        return view('user.companies', [
-            'featured_companies' => Company::all(),
-            'title' => $this->title,
-        ]);
-    }
-
-    public function profile()
-    {
-        return view('user.profile', [
-            'featured_companies' => Company::all(),
-            'title' => "User"
-        ]);
+        return view('auth.employer.login', compact('title'));
     }
 }

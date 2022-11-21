@@ -17,11 +17,12 @@
 	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - {{ $title ?? '' }} Login</title>
+     @yield('title')
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
-    <link href="public/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-    <link href="public/assets/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png')}}">
+    <link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
+    <link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
+		
 	
 </head>
 
@@ -34,14 +35,9 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-									<div class="text-center mb-3">
-										<a href="index.html"><img src="public/assets/images/logo-full.png" alt=""></a>
-									</div>
-                                    <h4 class="text-center mb-4 text-white">Sign in your account</h4>
-                                        @yield('login_form');
-                                    <div class="new-account mt-3">
-                                        <p class="text-white">Don't have an account? <a class="text-white" href="page_register.html">Sign up</a></p>
-                                    </div>
+									
+                                        @yield('login_form')
+                                    
                                 </div>
                             </div>
                         </div>
@@ -54,12 +50,12 @@
 	Scripts
 ***********************************-->
 <!-- Required vendors -->
-<script src="public/assets/vendor/global/global.min.js"></script>
-<script src="public/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="public/assets/js/deznav-init.js"></script>
-<script src="public/assets/js/custom.js"></script> 
-<script src="public/assets/js/demo.js"></script>
-<script src="public/assets/js/styleSwitcher.js"></script>
+<script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>		
+<script src="{{ asset('assets/js/deznav-init.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/demo.js') }}"></script>
+<script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
 </body>
 
 <!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/page_login by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:19:07 GMT -->

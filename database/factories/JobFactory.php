@@ -24,6 +24,7 @@ class JobFactory extends Factory
             'job_category_id' => $this->faker->randomDigit,
             'job_sub_category_id' =>  $this->faker->randomDigit,
             'summary' => $this->faker->sentence(),
+            'status' => rand(0, 2),
             'description' => $this->faker->paragraph(5),
         ];
     }
@@ -38,7 +39,7 @@ class JobFactory extends Factory
     private function job_location_type()
     {
         $index = rand(0, 2);
-        $type = ['remote', 'on_site', 'hybrid'];
+        $type = ['remote', 'on site', 'hybrid'];
         return $type[$index];
     }
 }

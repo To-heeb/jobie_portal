@@ -1,10 +1,12 @@
+@props(['job'])
 <div class="col-xl-4 col-lg-6">
     <div class="card shadow_1">
         <div class="card-body">	
             <div class="media mb-2">
                 <div class="media-body">
                     <p class="mb-1">Maximoz Team</p>
-                    <h4 class="fs-20 text-black">Database Progammer</h4>
+                    <h4 class="fs-20 text-black">{{$job->title}}</h4>
+                    <p class="btn btn-xs btn-rounded btn-outline-primary">{{ ucfirst($job->location_type) }}</p>
                 </div>
                 <svg class="ms-3" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#D3D3D3"/>
@@ -16,8 +18,8 @@
             <span class="text-primary font-w500 d-block mb-3">$14,000 - $25,000</span>
             <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
             <div class="d-flex align-items-center mt-4">
-                <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto">REMOTE</a>
-                <span class="text-black font-w500">London, England</span>
+                <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto">Apply Now</a>
+                <span class="text-black font-w500">{{$job->city, $job->country}}</span>
             </div>
         </div>
     </div>

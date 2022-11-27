@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Industry;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class IndustryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +15,6 @@ class JobController extends Controller
     public function index()
     {
         //
-        // $title = $this->title;
-        return view('employer.jobs.create');
-        // return view('listings.index', [
-        //     'listings' => Listing::latest()->filter(request(['tag', 'search']))->simplePaginate(6),
-        // ]);
     }
 
     /**
@@ -29,8 +25,6 @@ class JobController extends Controller
     public function create()
     {
         //
-        //$title = $this->title;
-        return view('employer.jobs.create');
     }
 
     /**
@@ -42,17 +36,15 @@ class JobController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request);
-        $formFileds = $request->validate([]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Industry  $industry
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Industry $industry)
     {
         //
     }
@@ -60,10 +52,10 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Industry  $industry
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Industry $industry)
     {
         //
     }
@@ -72,10 +64,10 @@ class JobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Industry  $industry
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Industry $industry)
     {
         //
     }
@@ -83,10 +75,10 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Industry  $industry
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Industry $industry)
     {
         //
     }

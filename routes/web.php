@@ -3,8 +3,10 @@
 use App\Models\Job;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployerController;
 
 /*
@@ -52,6 +54,28 @@ Route::group([
     Route::get('/login', [EmployerController::class, 'login']);
     Route::get('/profile', [EmployerController::class, 'profile']);
     Route::get('/register', [EmployerController::class, 'create']);
+
+    Route::group([
+        'prefix' => '/jobs',
+        'as' => 'jobs.',
+    ], function () {
+        Route::get('/create', [JobController::class, 'create']);
+        Route::get('/dashboard', [JobController::class, 'index']);
+        Route::post('/store', [JobController::class, 'store']);
+    });
+
+    Route::group([
+        'prefix' => '/company',
+        'as' => 'company.',
+    ], function () {
+        Route::get('/create', [CompanyController::class, 'create']);
+        Route::get('/edit/{:id}', [CompanyController::class, 'edit']);
+        Route::get('/profile/{id}', [CompanyController::class, 'show']);
+        Route::put('/profile/{:id}', [CompanyController::class, 'update']);
+        Route::get('/dashboard', [CompanyController::class, 'index']);
+        Route::get('/delete', [CompanyController::class, 'destroy']);
+        Route::post('/store', [CompanyController::class, 'store']);
+    });
 });
 
 Route::group([

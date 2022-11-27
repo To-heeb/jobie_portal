@@ -17,15 +17,16 @@
 	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - User {{$title}} Dashboard </title>
+    <title>Jobie - Employer {{ $title ?? '' }} Dashboard </title>
     <!-- Favicon icon -->
 	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
 	<link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
-	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
-		
+	@yield('link')	
 </head>
 <body>
 
@@ -685,7 +686,7 @@
 					</li>
 					<li class="nav-item dropdown header-profile">
 						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-							<img src="public/assets/images/profile/17.jpg" width="20" alt=""/>
+							<img src="{{ asset('assets/images/profile/17.jpg') }}" width="20" alt=""/>
 							<div class="header-info">
 								<span class="text-black">Oda Dink</span>
 								<p class="fs-12 mb-0">Super Admin</p>
@@ -719,7 +720,7 @@
 <div class="deznav">
 	<div class="deznav-scroll">
 		<ul class="metismenu" id="menu">
-			<li><a href="/employee/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
+			<li><a href="/employer/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Jobs</span>
@@ -736,12 +737,14 @@
                     <span class="nav-text">Company</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html"> Company's Profile</a></li>
+					{{-- Once employer create a company cover this link --}}
+					<li><a href="/employer/company/create">Create Company</a></li>
+                    <li><a href="/employer/company/profile/{{1}}"> Company's Profile</a></li>
                     <li><a href="index_2.html">Company's Statics</a></li>
-                    <li><a href="email_compose.html">Company's Settings</a></li>
+                    {{-- <li><a href="/employer/company/edit">Company's Settings</a></li> --}}
                 </ul>
             </li>
-			<li><a href="employer/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
+			<li><a href="/employer/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
 			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 					<i class="flaticon-381-settings"></i>
 					<span class="nav-text">Settings</span>
@@ -790,6 +793,7 @@
 			<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 			<script src="{{ asset('assets/vendor/owl-carousel/owl.carousel.js')}}"></script>
 			<script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
+			<script src="{{ asset('assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
 			<script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
 		
 			<script src="{{ asset('assets/js/custom.js') }}"></script>
@@ -871,7 +875,7 @@
 			}, 1000); 
 		});
 	</script>
-	
+		@yield('script')
     <!--**********************************
         Main wrapper end
     ***********************************-->

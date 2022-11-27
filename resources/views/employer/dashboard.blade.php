@@ -3,6 +3,7 @@
 @section('content')
     <div class="container-fluid">
 		<div class="row">
+			<x-flash-message />
 			<div class="col-xl-3 col-xxl-3 col-lg-6 col-sm-6">
 				<div class="card bg-primary">
 					<div class="card-body">
@@ -393,4 +394,9 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('script')
+		<script src="{{ asset('assets/vendor/toastr/js/toastr.min.js') }}"></script>	
+		<script src="{{ asset('assets/js/plugins-init/toastr-init.js') }}"></script>
 @endsection

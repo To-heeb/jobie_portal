@@ -36,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
         });
+
+        Route::pattern('id', '[0-9]+');
     }
 
     /**

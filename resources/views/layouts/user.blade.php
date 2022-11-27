@@ -17,7 +17,7 @@
 	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - User {{$title}} Dashboard </title>
+    <title>Jobie - User {{ $title ?? '' }} Dashboard </title>
     <!-- Favicon icon -->
 	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
@@ -682,7 +682,7 @@
 					</li>
 					<li class="nav-item dropdown header-profile">
 						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-							<img src="public/assets/images/profile/17.jpg" width="20" alt=""/>
+							<img src="{{ asset('assets/images/profile/17.jpg')}}" width="20" alt=""/>
 							<div class="header-info">
 								<span class="text-black">Oda Dink</span>
 								<p class="fs-12 mb-0">Super Admin</p>

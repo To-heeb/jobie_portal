@@ -230,7 +230,7 @@
 													<label class="text-label">About Company <span class="text-danger">*</span></label>
 													<textarea id="ckeditor" name="about">{{old('about')}}</textarea>
 												</div>
-												@error('about_company')
+												@error('about')
 													<p class="text-danger fs-6">{{ $message }}</p>
 												@enderror
 											</div>

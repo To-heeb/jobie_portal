@@ -71,7 +71,7 @@ Route::group([
         Route::get('/create', [CompanyController::class, 'create']);
         Route::get('/edit/{:id}', [CompanyController::class, 'edit']);
         Route::get('/profile/{id}', [CompanyController::class, 'show']);
-        Route::put('/profile/{:id}', [CompanyController::class, 'update']);
+        Route::put('/profile/{id}', [CompanyController::class, 'update']);
         Route::get('/dashboard', [CompanyController::class, 'index']);
         Route::get('/delete', [CompanyController::class, 'destroy']);
         Route::post('/store', [CompanyController::class, 'store']);
@@ -87,6 +87,7 @@ Route::group([
     Route::get('/login', [UserController::class, 'login']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/register', [UserController::class, 'create']);
+    Route::post('/register', [UserController::class, 'store']);
     Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/search_job', [UserController::class, 'search_job']);
     Route::get('/companies', [UserController::class, 'companies']);

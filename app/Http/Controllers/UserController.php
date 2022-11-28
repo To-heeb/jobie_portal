@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,6 +52,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        $userInfo = $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'email|required|unique:users,email',
+            'password' =>  'required|min:6',
+
+        ]);
+
+        $userInfo['password'] =  Hash::make($userInfo['password']);
+
+        User::create($userInfo);
+
+        return redirect('/user/dashboard')->with('success', 'Account successfully created');
     }
 
     /**

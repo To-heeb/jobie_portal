@@ -28,4 +28,35 @@ class Company extends Model
         'about'
     ];
     use HasFactory;
+
+
+    public static function updateCompany($request)
+    {
+
+        //eloquence
+        //dd($request);
+        $companyInfo = Company::find($request->id);
+        $companyInfo->name = $request->name;
+        $companyInfo->email = $request->email;
+        $companyInfo->phone_number = $request->phone_number;
+        $companyInfo->country = $request->country;
+        $companyInfo->state = $request->state;
+        $companyInfo->city = $request->city;
+        $companyInfo->address = $request->address;
+        $companyInfo->website_link = $request->website_link;
+        $companyInfo->twitter_link = $request->twitter_link;
+        $companyInfo->facebook_link = $request->facebook_link;
+        $companyInfo->instagram_link = $request->instagram_link;
+        $companyInfo->industry = $request->industry;
+        $companyInfo->no_of_employees = $request->no_of_employees;
+        $companyInfo->about = $request->about;
+
+        if (!empty($request->company_logo)) {
+            $companyInfo->company_logo = $request->company_logo;
+        }
+
+        if ($companyInfo->save()) {
+            return true;
+        }
+    }
 }

@@ -63,17 +63,17 @@
                                         <div class="col">
                                             <h3 class="m-b-0">150</h3><span>Follower</span>
                                         </div>
-                                        <div class="col">
+                                        {{-- <div class="col">
                                             <h3 class="m-b-0">140</h3><span>Place Stay</span>
-                                        </div>
+                                        </div> --}}
                                         <div class="col">
                                             <h3 class="m-b-0">45</h3><span>Reviews</span>
                                         </div>
                                     </div>
-                                    <div class="mt-4">
+                                    {{-- <div class="mt-4">
                                         <a href="javascript:void(0);" class="btn btn-primary mb-1 me-1">Follow</a> 
                                         <a href="javascript:void(0);" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Send Message</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="sendMessageModal">
@@ -200,7 +200,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab" class="nav-link active show">Posts</a>
                                 </li>
-                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link">About Me</a>
+                                <li class="nav-item"><a href="#about" data-bs-toggle="tab" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link">Setting</a>
                                 </li>
@@ -303,76 +303,75 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="about-me" class="tab-pane fade">
+                                <div id="about" class="tab-pane fade">
                                     <div class="profile-about-me">
                                         <div class="pt-4 border-bottom-1 pb-3">
-                                            <h4 class="text-primary">About Me</h4>
-                                            <p class="mb-2">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence was created for the bliss of souls like mine.I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents.</p>
-                                            <p>A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>
+                                            <h4 class="text-primary">About</h4>
+                                            <p class="mb-2">{{$companyInfo->about}}</p>
                                         </div>
                                     </div>
-                                    <div class="profile-skills mb-5">
-                                        <h4 class="text-primary mb-2">Skills</h4>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Admin</a>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Dashboard</a>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Photoshop</a>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Bootstrap</a>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Responsive</a>
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Crypto</a>
+                                    <div class="profile-skills mb-3">
+                                        <h4 class="text-primary mb-2">Website</h4>
+                                        <a href="{{$companyInfo->website_link}}" class="btn btn-primary light btn-xs mb-1">{{$companyInfo->name."'s website" }}</a>
                                     </div>
-                                    <div class="profile-lang  mb-5">
-                                        <h4 class="text-primary mb-2">Language</h4>
-                                        <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> 
-                                        <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
-                                        <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
+                                    <div class="profile-lang  mb-3">
+                                        <h4 class="text-primary mb-2">Industry</h4>
+                                        <p  class="text-muted pe-3 f-s-16">{{ $companyInfo->industry }}</p>
                                     </div>
-                                    <div class="profile-personal-info">
-                                        <h4 class="text-primary mb-4">Personal Information</h4>
+                                    <div class="profile-personal-info mb-3">
+                                        <h4 class="text-primary mb-2">Size</h4>
+                                        <p  class="text-muted pe-3 f-s-16">{{ $companyInfo->no_of_employees }}</p>
+                                    </div>
+                                    <div class="profile-personal-info mb-3">
+                                        <h4 class="text-primary mb-2">Phone number</h4>
+                                        <p  class="text-muted pe-3 f-s-16">{{ $companyInfo->phone_number }}</p>
+                                    </div>
+                                    <div class="profile-location  mb-3">
+                                        <h4 class="text-primary mb-2">Location</h4>
                                         <div class="row mb-2">
                                             <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Name <span class="pull-end">:</span>
+                                                <h5 class="f-w-500">Country <span class="pull-end">:</span>
                                                 </h5>
                                             </div>
-                                            <div class="col-sm-9 col-7"><span>Mitchell C.Shay</span>
+                                            <div class="col-sm-9 col-7"><span>{{ $companyInfo->country }}</span>
                                             </div>
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Email <span class="pull-end">:</span>
+                                                <h5 class="f-w-500">State <span class="pull-end">:</span>
                                                 </h5>
                                             </div>
-                                            <div class="col-sm-9 col-7"><span>example@examplel.com</span>
+                                            <div class="col-sm-9 col-7"><span>{{ $companyInfo->state }}</span>
                                             </div>
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Availability <span class="pull-end">:</span></h5>
+                                                <h5 class="f-w-500">City <span class="pull-end">:</span></h5>
                                             </div>
-                                            <div class="col-sm-9 col-7"><span>Full Time (Free Lancer)</span>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Age <span class="pull-end">:</span>
-                                                </h5>
-                                            </div>
-                                            <div class="col-sm-9 col-7"><span>27</span>
+                                            <div class="col-sm-9 col-7"><span>{{ $companyInfo->city }}</span>
                                             </div>
                                         </div>
                                         <div class="row mb-2">
                                             <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Location <span class="pull-end">:</span></h5>
+                                                <h5 class="f-w-500">Address <span class="pull-end">:</span></h5>
                                             </div>
-                                            <div class="col-sm-9 col-7"><span>Rosemont Avenue Melbourne,
-                                                    Florida</span>
+                                            <div class="col-sm-9 col-7"><span>{{ $companyInfo->address }}</span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="profile-personal-info mb-3">
+                                        <h4 class="text-primary mb-3">Socials Link</h4>
                                         <div class="row mb-2">
-                                            <div class="col-sm-3 col-5">
-                                                <h5 class="f-w-500">Year Experience <span class="pull-end">:</span></h5>
-                                            </div>
-                                            <div class="col-sm-9 col-7"><span>07 Year Experiences</span>
-                                            </div>
+                                            @if($companyInfo->facebook_link)<a class="btn-social facebook" href="{{$companyInfo->facebook_link}}"><i class="fab fa-facebook-f"></i></a>@endif
+                                    
+                                        </div>
+                                        <div class="row mb-2">
+                                            @if($companyInfo->twitter_link)<a class="btn-social twitter" href="{{$companyInfo->twitter_link}}"><i class="fab fa-twitter"></i></a>@endif
+                                   
+                                        </div>
+                                        <div class="row mb-2">
+                                            @if($companyInfo->instagram_link)<a class="btn-social instagram" href="{{$companyInfo->instagram_link}}"><i class="fab fa-instagram"></i></a>@endif
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -380,52 +379,197 @@
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             <h4 class="text-primary">Account Setting</h4>
-                                            <form>
+                                            <form action="/employer/company/profile/{{$companyInfo->id}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Email</label>
-                                                        <input type="email" placeholder="Email" class="form-control">
+                                                        <label class="text-label">Company Name <span class="text-danger">*</span></label>
+                                                        <input type="text" name="name" class="form-control mb-3" value="{{ $companyInfo->name }}" >
+                                                        <input type="hidden" name="id" value="{{ $companyInfo->id }}">
+                                                        @error('name')
+                                                            <p class="text-danger fs-6" >{{ $message }}</p>
+                                                        @enderror
                                                     </div>
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Password</label>
-                                                        <input type="password" placeholder="Password" class="form-control">
+                                                        <label class="text-label">Company Email Address <span class="text-danger">*</span></label>
+                                                        <input type="email" class="form-control mb-3" name="email" value="{{ $companyInfo->email }}" >
+                                                        @error('email')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
                                                     </div>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" placeholder="1234 Main St" class="form-control">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address 2</label>
-                                                    <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
                                                 </div>
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">City</label>
-                                                        <input type="text" class="form-control">
+                                                        <label class="text-label">Company Phone Number <span class="text-danger">*</span></label>
+                                                        <input type="text" name="phone_number" class="form-control mb-3" value="{{ $companyInfo->phone_number }}" required>
+                                                        @error('phone_number')
+													        <p class="text-danger fs-6">{{ $message }}</p>
+												        @enderror
                                                     </div>
-                                                    <div class="mb-3 col-md-4">
-                                                        <label class="form-label">State</label>
-                                                        <select class="form-control default-select wide" id="inputState">
-                                                            <option selected="">Choose...</option>
-                                                            <option>Option 1</option>
-                                                            <option>Option 2</option>
-                                                            <option>Option 3</option>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Country <span class="text-danger">*</span></label>
+                                                        <select class="default-select form-control wide mb-3" name="country" required>
+                                                            <option>Select Country</option>
+                                                            <option value="Nigeria" @if($companyInfo->country == "Nigeria") selected @endif >Nigeria</option>
+                                                            <option value="Ghana" @if($companyInfo->country == "Ghana") selected @endif >Ghana</option>
                                                         </select>
+                                                        @error('country')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
                                                     </div>
-                                                    <div class="mb-3 col-md-2">
-                                                        <label class="form-label">Zip</label>
-                                                        <input type="text" class="form-control">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">State <span class="text-danger">*</span></label>
+                                                        <select class="default-select form-control wide mb-3" name="state" required>
+                                                            <option>Select State</option>
+                                                            <option value="Lagos" @if($companyInfo->state == "Lagos") selected @endif >Lagos</option>
+                                                            <option value="Ogun" @if($companyInfo->state  == "Ogun") selected @endif>Ogun</option>
+                                                        </select>
+                                                        @error('state')
+													<p class="text-danger fs-6">{{ $message }}</p>
+												@enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">City <span class="text-danger">*</span></label>
+                                                        <select class="default-select form-control wide mb-3" name="city" required>
+                                                            <option>Select City</option>
+                                                            <option value="Ikeja" @if($companyInfo->city == "Ikeja") selected @endif >Ikeja</option>
+                                                            <option value="Abeokuta" @if($companyInfo->city == "Abeokuta") selected @endif >Abeokuta</option>
+                                                        </select>
+                                                        @error('city')
+													<p class="text-danger fs-6">{{ $message }}</p>
+												@enderror
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
+                                                    <label class="text-label">Address <span class="text-danger">*</span></label>
+													<input type="text" name="address" class="form-control mb-3" value="{{$companyInfo->address}}"  required>
+                                                    @error('address')
+													    <p class="text-danger fs-6">{{ $message }}</p>
+												    @enderror
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Website Link <span class="text-danger">*</span></label>
+                                                        <input type="url" name="website_link" class="form-control mb-3" value="{{$companyInfo->website_link}}" required>
+                                                        @error('website_link')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Twitter Link </span></label>
+                                                        <input type="url" name="twitter_link" class="form-control mb-3" value="{{$companyInfo->twitter_link}}" >
+                                                        @error('twitter_link')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+												        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Facebook Link </span></label>
+                                                        <input type="url" name="facebook_link" class="form-control mb-3" value="{{$companyInfo->facebook_link}}">
+                                                        @error('facebook_link')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Instagram Link </span></label>
+													    <input type="url" name="instagram_link" class="form-control mb-3" value="{{$companyInfo->instagram_link}}">
+                                                        </select>
+                                                        @error('instagram_link')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Industry <span class="text-danger">*</span></label>
+													    <select class="default-select form-control wide mb-3" name="industry" required>
+														<option value="">Select Industry</option>
+														@foreach ($industries as $industry)
+															<option value="{{ $industry->id }}" @if($industry->id == $companyInfo->industry) selected @endif>{{ $industry->name }}</option>
+														@endforeach
+                                                        </select>
+                                                        @error('industry')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Employer type <span class="text-danger">*</span></label>
+                                                        <select class="default-select form-control wide mb-3" name="employer_type" id="employer_type" required>
+                                                            <option>Select employer type</option>
+                                                            <option value="employee"  @if($companyInfo->employer_type == "employee") selected @endif >Employee</option>
+                                                            <option value="recruiter"  @if($companyInfo->employer_type == "recruiter") selected @endif>Recruiter</option>
+                                                        </select>
+                                                        @error('employer_type')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6" id="position_in_company_div">
+                                                        <label class="text-label">Your position in Company <span class="text-danger">*</span></label>
+                                                        <input type="text" name="position_in_company" id="position_in_company" class="form-control mb-3" value="{{$companyInfo->position_in_company}}">	
+                                                        @error('position_in_company')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="text-label">Number of Employees <span class="text-danger">*</span></label>
+													    <select class="default-select form-control wide mb-3" name="no_of_employees" required>
+                                                            <option selected="">Select employee strength</option>
+                                                            <option value="1" @if($companyInfo->no_of_employees == 1) selected @endif>1-4</option>
+                                                            <option value="2" @if($companyInfo->no_of_employees == 2) selected @endif>5-10</option>
+                                                            <option value="3" @if($companyInfo->no_of_employees == 3) selected @endif>11-25</option>
+                                                            <option value="4" @if($companyInfo->no_of_employees == 4) selected @endif>26-50</option>
+                                                            <option value="5" @if($companyInfo->no_of_employees == 5) selected @endif>51-100</option>
+                                                            <option value="6" @if($companyInfo->no_of_employees == 6) selected @endif>101-200</option>
+                                                            <option value="7" @if($companyInfo->no_of_employees == 7) selected @endif>201-500</option>
+                                                            <option value="8" @if($companyInfo->no_of_employees == 8) selected @endif>501-1000</option>
+                                                            <option value="9" @if($companyInfo->no_of_employees == 9) selected @endif>1001+</option>
+                                                        </select>
+                                                        @error('no_of_employees')
+													<p class="text-danger fs-6">{{ $message }}</p>
+												@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="text-label">About Company <span class="text-danger">*</span></label>
+                                                            <textarea id="ckeditor" name="about">{{$companyInfo->about}}</textarea>
+                                                        </div>
+                                                        @error('about')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="text-label">Company Logo <span class="text-danger">*</span></label>
+                                                        <div class="input-group mb-3">
+                                                            <button class="btn btn-primary btn-sm" type="button">Button</button>
+                                                            <div class="form-file">
+                                                                <input type="file" name="company_logo" class="form-file-input form-control" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                        <img src="{{$companyInfo->company_logo}}" alt="" width="100" height="100">
+                                                        <img src="{{ asset('storage/'.$companyInfo->company_logo)}}" alt="">
+                                                        @error('company_logo')
+                                                            <p class="text-danger fs-6">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="mb-3">
                                                     <div class="form-check custom-checkbox">
                                                         <input type="checkbox" class="form-check-input" id="gridCheck">
                                                         <label class="form-check-label form-label" for="gridCheck"> Check me out</label>
                                                     </div>
-                                                </div>
-                                                <button class="btn btn-primary" type="submit">Sign
-                                                    in</button>
+                                                </div> --}}
+                                                <button class="btn btn-primary" type="submit">
+                                                    Update</button>
                                             </form>
                                         </div>
                                     </div>
@@ -463,6 +607,7 @@
 @section('script');
 <script src="{{ asset('assets/vendor/magnific-popup/jquery.magnific-popup.js')}}"></script>
 <script src="{{ asset('assets/vendor/lightgallery/js/lightgallery-all.min.js')}}"></script>
+<script src="https://cdn.tiny.cloud/1/nwn241m8p8fyxf4m834j6okt29kjcp4dt4ga5szmz70ssq3o/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     jQuery(document).ready(function(){
         jQuery('.test-popup-link').magnificPopup({
@@ -472,6 +617,35 @@
         jQuery('#lightgallery').lightGallery({
             thumbnail:true,
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function(){
+        $('#smartwizard').smartWizard(); 
+			tinymce.init({
+				selector: '#ckeditor'
+			});
+
+            const selectElement = document.querySelector('#employer_type');
+			selectElement.addEventListener('change', (event) => {
+				//alert(event.target.value);
+				if (event.target.value === 'employee') {
+					document.querySelector("#position_in_company_div").style.display = 'block';	
+					document.querySelector("#position_in_company").classList.add("required")
+					
+				}else{
+					document.querySelector("#position_in_company_div").style.display = 'none';
+					document.querySelector("#position_in_company").classList.remove("required")
+					
+				}
+			});
+
+            if(document.getElementById('employer_type').value == 'employee'){
+                    document.querySelector("#position_in_company_div").style.display = 'block';	
+					document.querySelector("#position_in_company").classList.add("required")
+            }else{
+                    document.querySelector("#position_in_company_div").style.display = 'none';
+					document.querySelector("#position_in_company").classList.remove("required")
+            }
     });
 </script>
 @endsection

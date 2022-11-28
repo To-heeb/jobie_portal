@@ -7,6 +7,7 @@ use App\Models\Industry;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 
 class CompanyController extends Controller
@@ -54,10 +55,10 @@ class CompanyController extends Controller
             'employer_type' => 'required',
             'address' => 'required',
             'industry' => 'required',
-            'website_link ' =>  'nullable',
-            'twitter_link ' =>  'nullable',
-            'facebook_link ' =>  'nullable',
-            'instagram_link ' =>  'nullable',
+            'website_link' =>  'nullable',
+            'twitter_link' =>  'nullable',
+            'facebook_link' =>  'nullable',
+            'instagram_link' =>  'nullable',
             'no_of_employees' =>  'required',
             'about' =>  'required',
             'company_logo' => 'required',
@@ -72,8 +73,6 @@ class CompanyController extends Controller
 
         // Update employers Information;
 
-
-
         return redirect('/employer/dashboard')->with('success', 'Company successfully created');
     }
 
@@ -86,8 +85,9 @@ class CompanyController extends Controller
     public function show($id)
     {
         //
+        $industries = Industry::all();
         $companyInfo = Company::find($id);
-        return view('employer.company.show', compact('companyInfo'));
+        return view('employer.company.show', compact('companyInfo', 'industries'));
     }
 
     /**
@@ -112,7 +112,41 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //dd($request);
+        $companyInfo = $request->validate([
+            'name' => 'required',
+            'id' => 'required|integer',
+            'email' => 'email|required',
+            'phone_number' => 'required',
+            'country' =>  'required',
+            'state' =>  'required',
+            'city' =>  'required',
+            'address' => 'required',
+            'employer_type' => ['required', Rule::in(['employee', 'recruiter'])],
+            'address' => 'required',
+            'industry' => 'required',
+            'website_link' =>  'nullable|string',
+            'twitter_link' =>  'nullable|string',
+            'facebook_link' =>  'nullable|string',
+            'instagram_link' =>  'nullable|string',
+            'no_of_employees' =>  'required',
+            'position_in_company' => Rule::requiredIf($request->employer_type == 'employee'),
+            'about' =>  'required'
+        ]);
+
+        if ($request->hasFile('company_logo')) {
+            $companyInfo['company_logo'] = $request->file('company_logo')->store('company_logos', 'public');
+        }
+
+        //dd($companyInfo);
+        //DB::enableQueryLog();
+        $result = Company::updateCompany((object) $companyInfo);
+        //dd(DB::getQueryLog());
+
+        //dd($request->employer_type);
+        // Update employers Information;
+        return redirect('/employer/dashboard')->with('success', 'Company successfully updated');
     }
 
     /**

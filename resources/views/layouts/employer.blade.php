@@ -800,6 +800,7 @@
 			<script src="{{ asset('assets/js/deznav-init.js') }}"></script>
 			<script src="{{ asset('assets/js/demo.js') }}"></script>
 			<script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
+			<script src="//unpkg.com/alpinejs" defer></script>
 			<script>	
 		function carouselReview(){
 			/*  testimonial one function by = owl.carousel.js */

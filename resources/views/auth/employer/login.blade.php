@@ -20,10 +20,10 @@
         @csrf
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Email</strong></label>
-            <input type="email" class="form-control" placeholder="hello@example.com" name="email">
+            <input type="email" class="form-control" placeholder="hello@example.com" value="{{ old('email')}}" name="email">
         </div>
         <div class="form-group">
-            <label class="mb-1 text-white"><strong>Password (6 or more characters)</strong></label>
+            <label class="mb-1 text-white"><strong>Password</strong></label>
             <div class=" input-group">
                 <input type="password" name="password" class="form-control" placeholder="******" min="6">
                 <span class="input-group-text cursor-pointer">

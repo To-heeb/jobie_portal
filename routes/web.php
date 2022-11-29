@@ -43,24 +43,29 @@ Route::group([
 ], function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'authenticate']);
+    Route::get('/profile', [AdminController::class, 'profile']);
 });
 
 Route::group([
     'prefix' => '/employer',
     'as' => 'employer.',
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', [EmployerController::class, 'index']);
     Route::get('/dashboard', [EmployerController::class, 'index']);
-    Route::get('/login', [EmployerController::class, 'login']);
-    Route::post('/login', [EmployerController::class, 'authenticate']);
+    Route::get('/login', [EmployerController::class, 'login'])->name('login')->withoutMiddleware(['auth']);
+    Route::post('/login', [EmployerController::class, 'authenticate'])->withoutMiddleware(['auth']);
     Route::get('/profile', [EmployerController::class, 'profile']);
-    Route::get('/register', [EmployerController::class, 'create']);
-    Route::post('/register', [EmployerController::class, 'store']);
+    Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth']);
+    Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth']);
     Route::post('/logout', [EmployerController::class, 'logout']);
 
     Route::group([
         'prefix' => '/jobs',
         'as' => 'jobs.',
+        'middleware' => 'auth'
     ], function () {
         Route::get('/create', [JobController::class, 'create']);
         Route::get('/dashboard', [JobController::class, 'index']);
@@ -70,6 +75,7 @@ Route::group([
     Route::group([
         'prefix' => '/company',
         'as' => 'company.',
+        'middleware' => 'auth'
     ], function () {
         Route::get('/create', [CompanyController::class, 'create']);
         Route::get('/edit/{:id}', [CompanyController::class, 'edit']);
@@ -84,14 +90,15 @@ Route::group([
 Route::group([
     'prefix' => 'user',
     'as' => 'user.',
+    'middleware' => 'auth'
 ], function () {
     Route::get('/', [UserController::class, 'index']);
     Route::get('/dashboard', [UserController::class, 'index']);
-    Route::get('/login', [UserController::class, 'login']);
-    Route::post('/login', [UserController::class, 'authenticate']);
+    Route::get('/login', [UserController::class, 'login'])->name('login')->withoutMiddleware(['auth']);
+    Route::post('/login', [UserController::class, 'authenticate'])->withoutMiddleware(['auth']);
     Route::get('/profile', [UserController::class, 'profile']);
-    Route::get('/register', [UserController::class, 'create']);
-    Route::post('/register', [UserController::class, 'store']);
+    Route::get('/register', [UserController::class, 'create'])->withoutMiddleware(['auth']);
+    Route::post('/register', [UserController::class, 'store'])->withoutMiddleware(['auth']);
     Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/search_job', [UserController::class, 'search_job']);
     Route::get('/companies', [UserController::class, 'companies']);

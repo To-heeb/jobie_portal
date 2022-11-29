@@ -52,10 +52,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-
+        //dd($request->all());
         $userInfo = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'email|required|unique:users,email',
             'password' =>  'required|min:6',
 
@@ -63,7 +63,9 @@ class UserController extends Controller
 
         $userInfo['password'] =  Hash::make($userInfo['password']);
 
-        User::create($userInfo);
+        $user = User::create($userInfo);
+
+        auth()->login($user);
 
         return redirect('/user/dashboard')->with('success', 'Account successfully created');
     }
@@ -163,5 +165,32 @@ class UserController extends Controller
             'featured_companies' => Company::all(),
             'title' => "User"
         ]);
+    }
+
+    // Authenticate User/ Log In User
+    public function authenticate(Request $request)
+    {
+        $userInfo = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($userInfo)) {
+            $request->session()->regenerateToken();
+
+            return redirect('/user/dashboard')->with('message', 'You are now logged in!');
+        }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/user/login');
     }
 }

@@ -5,21 +5,53 @@
 @endsection
 @section('register_form')
     <div class="text-center mb-3">
-        <a href="/{{ strtolower($title) }}"><img src="public/assets/images/logo-full.png" alt=""></a>
+        <a href="/{{ strtolower($title) }}"><img src="{{asset('assets/images/logo-full.png')}}" alt=""></a>
     </div>
     <h4 class="text-center mb-4 text-white">Sign up your account</h4>
-    <form action="">
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="/employer/register" method="POST">
+        @csrf
         <div class="form-group">
-            <label class="mb-1 text-white"><strong>Username</strong></label>
-            <input type="text" class="form-control" placeholder="username">
+            <label class="mb-1 text-white"><strong>Firstname</strong></label>
+            <input type="text" name="first_name" class="form-control" placeholder="firstname" value="{{ old('first_name')}}" autofocus>
+        </div>
+        <div class="form-group">
+            <label class="mb-1 text-white"><strong>Lastname</strong></label>
+            <input type="text" name="last_name" class="form-control" placeholder="lastname" value="{{ old('last_name')}}">
         </div>
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Email</strong></label>
-            <input type="email" class="form-control" placeholder="hello@example.com">
+            <input type="email" name="email" class="form-control" placeholder="hello@example.com" value="{{ old('email')}}">
         </div>
         <div class="form-group">
-            <label class="mb-1 text-white"><strong>Password</strong></label>
-            <input type="password" class="form-control" value="Password">
+            <label class="mb-1 text-white"><strong>Password (6 or more characters)</strong></label>
+            <div class=" input-group">
+                <input type="password" name="password" class="form-control" placeholder="******" min="6">
+                <span class="input-group-text cursor-pointer">
+                    <i class="fa fa-eye-slash" id="eye"
+                    onclick="
+                        
+                        if(this.parentElement.previousElementSibling.type == 'password'){
+                            this.classList.remove('fa-eye')
+                            this.classList.add('fa-eye-slash')
+                            this.parentElement.previousElementSibling.type = 'text'
+                            //alert(this.parentElement.previousElementSibling.type)
+                        }else{
+                            this.classList.remove('fa-eye-slash')
+                            this.classList.add('fa-eye')
+                            this.parentElement.previousElementSibling.type = 'password'
+                        }
+                    "
+                    ></i></span>
+            </div>
         </div>
         <div class="text-center mt-4">
             <button type="submit" class="btn bg-white text-primary btn-block">Sign me up</button>

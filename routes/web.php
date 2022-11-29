@@ -52,8 +52,11 @@ Route::group([
     Route::get('/', [EmployerController::class, 'index']);
     Route::get('/dashboard', [EmployerController::class, 'index']);
     Route::get('/login', [EmployerController::class, 'login']);
+    Route::post('/login', [EmployerController::class, 'authenticate']);
     Route::get('/profile', [EmployerController::class, 'profile']);
     Route::get('/register', [EmployerController::class, 'create']);
+    Route::post('/register', [EmployerController::class, 'store']);
+    Route::post('/logout', [EmployerController::class, 'logout']);
 
     Route::group([
         'prefix' => '/jobs',
@@ -85,6 +88,7 @@ Route::group([
     Route::get('/', [UserController::class, 'index']);
     Route::get('/dashboard', [UserController::class, 'index']);
     Route::get('/login', [UserController::class, 'login']);
+    Route::post('/login', [UserController::class, 'authenticate']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/register', [UserController::class, 'create']);
     Route::post('/register', [UserController::class, 'store']);
@@ -92,4 +96,5 @@ Route::group([
     Route::get('/search_job', [UserController::class, 'search_job']);
     Route::get('/companies', [UserController::class, 'companies']);
     Route::get('/campany/{:id}', [UserController::class, 'companies']);
+    Route::post('/logout', [UserController::class, 'logout']);
 });

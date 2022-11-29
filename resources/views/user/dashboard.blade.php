@@ -3,6 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
+        <x-flash-message />
         <div class="col-xl-3 col-xxl-6 col-sm-6">
             <div class="card bg-primary">
                 <div class="card-body">

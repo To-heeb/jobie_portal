@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployerController extends Controller
 {
@@ -42,6 +44,21 @@ class EmployerController extends Controller
     public function store(Request $request)
     {
         //
+        $userInfo = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'email|required|unique:employers,email',
+            'password' =>  'required|min:6',
+
+        ]);
+
+        $userInfo['password'] =  Hash::make($userInfo['password']);
+
+        $employer = Employer::create($userInfo);
+
+        auth()->login($employer);
+
+        return redirect('/employer/dashboard')->with('success', 'Account successfully created');
     }
 
     /**
@@ -94,5 +111,31 @@ class EmployerController extends Controller
     {
         $title = $this->title;
         return view('auth.employer.login', compact('title'));
+    }
+
+    public function authenticate(Request $request)
+    {
+        $employerInfo = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+        //dd($formFields);
+        if (auth()->attempt($employerInfo)) {
+            $request->session()->regenerateToken();
+
+            return redirect('/employer/dashboard')->with('message', 'You are now logged in!');
+        }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/employer/login');
     }
 }

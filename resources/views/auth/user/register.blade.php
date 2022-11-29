@@ -22,15 +22,15 @@
         @csrf
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Firstname</strong></label>
-            <input type="text" name="firstname" class="form-control" placeholder="firstname" autofocus>
+            <input type="text" name="first_name" class="form-control" placeholder="firstname" value="{{ old('first_name')}}" autofocus>
         </div>
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Lastname</strong></label>
-            <input type="text" name="lastname" class="form-control" placeholder="lastname">
+            <input type="text" name="last_name" class="form-control" placeholder="lastname" value="{{ old('last_name')}}">
         </div>
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Email</strong></label>
-            <input type="email" name="email" class="form-control" placeholder="hello@example.com">
+            <input type="email" name="email" class="form-control" placeholder="hello@example.com" value="{{ old('email')}}">
         </div>
         <div class="form-group">
             <label class="mb-1 text-white"><strong>Password (6 or more characters)</strong></label>

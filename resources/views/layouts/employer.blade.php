@@ -754,7 +754,11 @@
 					<li><a href="email_inbox.html">Privacy Settings</a></li>
 				</ul>
 			</li>
-			<li><a href="companies.html"> <i class="flaticon-381-exit"></i> <span class="nav-text"> Logout</span></a></li>
+			<form action="/employer/logout" class="inline" method="POST" id="logoutForm">
+				@csrf
+			</form>
+			<li><a href="javascript:document.getElementById('logoutForm').submit()" > <i class="flaticon-381-exit"></i> <span class="nav-text"> Logout</span></a>
+			</li>
 		</ul>
 		
 		{{-- <div class="copyright" style="position: absolute">
@@ -780,7 +784,7 @@
 ***********************************-->
 <div class="footer">
 	<div class="copyright">
-		<p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
+		<p>Copyright © Designed &amp; Developed by <a href="https://github.com/ikeolu03" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
 	</div>
 </div>
 <!--**********************************

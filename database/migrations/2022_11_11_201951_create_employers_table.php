@@ -19,8 +19,8 @@ class CreateEmployersTable extends Migration
             $table->string('last_name');
             $table->integer('user_id')->nullable();
             $table->integer('company_id')->nullable();
-            $table->enum('employer_type',  ['employee', 'recruiter']);
-            $table->string('position_in_company');
+            $table->enum('employer_type',  ['employee', 'recruiter'])->nullable();
+            $table->string('position_in_company')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('profile_photo')->nullable();

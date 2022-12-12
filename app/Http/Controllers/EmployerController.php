@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EmployerController extends Controller
 {
     private $title = 'Employer';
+
+    protected $guard = 'employer';
+
+    public function guard()
+    {
+        Auth::guard('employer');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +64,7 @@ class EmployerController extends Controller
 
         $employer = Employer::create($userInfo);
 
-        auth()->login($employer);
+        auth()->guard('employer')->login($employer);
 
         return redirect('/employer/dashboard')->with('success', 'Account successfully created');
     }
@@ -119,8 +127,11 @@ class EmployerController extends Controller
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
-        //dd($formFields);
-        if (auth()->attempt($employerInfo)) {
+        //dd($request);
+
+        $remember_me = $request->has('remember_me') ? true : false;
+
+        if (Auth::guard('employer')->attempt($employerInfo, $remember_me)) {
             $request->session()->regenerateToken();
 
             return redirect('/employer/dashboard')->with('message', 'You are now logged in!');

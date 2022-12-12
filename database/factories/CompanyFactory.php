@@ -17,6 +17,7 @@ class CompanyFactory extends Factory
             'name' => $this->faker->jobTitle,
             'email' => $this->faker->companyEmail,
             'no_of_employees' => rand(1, 8),
+            'employer_id' => rand(1, 8),
             'website_link' => $this->faker->url,
             'twitter_link' => $this->faker->url,
             'facebook_link' => $this->faker->url,

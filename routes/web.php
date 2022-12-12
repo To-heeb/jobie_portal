@@ -40,6 +40,7 @@ Route::get('/', function () {
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin.',
+    'middleware' => 'auth:admin'
 ], function () {
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/dashboard', [AdminController::class, 'index']);
@@ -51,21 +52,21 @@ Route::group([
 Route::group([
     'prefix' => '/employer',
     'as' => 'employer.',
-    'middleware' => 'auth'
+    'middleware' => 'auth:employer'
 ], function () {
     Route::get('/', [EmployerController::class, 'index']);
     Route::get('/dashboard', [EmployerController::class, 'index']);
-    Route::get('/login', [EmployerController::class, 'login'])->name('login')->withoutMiddleware(['auth']);
-    Route::post('/login', [EmployerController::class, 'authenticate'])->withoutMiddleware(['auth']);
+    Route::get('/login', [EmployerController::class, 'login'])->name('login')->withoutMiddleware(['auth:employer']);
+    Route::post('/login', [EmployerController::class, 'authenticate'])->withoutMiddleware(['auth:employer']);
     Route::get('/profile', [EmployerController::class, 'profile']);
-    Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth']);
-    Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth']);
+    Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth:employer']);
+    Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth:employer']);
     Route::post('/logout', [EmployerController::class, 'logout']);
 
     Route::group([
         'prefix' => '/jobs',
         'as' => 'jobs.',
-        'middleware' => 'auth'
+        'middleware' => 'auth:employer'
     ], function () {
         Route::get('/create', [JobController::class, 'create']);
         Route::get('/dashboard', [JobController::class, 'index']);
@@ -75,7 +76,7 @@ Route::group([
     Route::group([
         'prefix' => '/company',
         'as' => 'company.',
-        'middleware' => 'auth'
+        'middleware' => 'auth:employer'
     ], function () {
         Route::get('/create', [CompanyController::class, 'create']);
         Route::get('/edit/{:id}', [CompanyController::class, 'edit']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -80,5 +81,42 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // Show Login Form
+    public function login()
+    {
+        $title = $this->title;
+        return view('auth.admin.login', compact('title'));
+    }
+
+    public function authenticate(Request $request)
+    {
+        $employerInfo = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+        //dd($request);
+
+        $remember_me = $request->has('remember_me') ? true : false;
+
+        if (Auth::guard('admin')->attempt($employerInfo, $remember_me)) {
+            $request->session()->regenerateToken();
+
+            return redirect('/admin/dashboard')->with('message', 'You are now logged in!');
+        }
+
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/admin/login');
     }
 }

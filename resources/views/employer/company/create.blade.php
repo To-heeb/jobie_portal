@@ -19,6 +19,8 @@
 						</div>
 						
 					</div>
+
+					
 					<div class="card-body">
 						<form action="/employer/company/store" method="POST" enctype="multipart/form-data">
 							@csrf

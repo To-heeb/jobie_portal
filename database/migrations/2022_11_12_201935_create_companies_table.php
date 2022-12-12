@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('twitter_link')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
+            $table->integer('employer_id');
             $table->integer('industry');
             $table->string('no_of_employees');
             $table->string('company_logo')->nullable();

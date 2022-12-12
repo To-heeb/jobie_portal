@@ -18,6 +18,7 @@ class Company extends Model
         'facebook_link',
         'instagram_link',
         'industry',
+        'employer_id',
         'no_of_employees',
         'company_logo',
         'address',
@@ -58,5 +59,16 @@ class Company extends Model
         if ($companyInfo->save()) {
             return true;
         }
+    }
+
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
+
+    public function industry()
+    {
+        return $this->belongsTo(Industry::class);
     }
 }

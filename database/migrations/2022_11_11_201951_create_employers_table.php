@@ -24,6 +24,7 @@ class CreateEmployersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('profile_photo')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

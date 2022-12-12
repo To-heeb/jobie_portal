@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Employer;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class CompanyController extends Controller
@@ -42,7 +44,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         //dd($request->all());
         $companyInfo = $request->validate([
             'name' => ['required', Rule::unique('companies', 'name')],
@@ -52,7 +54,7 @@ class CompanyController extends Controller
             'state' =>  'required',
             'city' =>  'required',
             'address' => 'required',
-            'employer_type' => 'required',
+            'employer_type' => ['required', Rule::in(['employee', 'recruiter'])],
             'address' => 'required',
             'industry' => 'required',
             'website_link' =>  'nullable',
@@ -60,6 +62,7 @@ class CompanyController extends Controller
             'facebook_link' =>  'nullable',
             'instagram_link' =>  'nullable',
             'no_of_employees' =>  'required',
+            'position_in_company' => Rule::requiredIf($request->employer_type == 'employee'),
             'about' =>  'required',
             'company_logo' => 'required',
         ]);
@@ -68,12 +71,14 @@ class CompanyController extends Controller
             $companyInfo['company_logo'] = $request->file('company_logo')->store('company_logos', 'public');
         }
 
+        $companyInfo['employer_id'] = auth()->user()->id;
         $result = Company::create($companyInfo);
 
-
         // Update employers Information;
+        $response = Employer::updateEmployer($result->id, $request);
+        //$employer = Employer::find(auth()->id());
 
-        return redirect('/employer/dashboard')->with('success', 'Company successfully created');
+        if ($response)  return redirect('/employer/dashboard')->with('success', 'Company successfully created');
     }
 
     /**
@@ -86,7 +91,7 @@ class CompanyController extends Controller
     {
         //
         $industries = Industry::all();
-        $companyInfo = Company::find($id);
+        $companyInfo = Company::where(['id' =>  $id, 'employer_id' => auth()->user()->id])->firstOrFail();
         return view('employer.company.show', compact('companyInfo', 'industries'));
     }
 
@@ -139,12 +144,8 @@ class CompanyController extends Controller
             $companyInfo['company_logo'] = $request->file('company_logo')->store('company_logos', 'public');
         }
 
-        //dd($companyInfo);
-        //DB::enableQueryLog();
         $result = Company::updateCompany((object) $companyInfo);
-        //dd(DB::getQueryLog());
 
-        //dd($request->employer_type);
         // Update employers Information;
         return redirect('/employer/dashboard')->with('success', 'Company successfully updated');
     }

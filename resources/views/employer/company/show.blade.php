@@ -6,6 +6,7 @@
 		
 <link href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="row page-titles">
@@ -25,7 +26,7 @@
                     </div>
                     <div class="profile-info">
                         <div class="profile-photo">
-                            <a class="test-popup-link" href="{{ asset('assets/images/1.jpg') }} "><img src="{{ asset('assets/images/profile/5.jpg')}}" class="img-fluid rounded-circle" alt=""></a>
+                            <a class="test-popup-link" href="{{ asset('storage/'.$companyInfo->company_logo) }} "><img src="{{ asset('storage/'.$companyInfo->company_logo) }}" class="img-fluid rounded-circle" alt="" width="100" height="100"></a>
                         </div>
                         <div class="profile-details">
                             <div class="profile-name px-3 pt-2">
@@ -307,7 +308,7 @@
                                     <div class="profile-about-me">
                                         <div class="pt-4 border-bottom-1 pb-3">
                                             <h4 class="text-primary">About</h4>
-                                            <p class="mb-2">{{$companyInfo->about}}</p>
+                                            <p class="mb-2"><?= $companyInfo->about; ?></p>
                                         </div>
                                     </div>
                                     <div class="profile-skills mb-3">
@@ -500,8 +501,8 @@
                                                         <label class="text-label">Employer type <span class="text-danger">*</span></label>
                                                         <select class="default-select form-control wide mb-3" name="employer_type" id="employer_type" required>
                                                             <option>Select employer type</option>
-                                                            <option value="employee"  @if($companyInfo->employer_type == "employee") selected @endif >Employee</option>
-                                                            <option value="recruiter"  @if($companyInfo->employer_type == "recruiter") selected @endif>Recruiter</option>
+                                                            <option value="employee"  @if(auth()->user()->employer_type == "employee") selected @endif >Employee</option>
+                                                            <option value="recruiter"  @if(auth()->user()->employer_type == "recruiter") selected @endif>Recruiter</option>
                                                         </select>
                                                         @error('employer_type')
                                                             <p class="text-danger fs-6">{{ $message }}</p>
@@ -511,7 +512,7 @@
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6" id="position_in_company_div">
                                                         <label class="text-label">Your position in Company <span class="text-danger">*</span></label>
-                                                        <input type="text" name="position_in_company" id="position_in_company" class="form-control mb-3" value="{{$companyInfo->position_in_company}}">	
+                                                        <input type="text" name="position_in_company" id="position_in_company" class="form-control mb-3" value="{{auth()->user()->position_in_company}}">	
                                                         @error('position_in_company')
                                                             <p class="text-danger fs-6">{{ $message }}</p>
                                                         @enderror
@@ -555,8 +556,7 @@
                                                                 <input type="file" name="company_logo" class="form-file-input form-control" accept="image/*">
                                                             </div>
                                                         </div>
-                                                        <img src="{{$companyInfo->company_logo}}" alt="" width="100" height="100">
-                                                        <img src="{{ asset('storage/'.$companyInfo->company_logo)}}" alt="">
+                                                        <img src="{{ asset('storage/'.$companyInfo->company_logo)}}" alt=""  width="150" height="150">
                                                         @error('company_logo')
                                                             <p class="text-danger fs-6">{{ $message }}</p>
                                                         @enderror

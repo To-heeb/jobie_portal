@@ -175,7 +175,11 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if (auth()->attempt($userInfo)) {
+        //dd($request);
+
+        $remember_me = $request->has('remember_me') ? true : false;
+
+        if (auth()->attempt($userInfo, $remember_me)) {
             $request->session()->regenerateToken();
 
             return redirect('/user/dashboard')->with('message', 'You are now logged in!');

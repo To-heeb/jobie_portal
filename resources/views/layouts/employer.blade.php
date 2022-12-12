@@ -2,8 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:10 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -686,10 +685,10 @@
 					</li>
 					<li class="nav-item dropdown header-profile">
 						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-							<img src="{{ asset('assets/images/profile/17.jpg') }}" width="20" alt=""/>
+							<img src="{{auth()->user()->profile_photo ? asset('storage/'.auth()->user()->profile_photo) : asset('assets/images/profile/17.jpg') }}" width="20" alt=""/>
 							<div class="header-info">
-								<span class="text-black">Oda Dink</span>
-								<p class="fs-12 mb-0">Super Admin</p>
+								<span class="text-black">{{auth()->user()->last_name.' '.auth()->user()->first_name}}</span>
+								<p class="fs-12 mb-0">Employer</p>
 							</div>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end">
@@ -701,9 +700,9 @@
 								<svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
 								<span class="ms-2">Inbox </span>
 							</a>
-							<a href="page_login.html" class="dropdown-item ai-icon">
+							<a href="javascript:document.getElementById('logoutForm').submit()"  class="dropdown-item ai-icon">
 								<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-								<span class="ms-2">Logout </span>
+								<span class="ms-2"> Logout </span>
 							</a>
 						</div>
 					</li>
@@ -721,6 +720,7 @@
 	<div class="deznav-scroll">
 		<ul class="metismenu" id="menu">
 			<li><a href="/employer/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
+			@if(!is_null(auth()->user()->company_id))
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Jobs</span>
@@ -732,15 +732,19 @@
                     <li><a href="/employer/jobs/application">Job Applications</a></li>
                 </ul>
             </li>
+			@endif
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Company</span>
                 </a>
                 <ul aria-expanded="false">
 					{{-- Once employer create a company cover this link --}}
-					<li><a href="/employer/company/create">Create Company</a></li>
-                    <li><a href="/employer/company/profile/{{1}}"> Company's Profile</a></li>
-                    <li><a href="index_2.html">Company's Statics</a></li>
+					@if(is_null(auth()->user()->company_id))
+						<li><a href="/employer/company/create">Create Company</a></li>
+					@else
+						<li><a href="/employer/company/profile/{{auth()->user()->company_id}}"> Company's Profile</a></li>
+						<li><a href="index_2.html">Company's Statics</a></li>
+					@endif
                     {{-- <li><a href="/employer/company/edit">Company's Settings</a></li> --}}
                 </ul>
             </li>

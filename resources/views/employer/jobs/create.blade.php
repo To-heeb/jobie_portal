@@ -10,227 +10,120 @@
 		</div>
 		<!-- row -->
 		<div class="row">
-			<div class="col-xl-12 col-xxl-12">
+			{{-- <div class="col-xl-12 col-xxl-12">
 				<div class="card">
 					<div class="card-header">
 						<h4 class="card-title">Create Job</h4>
 					</div>
 					<div class="card-body">
-						<div id="smartwizard" class="form-wizard order-create">
-							<ul class="nav nav-wizard">
-								<li><a class="nav-link" href="#wizard_Service"> 
-									<span>1</span> 
-								</a></li>
-								<li><a class="nav-link" href="#wizard_Time">
-									<span>2</span>
-								</a></li>
-								<li><a class="nav-link" href="#wizard_Details">
-									<span>3</span>
-								</a></li>
-								<li><a class="nav-link" href="#wizard_Payment">
-									<span>4</span>
-								</a></li>
-							</ul>
-							<div class="tab-content">
-								<div id="wizard_Service" class="tab-pane" role="tabpanel">
-									<div class="row">
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">First Name*</label>
-												<input type="text" name="firstName" class="form-control" placeholder="Parsley" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Last Name*</label>
-												<input type="text" name="lastName" class="form-control" placeholder="Montana" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Email Address*</label>
-												<input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="example@example.com.com" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Phone Number*</label>
-												<input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-											</div>
-										</div>
-										<div class="col-lg-12 mb-3">
-											<div class="form-group">
-												<label class="text-label">Where are you from*</label>
-												<input type="text" name="place" class="form-control" required>
-											</div>
-										</div>
+						<div class="row">
+						</div>
+					</div>
+				</div>
+			</div> --}}
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Job Details</h4>
+					</div>
+					<div class="card-body">
+						<form class="needs-validation" novalidate action="/employer/job/store" method="POST">
+							<div class="row form-material">
+								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom01">Job Title</label>
+									<input type="text" name="job_title" class="form-control" placeholder="" id="validationCustom01" required>
+									<div class="invalid-feedback">
+										Please Enter the Job Title.
 									</div>
 								</div>
-								<div id="wizard_Time" class="tab-pane" role="tabpanel">
-									<div class="row">
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Company Name*</label>
-												<input type="text" name="firstName" class="form-control" placeholder="Cellophane Square" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Company Email Address*</label>
-												<input type="email" class="form-control" id="emial1" placeholder="example@example.com.com" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Company Phone Number*</label>
-												<input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" required>
-											</div>
-										</div>
-										<div class="col-lg-6 mb-2">
-											<div class="form-group">
-												<label class="text-label">Your position in Company*</label>
-												<input type="text" name="place" class="form-control" required>
-											</div>
-										</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom02">Job Category</label>
+									<input type="text" name="job_category" class="form-control" placeholder="" id="validationCustom02" required>
+									<div class="invalid-feedback">
+										Please Select the Job Category.
 									</div>
 								</div>
-								<div id="wizard_Details" class="tab-pane" role="tabpanel">
-									<div class="row">
-										<div class="col-sm-4 mb-2">
-											<h4>Monday *</h4>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="9.00" type="number" name="input1" id="input1">
-											</div>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="6.00" type="number" name="input2" id="input2">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4 mb-2">
-											<h4>Tuesday *</h4>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="9.00" type="number" name="input3" id="input3">
-											</div>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="6.00" type="number" name="input4" id="input4">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4 mb-2">
-											<h4>Wednesday *</h4>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="9.00" type="number" name="input5" id="input5">
-											</div>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="6.00" type="number" name="input6" id="input6">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4 mb-2">
-											<h4>Thrusday *</h4>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="9.00" type="number" name="input7" id="input7">
-											</div>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="6.00" type="number" name="input8" id="input8">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-4 mb-2">
-											<h4>Friday *</h4>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="9.00" type="number" name="input9" id="input9">
-											</div>
-										</div>
-										<div class="col-6 col-sm-4 mb-2">
-											<div class="form-group">
-												<input class="form-control" value="6.00" type="number" name="input10" id="input10">
-											</div>
-										</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom03">Job Industry</label>
+									<input type="text" name="job_industry" class="form-control" placeholder="" id="validationCustom03" required>
+									<div class="invalid-feedback">
+										Please Select the Job Industry.
 									</div>
 								</div>
-								<div id="wizard_Payment" class="tab-pane" role="tabpanel">
-									<div class="row emial-setup">
-										<div class="col-lg-3 col-sm-6 col-6">
-											<div class="form-group">
-												<label for="mailclient11" class="mailclinet mailclinet-gmail">
-													<input type="radio" name="emailclient" id="mailclient11">
-													<span class="mail-icon">
-														<i class="mdi mdi-google-plus" aria-hidden="true"></i>
-													</span>
-													<span class="mail-text">I'm using Gmail</span>
-												</label>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-6">
-											<div class="form-group">
-												<label for="mailclient12" class="mailclinet mailclinet-office">
-													<input type="radio" name="emailclient" id="mailclient12">
-													<span class="mail-icon">
-														<i class="mdi mdi-office" aria-hidden="true"></i>
-													</span>
-													<span class="mail-text">I'm using Office</span>
-												</label>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-6">
-											<div class="form-group">
-												<label for="mailclient13" class="mailclinet mailclinet-drive">
-													<input type="radio" name="emailclient" id="mailclient13">
-													<span class="mail-icon">
-														<i class="mdi mdi-google-drive" aria-hidden="true"></i>
-													</span>
-													<span class="mail-text">I'm using Drive</span>
-												</label>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-6">
-											<div class="form-group">
-												<label for="mailclient14" class="mailclinet mailclinet-another">
-													<input type="radio" name="emailclient" id="mailclient14">
-													<span class="mail-icon">
-														<i class="fas fa-question-circle"
-															aria-hidden="true"></i>
-													</span>
-													<span class="mail-text">Another Service</span>
-												</label>
-											</div>
-										</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom04">Job Type</label>
+									<input name="job_type" class="form-control" placeholder="" required id="validationCustom04">
+									<div class="invalid-feedback">
+										Please Enter the Job Type.
 									</div>
+								</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6">
+									<label class="form-label" for="validationCustom05">Job Status</label>
+									<input type="text" name="job_status" class="form-control" placeholder="" id="validationCustom05" required>
+									<div class="invalid-feedback">
+										Please Select the Job Status.
+									</div>
+								</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom05">Location Type</label>
+									<input type="text" name="location_type" class="form-control" id="validationCustom06" placeholder="" required>
+									<div class="invalid-feedback">
+										Please Select the Location Type.
+									</div>
+								</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom07">Job Tags</label>
+									<input type="text" name="job_tags" class="form-control" id="validationCustom07" placeholder="php, css, laravel, html" required>
+									<div class="invalid-feedback">
+										Please Enter a username.
+									</div>
+								</div>
+								
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom08">Salary Range</label>
+									<input type="text" name="salary range" class="form-control" placeholder="" id="validationCustom08" required>
+									<div class="invalid-feedback">
+										Please Select the Salary Range.
+									</div>
+								</div>
 
-									<div class="row">
-										<div class="col-12">
-											<div class="skip-email text-center">
-												<p>Or if want skip this step entirely and setup it later</p>
-												<a href="javascript:void(0)">Skip step</a>
-											</div>
-										</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom09">Salary Status</label>
+									<select name="salary_status" class="default-select form-control wide" id="validationCustom09" required>
+										<option>Select Salary Status</option>
+										<option value="Public" @if(old('salary_status') == "Public") selected @endif >Public</option>
+										<option value="Confidential" @if(old('salary_status') == "Confidential") selected @endif >Confidential</option>
+									</select>
+									<div class="invalid-feedback">
+										Please Select the Salary Range Status.
+									</div>
+								</div>
+
+								<div  id="custom-sibling"></div>
+								<div class="col-lg-12 mb-2">
+									<button type="button" class="btn btn-primary" id="add-custom-field-btn" style="float: right;">Add Custom Fields</button>
+									<p style="clear: both"></p>
+								</div>
+								<div class="col-xl-3 col-xxl-12 col-md-6 mb-4">
+									<label class="form-label" >Job Summary</label>
+									<textarea name="job_summary" class="form-control" placeholder="The summary helps you attract the right candidate, only include the most important information to grab the attention of the job seekers. Keep it as short as possible." rows="3" required></textarea>
+									<div class="invalid-feedback">
+										Please Enter the Job Summary.
+									</div>
+								</div>
+								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
+									<label class="form-label">Job Description</label>
+									<textarea id="ckeditor" class="form-control" name="job_description" required placeholder="The job description/requirements should accurately reflect the duties and responsibilities of the position. It helps give a realistic overview of the job and what is required from the candidate applying."></textarea>
+									<div class="invalid-feedback">
+										Please Enter the Job Description.
 									</div>
 								</div>
 							</div>
-						</div>
+							<div class="col-lg-12 mb-2">
+								<button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+								<p style="clear: both"></p>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -239,10 +132,58 @@
 @endsection
 
 @section('script');
+
+<script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/decoupled-document/ckeditor.js"></script>
+<script src="https://cdn.tiny.cloud/1/nwn241m8p8fyxf4m834j6okt29kjcp4dt4ga5szmz70ssq3o/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     $(document).ready(function(){
 			// SmartWizard initialize
 			$('#smartwizard').smartWizard(); 
+			tinymce.init({
+				selector: '#ckeditor'
+			});
+
+			(function () {
+				'use strict'
+
+				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+				var forms = document.querySelectorAll('.needs-validation')
+
+				// Loop over them and prevent submission
+				Array.prototype.slice.call(forms)
+				.forEach(function (form) {
+					form.addEventListener('submit', function (event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+
+					form.classList.add('was-validated')
+					}, false)
+				})
+			})()
+
+			
+			document.querySelector('#add-custom-field-btn').addEventListener('click', (event) => {
+				let custom_questions_length = document.querySelectorAll(".custom-questions").length;
+				if(custom_questions_length >= 5){
+					alert("The maximum number of custom questions is allowed 5")
+					return false;
+				}
+
+				let title = prompt("Please enter custom field title:");
+				if (title !== null || title !== "") {
+					
+					let field_input = `<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+											<label class="form-label">Custom Question ((number))</label>
+											<input type="text" class="form-control custom-questions" id="" placeholder="${title}" name="question_((number))" readonly disabled>
+									   </div>`;
+					
+					custom_question_template = field_input.replaceAll('((number))', custom_questions_length + 1);
+					document.querySelector("#custom-sibling").insertAdjacentHTML('beforebegin', custom_question_template)
+				} 
+			});
+			
 		});
 </script>
 @endsection

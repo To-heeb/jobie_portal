@@ -16,7 +16,7 @@ class JobFactory extends Factory
     {
         return [
             'title' => $this->faker->jobTitle,
-            'level' => $this->faker->text,
+            'level' => $this->job_level(),
             'tags' => 'laravel, php, java',
             'type' => $this->job_type(),
             'location_type' => $this->job_location_type(),
@@ -24,7 +24,7 @@ class JobFactory extends Factory
             'job_category_id' => $this->faker->randomDigit,
             'job_sub_category_id' =>  $this->faker->randomDigit,
             'summary' => $this->faker->sentence(),
-            'status' => rand(0, 2),
+            'status' => $this->job_status(),
             'description' => $this->faker->paragraph(5),
         ];
     }
@@ -36,10 +36,24 @@ class JobFactory extends Factory
         return $type[$index];
     }
 
+    private function job_status()
+    {
+        $index = rand(0, 1);
+        $type = ['pending', 'live',];
+        return $type[$index];
+    }
+
+    private function job_level()
+    {
+        $index = rand(0, 7);
+        $type = ['entry_level', 'internship', 'graduate_trainee', 'mid_level', 'mid_senior_level', 'senior', 'director', 'executive'];
+        return $type[$index];
+    }
+
     private function job_location_type()
     {
         $index = rand(0, 2);
-        $type = ['remote', 'on site', 'hybrid'];
+        $type = ['remote', 'on_site', 'hybrid'];
         return $type[$index];
     }
 }

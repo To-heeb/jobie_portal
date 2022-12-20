@@ -15,6 +15,8 @@ class IndustryController extends Controller
     public function index()
     {
         //
+        $industries = Industry::all();
+        return view('admin.company.industry', compact('industries'));
     }
 
     /**
@@ -36,6 +38,14 @@ class IndustryController extends Controller
     public function store(Request $request)
     {
         //
+        $industryInfo = $request->validate([
+            'name' => ['required', 'unique:industries,name'],
+        ]);
+
+        //dd($rangeInfo);
+        $result = Industry::create($industryInfo);
+
+        if ($result)  return redirect('/admin/industry')->with('success', 'New Industry successfully added');
     }
 
     /**
@@ -70,6 +80,16 @@ class IndustryController extends Controller
     public function update(Request $request, Industry $industry)
     {
         //
+        $industryInfo = $request->validate([
+            'id' => 'required|integer',
+            'industry_name_edit' => ['required', 'unique:industries,name'],
+
+        ]);
+
+        //dd($industryInfo);
+        $result = Industry::updateIndustry((object) $industryInfo);
+
+        if ($result)  return redirect('/admin/industry')->with('success', 'Industry successfully updated.');
     }
 
     /**
@@ -81,5 +101,13 @@ class IndustryController extends Controller
     public function destroy(Industry $industry)
     {
         //
+    }
+
+    public function get_industry($industry_id)
+    {
+
+        $industryInfo = Industry::find($industry_id);
+
+        return $industryInfo;
     }
 }

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SalaryRange;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+    private $title = 'Admin';
+
+    protected $guard = 'admin';
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +20,10 @@ class AdminController extends Controller
     public function index()
     {
         //
+        return view('admin.dashboard', [
+            //'featured_companies' => Company::all(),
+            'title' => $this->title,
+        ]);
     }
 
     /**
@@ -84,6 +93,50 @@ class AdminController extends Controller
     }
 
 
+    public function salary_range(Request $request)
+    {
+
+        if ($request->method() === Request::METHOD_POST) {
+            //dd($request);
+            $rangeInfo = $request->validate([
+                'start_range' => ['required', 'numeric', 'unique:salary_ranges,start_range'],
+                'end_range' => 'required|numeric|unique:salary_ranges,end_range'
+            ]);
+
+            //dd($rangeInfo);
+            $salary_range = SalaryRange::create($rangeInfo);
+
+            if ($salary_range)  return redirect('/admin/salary_range')->with('success', 'New Salary Range successfully added');
+        }
+
+        if ($request->method() === Request::METHOD_PUT) {
+            //dd($request);
+            $rangeInfo = $request->validate([
+                'id' => 'required|integer',
+                'start_range_edit' => ['required', 'numeric'],
+                'end_range_edit' => 'required|numeric'
+            ]);
+
+            //dd($rangeInfo);
+            $salary_range = SalaryRange::updateSalaryRange((object) $rangeInfo);
+
+            if ($salary_range)  return redirect('/admin/salary_range')->with('success', 'Salary Range successfully updated.');
+        }
+
+        $title = $this->title;
+        $salary_ranges = SalaryRange::all();
+        return view('admin.jobs.salary_range', compact('title', 'salary_ranges'));
+    }
+
+    public function get_salary_range($range_id)
+    {
+
+        $rangeInfo = SalaryRange::find($range_id);
+
+        return $rangeInfo;
+    }
+
+
     // Show Login Form
     public function login()
     {
@@ -93,15 +146,16 @@ class AdminController extends Controller
 
     public function authenticate(Request $request)
     {
-        $employerInfo = $request->validate([
+        //dd($request);
+        $adminInfo = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
-        //dd($request);
+
 
         $remember_me = $request->has('remember_me') ? true : false;
 
-        if (Auth::guard('admin')->attempt($employerInfo, $remember_me)) {
+        if (Auth::guard('admin')->attempt($adminInfo, $remember_me)) {
             $request->session()->regenerateToken();
 
             return redirect('/admin/dashboard')->with('message', 'You are now logged in!');

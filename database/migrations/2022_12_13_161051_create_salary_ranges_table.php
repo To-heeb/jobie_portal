@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobCategoryTable extends Migration
+class CreateSalaryRangesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateJobCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_category', function (Blueprint $table) {
+        Schema::create('salary_ranges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('start_range');
+            $table->string('end_range');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateJobCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_category');
+        Schema::dropIfExists('salary_ranges');
     }
 }

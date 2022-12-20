@@ -103,7 +103,7 @@
 											<div class="col-lg-6 mb-2">
 												<div class="form-group">
 													<label class="text-label">City <span class="text-danger">*</span></label>
-													<select class="default-select form-control wide mb-3" name="city" required>
+													<select class="default form-control wide mb-3" name="city" required>
 														<option>Select City</option>
 														<option value="Ikeja" @if(old('city') == "Ikeja") selected @endif >Ikeja</option>
 														<option value="Abeokuta" @if(old('city') == "Abeokuta") selected @endif >Abeokuta</option>

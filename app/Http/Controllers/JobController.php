@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Industry;
 use Illuminate\Http\Request;
 
 class JobController extends Controller

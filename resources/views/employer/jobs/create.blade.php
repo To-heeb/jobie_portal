@@ -1,5 +1,5 @@
 @extends('layouts.employer')
-
+@section('page_title', 'Create Job')
 @section('content')
     <div class="container-fluid">
 		<div class="page-titles">
@@ -27,7 +27,8 @@
 						<h4 class="card-title">Job Details</h4>
 					</div>
 					<div class="card-body">
-						<form class="needs-validation" novalidate action="/employer/job/store" method="POST">
+						<form class="needs-validation" novalidate action="/employer/jobs/store" method="POST">
+							@csrf
 							<div class="row form-material">
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom01">Job Title</label>
@@ -35,6 +36,9 @@
 									<div class="invalid-feedback">
 										Please Enter the Job Title.
 									</div>
+									@error('job_title')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom02">Job Category</label>
@@ -42,34 +46,64 @@
 									<div class="invalid-feedback">
 										Please Select the Job Category.
 									</div>
+									@error('job_category')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-									<label class="form-label" for="validationCustom03">Job Industry</label>
-									<input type="text" name="job_industry" class="form-control" placeholder="" id="validationCustom03" required>
+									<label class="form-label" for="validationCustom03">Job Sub-Category</label>
+									<input type="text" name="job_sub_category" class="form-control" placeholder="" id="validationCustom03" required>
 									<div class="invalid-feedback">
 										Please Select the Job Industry.
 									</div>
+									@error('job_industry')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom04">Job Type</label>
-									<input name="job_type" class="form-control" placeholder="" required id="validationCustom04">
+									<select name="job_type" class="form-select form-control" id="validationCustom04" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Job Type</option>
+										<option value="freelance" @if(old('job_type') == "freelance") selected @endif >Freelance</option>
+										<option value="contract" @if(old('job_type') == "contract") selected @endif>Contract</option>
+										<option value="fulltime" @if(old('job_type') == "fulltime") selected @endif>Fulltime</option>
+										<option value="parttime" @if(old('job_type') == "parttime") selected @endif>Part-time</option>
+									</select>
 									<div class="invalid-feedback">
 										Please Enter the Job Type.
 									</div>
+									@error('job_type')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6">
-									<label class="form-label" for="validationCustom05">Job Status</label>
-									<input type="text" name="job_status" class="form-control" placeholder="" id="validationCustom05" required>
+									<label class="form-label" for="validationCustom05">Job Status</label>	
+									<select name="job_status" class="form-select form-control" id="validationCustom05" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Job Status</option>
+										<option value="pending" @if(old('job_status') == "pending") selected @endif >Pending</option>
+										<option value="live" @if(old('job_status') == "live") selected @endif>Live</option>
+									</select>
 									<div class="invalid-feedback">
 										Please Select the Job Status.
 									</div>
+									@error('job_status')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-									<label class="form-label" for="validationCustom05">Location Type</label>
-									<input type="text" name="location_type" class="form-control" id="validationCustom06" placeholder="" required>
+									<label class="form-label" for="validationCustom06">Location Type</label>
+									<select name="location_type" class="form-select form-control" id="validationCustom06" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Location Type</option>
+										<option value="remote" @if(old('location_type') == "remote") selected @endif >Remote</option>
+										<option value="on_site" @if(old('location_type') == "on_site") selected @endif>On site</option>
+										<option value="hybrid" @if(old('location_type') == "hybrid") selected @endif>Hybrid</option>
+									</select>
 									<div class="invalid-feedback">
 										Please Select the Location Type.
 									</div>
+									@error('location_type')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom07">Job Tags</label>
@@ -77,26 +111,54 @@
 									<div class="invalid-feedback">
 										Please Enter a username.
 									</div>
+									@error('job_tags')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
-								
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom10">Experience Level</label>
+									<select name="level" class="form-select form-control" id="validationCustom10" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Experience Level</option>
+										<option value="internship" @if(old('level') == "internship") selected @endif>Internship</option>
+										<option value="graduate_trainee" @if(old('level') == "graduate_trainee") selected @endif>Graduate trainee</option>
+										<option value="entry_level" @if(old('level') == "entry_level") selected @endif >Entry level</option>
+										<option value="mid_level" @if(old('level') == "mid_level") selected @endif>Mid level</option>
+										<option value="mid_senior_level" @if(old('level') == "mid_senior_level") selected @endif>Mid senior level</option>
+										<option value="senior" @if(old('level') == "senior") selected @endif>Senior</option>
+										<option value="director" @if(old('level') == "director") selected @endif>Director</option>
+										<option value="executive" @if(old('level') == "executive") selected @endif>Executive</option>
+									</select>
+									<div class="invalid-feedback">
+										Please Select the Location Type.
+									</div>
+									@error('location_type')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
+								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom08">Salary Range</label>
-									<input type="text" name="salary range" class="form-control" placeholder="" id="validationCustom08" required>
+									<input type="text" name="salary_range" class="form-control" placeholder="" id="validationCustom08" required>
 									<div class="invalid-feedback">
 										Please Select the Salary Range.
 									</div>
+									@error('salary_range')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom09">Salary Status</label>
-									<select name="salary_status" class="default-select form-control wide" id="validationCustom09" required>
-										<option>Select Salary Status</option>
+									<select name="salary_status" class="form-select form-control" id="validationCustom09" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Salary Status</option>
 										<option value="Public" @if(old('salary_status') == "Public") selected @endif >Public</option>
 										<option value="Confidential" @if(old('salary_status') == "Confidential") selected @endif >Confidential</option>
 									</select>
 									<div class="invalid-feedback">
 										Please Select the Salary Range Status.
 									</div>
+									@error('salary_status')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 
 								<div  id="custom-sibling"></div>
@@ -110,6 +172,9 @@
 									<div class="invalid-feedback">
 										Please Enter the Job Summary.
 									</div>
+									@error('job_summary')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label">Job Description</label>
@@ -117,6 +182,9 @@
 									<div class="invalid-feedback">
 										Please Enter the Job Description.
 									</div>
+									@error('job_description')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
 								</div>
 							</div>
 							<div class="col-lg-12 mb-2">
@@ -167,21 +235,23 @@
 			document.querySelector('#add-custom-field-btn').addEventListener('click', (event) => {
 				let custom_questions_length = document.querySelectorAll(".custom-questions").length;
 				if(custom_questions_length >= 5){
-					alert("The maximum number of custom questions is allowed 5")
+					alert("The maximum number of custom questions allowed is 5")
 					return false;
 				}
 
-				let title = prompt("Please enter custom field title:");
-				if (title !== null || title !== "") {
+				let title = prompt("Please enter custom question:");
+				if (title !== null && title !== "") {
 					
 					let field_input = `<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 											<label class="form-label">Custom Question ((number))</label>
-											<input type="text" class="form-control custom-questions" id="" placeholder="${title}" name="question_((number))" readonly disabled>
+											<input type="text" class="form-control custom-questions" id="" name="question_((number))" value="${title}" readonly>
 									   </div>`;
 					
 					custom_question_template = field_input.replaceAll('((number))', custom_questions_length + 1);
 					document.querySelector("#custom-sibling").insertAdjacentHTML('beforebegin', custom_question_template)
-				} 
+				}else{
+					alert("The custom question can't be empty");
+				}
 			});
 			
 		});

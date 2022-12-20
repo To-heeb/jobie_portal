@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:10 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +10,12 @@
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:title" content="Jobie - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
+	<meta name="description" content="Jobie -  Admin Dashboard" />
+	<meta property="og:title" content="Jobie - Admin Dashboard" />
+	<meta property="og:description" content="Jobie - Admin Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - User {{$title}} Dashboard </title>
+    <title>Jobie - {{$title ?? 'Admin'}} Dashboard </title>
     <!-- Favicon icon -->
 	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
@@ -25,7 +23,7 @@
 	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
-		
+	@yield('link')
 </head>
 <body>
 
@@ -51,7 +49,7 @@
 	Nav header start
 ***********************************-->
 <div class="nav-header">
-	<a href="index.html" class="brand-logo">
+	<a href="/" class="brand-logo">
 		<svg class="logo-abbr" width="66.5px" height="66.5px">
 			<g><path class="svg-logo-circle" fill-rule="evenodd"  fill="rgb(64, 24, 157)"
 			 d="M32.999,66.000 C14.774,66.000 -0.000,51.225 -0.000,33.000 C-0.000,14.775 14.774,-0.000 32.999,-0.000 C51.225,-0.000 66.000,14.775 66.000,33.000 C66.000,51.225 51.225,66.000 32.999,66.000 Z"/></g><g><path class="svg-logo-icon-text" fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(255, 255, 255)"
@@ -580,7 +578,8 @@
 			<div class="collapse navbar-collapse justify-content-between">
 				<div class="header-left">
 					<div class="dashboard_bar">
-						Dashboard					</div>
+						@yield('page_title')					
+					</div>
 				</div>
 
 				<ul class="navbar-nav header-right">
@@ -687,7 +686,7 @@
 						<a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
 							<img src="public/assets/images/profile/17.jpg" width="20" alt=""/>
 							<div class="header-info">
-								<span class="text-black">Oda Dink</span>
+								<span class="text-black">{{auth()->user()->last_name.' '.auth()->user()->first_name}}</span>
 								<p class="fs-12 mb-0">Super Admin</p>
 							</div>
 						</a>
@@ -719,15 +718,14 @@
 <div class="deznav">
 	<div class="deznav-scroll">
 		<ul class="metismenu" id="menu">
-			<li><a href="employer/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
+			<li><a href="/admin/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-381-networking"></i>
-                <span class="nav-text">Employees</span>
+                <span class="nav-text">Employers</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="index_2.html">All Employees</a></li>
-                <li><a href="search_job.html">Search Job</a></li>
-                <li><a href="application.html">Job Applications</a></li>
+                <li><a href="index_2.html">All Employers</a></li>
+                <li><a href="search_job.html">Search Employer</a></li>
             </ul>
         </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -735,23 +733,24 @@
                     <span class="nav-text">Jobs</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html">Add Job</a></li>
-                    <li><a href="index_2.html">All Jobs</a></li>
-                    <li><a href="search_job.html">Search Job</a></li>
-                    <li><a href="application.html">Job Applications</a></li>
+                    <li><a href="/admin/jobs/all_jobs">All Jobs</a></li>
+                    <li><a href="/admin/jobs/search_jobs">Search Job</a></li>
+					<li><a href="/admin/jobs/job_category">Add Job Category</a></li>
+					<li><a href="/admin/jobs/job_category">Add Job Sub Category</a></li>
+					<li><a href="/admin/salary_range">Add Salary Range</a></li>
                 </ul>
             </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">Company</span>
+                    <span class="nav-text">Companies</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html"> Company's Profile</a></li>
+                    <li><a href="index.html">All Companies</a></li>
+					<li><a href="/admin/industry">Add Industry</a></li>
                     <li><a href="index_2.html">Company's Statics</a></li>
-                    <li><a href="email_compose.html">Company's Settings</a></li>
                 </ul>
             </li>
-			<li><a href="employer/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
+			<li><a href="/admin/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
 			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 					<i class="flaticon-381-settings"></i>
 					<span class="nav-text">Settings</span>
@@ -787,7 +786,7 @@
 ***********************************-->
 <div class="footer">
 	<div class="copyright">
-		<p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
+		<p>Copyright © Designed &amp; Developed by <a  href="https://github.com/ikeolu03" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
 	</div>
 </div>
 <!--**********************************
@@ -806,6 +805,7 @@
 			<script src="{{ asset('assets/js/deznav-init.js') }}"></script>
 			<script src="{{ asset('assets/js/demo.js') }}"></script>
 			<script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
+			<script src="//unpkg.com/alpinejs" defer></script>
 			<script>	
 		function carouselReview(){
 			/*  testimonial one function by = owl.carousel.js */
@@ -881,11 +881,11 @@
 			}, 1000); 
 		});
 	</script>
-	
+		@yield('script')
     <!--**********************************
         Main wrapper end
     ***********************************-->
 </body>
 
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:48 GMT -->
+
 </html>

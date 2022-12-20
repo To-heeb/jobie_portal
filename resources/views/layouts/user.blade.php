@@ -17,7 +17,7 @@
 	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - User {{ $title ?? '' }} Dashboard </title>
+    <title>Jobie - {{ $title ?? 'User' }} Dashboard </title>
     <!-- Favicon icon -->
 	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
@@ -580,7 +580,8 @@
 			<div class="collapse navbar-collapse justify-content-between">
 				<div class="header-left">
 					<div class="dashboard_bar">
-						Dashboard					</div>
+						@yield('page_title')			
+					</div>
 				</div>
 
 				<ul class="navbar-nav header-right">

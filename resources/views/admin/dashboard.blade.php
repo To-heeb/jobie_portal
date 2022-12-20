@@ -1,4 +1,4 @@
-@extends('layouts.employer')
+@extends('layouts.admin')
 @section('page_title', 'Dashboard')
 @section('content')
     <div class="container-fluid">
@@ -15,7 +15,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Interviews</p>
+								<p class="fs-18 text-white mb-2">Users</p>
 								<span class="fs-48 text-white font-w600">86</span>
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Apply</p>
+								<p class="fs-18 text-white mb-2">Employers</p>
 								<span class="fs-48 text-white font-w600">75</span>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Profile</p>
+								<p class="fs-18 text-white mb-2">Companies</p>
 								<span class="fs-48 text-white font-w600">45</span>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Message</p>
+								<p class="fs-18 text-white mb-2">Applications</p>
 								<span class="fs-48 text-white font-w600">93</span>
 							</div>
 						</div>

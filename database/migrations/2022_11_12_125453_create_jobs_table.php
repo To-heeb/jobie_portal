@@ -16,11 +16,12 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('level');
+            $table->enum('level', ['entry_level', 'internship', 'graduate_trainee', 'mid_level', 'mid_senior_level', 'senior', 'director', 'executive']);  //entry_level, internship, graduate_trainee, mid_level, mid_senior_level, senior, director, executive 
             $table->string('tags');
-            $table->string('location_type'); //'remote', 'on_site', 'hybrid'
-            $table->string('type'); //freelance, contract, fulltime, parttime 
-            $table->string('status'); //pending, on-hold, accepted, or rejected
+            $table->enum('location_type', ['remote', 'on_site', 'hybrid']); //'remote', 'on_site', 'hybrid'
+            $table->enum('type', ['freelance', 'contract', 'fulltime', 'parttime']); //freelance, contract, fulltime, parttime 
+            $table->enum('status',  ['pending', 'live',]); //pending, live
+            $table->string('custom_question')->nullable();
             $table->integer('company_id');
             $table->integer('job_category_id');
             $table->integer('job_sub_category_id');

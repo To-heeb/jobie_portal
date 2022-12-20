@@ -16,6 +16,8 @@ class UserController extends Controller
 
 
     private $title = 'User';
+
+    protected $guard = 'user';
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +53,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         //dd($request->all());
         $userInfo = $request->validate([
             'first_name' => 'required',

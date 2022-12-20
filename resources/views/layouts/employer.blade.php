@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
@@ -11,14 +9,13 @@
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:title" content="Jobie - Crypto Codeigniter Admin Dashboard" />
-	<meta property="og:description" content="Jobie - Crypto Codeigniter Admin Dashboard" />
+	<meta name="description" content="Jobie -  Employer Dashboard" />
+	<meta property="og:title" content="Jobie - Employer Dashboard" />
+	<meta property="og:description" content="Jobie -  Employer Dashboard" />
 	<meta property="og:image" content="../social-image.png" />
 	<meta name="format-detection" content="telephone=no">
-    <title>Jobie - Employer {{ $title ?? '' }} Dashboard </title>
+    <title>Jobie - {{ $title ?? 'Employer' }} Dashboard </title>
     <!-- Favicon icon -->
-	
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">	
 	<link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
@@ -51,7 +48,7 @@
 	Nav header start
 ***********************************-->
 <div class="nav-header">
-	<a href="index.html" class="brand-logo">
+	<a href="/" class="brand-logo">
 		<svg class="logo-abbr" width="66.5px" height="66.5px">
 			<g><path class="svg-logo-circle" fill-rule="evenodd"  fill="rgb(64, 24, 157)"
 			 d="M32.999,66.000 C14.774,66.000 -0.000,51.225 -0.000,33.000 C-0.000,14.775 14.774,-0.000 32.999,-0.000 C51.225,-0.000 66.000,14.775 66.000,33.000 C66.000,51.225 51.225,66.000 32.999,66.000 Z"/></g><g><path class="svg-logo-icon-text" fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(255, 255, 255)"
@@ -580,7 +577,8 @@
 			<div class="collapse navbar-collapse justify-content-between">
 				<div class="header-left">
 					<div class="dashboard_bar">
-						Dashboard					</div>
+						@yield('page_title')
+					</div>
 				</div>
 
 				<ul class="navbar-nav header-right">
@@ -890,5 +888,4 @@
     ***********************************-->
 </body>
 
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:48 GMT -->
 </html>

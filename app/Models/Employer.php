@@ -21,7 +21,7 @@ class Employer extends Authenticatable
     ];
 
 
-    public static function updateEmployer(int $company_id, $request)
+    public static function updateEmployerCompany(int $company_id, $request)
     {
         $employer = Employer::find(Auth::id());
         $employer->company_id = $company_id;

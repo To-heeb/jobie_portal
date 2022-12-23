@@ -203,6 +203,8 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/decoupled-document/ckeditor.js"></script>
 <script src="https://cdn.tiny.cloud/1/nwn241m8p8fyxf4m834j6okt29kjcp4dt4ga5szmz70ssq3o/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function(){
 			// SmartWizard initialize
@@ -230,7 +232,7 @@
 					}, false)
 				})
 			})()
-
+			
 			
 			document.querySelector('#add-custom-field-btn').addEventListener('click', (event) => {
 				let custom_questions_length = document.querySelectorAll(".custom-questions").length;
@@ -240,6 +242,19 @@
 				}
 
 				let title = prompt("Please enter custom question:");
+
+				Swal.fire({
+					title: 'Please enter custom question',
+					input: 'text',
+					inputLabel: "Question "+custom_questions_length,
+					showCancelButton: true,
+					inputValidator: (value) => {
+						if (!value) {
+						return 'You need to write something!'
+						}
+					}
+				})
+
 				if (title !== null && title !== "") {
 					
 					let field_input = `<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">

@@ -22,4 +22,10 @@ class Job extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
     }
+
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

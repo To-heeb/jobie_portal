@@ -699,7 +699,7 @@
 								<svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
 								<span class="ms-2">Inbox </span>
 							</a>
-							<a href="page_login.html" class="dropdown-item ai-icon">
+							<a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item ai-icon">
 								<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
 								<span class="ms-2">Logout </span>
 							</a>
@@ -724,8 +724,8 @@
                 <span class="nav-text">Employers</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="index_2.html">All Employers</a></li>
-                <li><a href="search_job.html">Search Employer</a></li>
+                <li><a href="/admin/employers">All Employers</a></li>
+                <li><a href="/admin/search_employer">Search Employer</a></li>
             </ul>
         </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -733,10 +733,10 @@
                     <span class="nav-text">Jobs</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/jobs/all_jobs">All Jobs</a></li>
+                    <li><a href="/admin/jobs">All Jobs</a></li>
                     <li><a href="/admin/jobs/search_jobs">Search Job</a></li>
-					<li><a href="/admin/jobs/job_category">Add Job Category</a></li>
-					<li><a href="/admin/jobs/job_category">Add Job Sub Category</a></li>
+					<li><a href="/admin/job_category">Add Job Category</a></li>
+					<li><a href="/admin/job_sub_category">Add Job Sub Category</a></li>
 					<li><a href="/admin/salary_range">Add Salary Range</a></li>
                 </ul>
             </li>
@@ -745,7 +745,7 @@
                     <span class="nav-text">Companies</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html">All Companies</a></li>
+                    <li><a href="/admin/companies">All Companies</a></li>
 					<li><a href="/admin/industry">Add Industry</a></li>
                     <li><a href="index_2.html">Company's Statics</a></li>
                 </ul>
@@ -760,7 +760,10 @@
 					<li><a href="email_inbox.html">Privacy Settings</a></li>
 				</ul>
 			</li>
-			<li><a href="companies.html"> <i class="flaticon-381-exit"></i> <span class="nav-text"> Logout</span></a></li>
+			<form action="/admin/logout" class="inline" method="POST" id="logoutForm">
+				@csrf
+			</form>
+			<li><a href="javascript:document.getElementById('logoutForm').submit()"> <i class="flaticon-381-exit"></i> <span class="nav-text"> Logout</span></a></li>
 		</ul>
 		
 		{{-- <div class="copyright" style="position: absolute">

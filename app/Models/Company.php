@@ -17,7 +17,7 @@ class Company extends Model
         'twitter_link',
         'facebook_link',
         'instagram_link',
-        'industry',
+        'industry_id',
         'employer_id',
         'no_of_employees',
         'company_logo',
@@ -70,5 +70,10 @@ class Company extends Model
     public function industry()
     {
         return $this->belongsTo(Industry::class);
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Jobs::class);
     }
 }

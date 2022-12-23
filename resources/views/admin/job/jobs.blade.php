@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('page_title', 'Industry')
+@section('page_title', 'Jobs')
 @section('content')
     <div class="container-fluid">
 		<div class="page-titles">
@@ -13,61 +13,45 @@
         <div class="row">
             <div class="col-lg-12">
 				<x-flash-message />
-				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title">Add Industry</h4>
-					</div>
-					<div class="card-body">
-						<div class="basic-form">
-							<form class="needs-validation" novalidate action="/admin/industry" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-										<label class="form-label" for="industry_name">Industry Name</label>
-										<input type="text" class="form-control" name="name" id="industry_name" placeholder="Health" required>
-                                        <div class="invalid-feedback">
-											Please Enter Industry Name.
-										</div>
-                                        @error('name')
-										    <p class="text-danger fs-6">{{ $message }}</p>
-									    @enderror
-									</div>
-                                </div>
-								
-								<button type="submit" class="btn me-2 btn-primary" id="my-btn">Submit</button>
-							</form>
-						</div>
-					</div>
-				</div>
 			</div>
 
             <div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Industry</h4>
+						<h4 class="card-title">Employers</h4>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive" >
-							<table id="example3" class="display" style="min-width: 845px">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Name</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody id="edit_delete_td">
-
-									@php $kounter = 0 @endphp
-									@foreach ($industries as $industry)		
-										<tr>
-											<td>{{$loop->iteration }}</td>
-											<td>{{$industry->name}}</td>
-											<td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$industry->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a></td>
-										</tr>
-									@endforeach
-								</tbody>
-							</table>
+                            <table class="table display mb-4 dataTablesCard table-responsive-xl card-table" style="min-width: 845px" id="example5">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Title</th>
+                                        <th>Company</th>
+                                        <th>Type</th>
+                                        <th>Postition</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="edit_delete_td">
+                                    @foreach ($jobs as $job)	
+                                        <tr>
+                                            <td>{{$loop->iteration }}</td>
+                                            <td>{{$job->title}}</td>
+                                            <td>{{$job->company->name ?? "NILL"}}</td> 
+                                            <td>{{ucfirst($job->employer_type)}}</td>
+                                            <td>{{$job->position_in_company ?? "NILL"}}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    
+                                                    <a href="#" class="btn btn-sm btn-primary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job->id}}">View</a>
+                                                    {{-- <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a> --}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>        
 						</div>
 					</div>
 				</div>
@@ -75,10 +59,10 @@
 
 			<!-- Large modal -->
 			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
-				<div class="modal-dialog modal-lg">
+				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title"><b id="">Edit Industry</b></h5>
+							<h5 class="modal-title"><b id="">View Employer</b></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal">
 							</button>
 						</div>
@@ -141,6 +125,20 @@
 			})
 		})()
         
+        (function($) {
+			var table = $('#example5').DataTable({
+				searching: false,
+				paging:true,
+				select: false,
+				//info: false,         
+				lengthChange:false 
+				
+			});
+			$('#example tbody').on('click', 'tr', function () {
+				var data = table.row( this ).data();
+				
+			});
+		})(jQuery);
 
 		
 		$('#edit_industry_modal').on('show.bs.modal', function(e) {

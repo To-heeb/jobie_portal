@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\IndustryController;
+use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\JobSubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,8 @@ Route::group([
     Route::get('/login', [AdminController::class, 'login'])->name('login')->withoutMiddleware(['auth:admin']);
     Route::post('/login', [AdminController::class, 'authenticate'])->withoutMiddleware(['auth:admin']);
     Route::get('/profile', [AdminController::class, 'profile']);
+    Route::put('/profile', [AdminController::class, 'update_profile']);
+    Route::post('/logout', [AdminController::class, 'logout']);
 
     Route::get('/companies', [AdminController::class, 'companies']);
     Route::get('/campany/{id}', [AdminController::class, 'companies']);
@@ -62,11 +66,21 @@ Route::group([
     Route::put('/industry', [IndustryController::class, 'update']);
     Route::get('/industry/{id}', [IndustryController::class, 'get_industry']);
 
-    Route::get('/job_category/{id}', [JobController::class, 'get_job_category']);
-    Route::get('/job_category', [JobController::class, 'job_category']);
-    Route::post('/job_category', [JobController::class, 'job_category']);
-    Route::put('/job_category', [JobController::class, 'job_category']);
+    Route::get('/job_category', [JobCategoryController::class, 'index']);
+    Route::get('/job_category/{id}', [JobCategoryController::class, 'get_job_category']);
+    Route::post('/job_category', [JobCategoryController::class, 'store']);
+    Route::put('/job_category', [JobCategoryController::class, 'update']);
 
+    Route::get('/job_sub_category/{id}', [JobSubCategoryController::class, 'get_job_sub_category']);
+    Route::get('/job_sub_category', [JobSubCategoryController::class, 'index']);
+    Route::post('/job_sub_category', [JobSubCategoryController::class, 'store']);
+    Route::put('/job_sub_category', [JobSubCategoryController::class, 'update']);
+
+    Route::get('/employers', [AdminController::class, 'employers']);
+    Route::get('/companies', [AdminController::class, 'companies']);
+    Route::get('/jobs', [AdminController::class, 'jobs']);
+
+    Route::get('/delete', [JobController::class, 'destroy']);
 
     Route::group([
         'prefix' => '/jobs',
@@ -74,11 +88,6 @@ Route::group([
     ], function () {
         Route::get('/delete', [JobController::class, 'destroy']);
         Route::get('/all_jobs', [JobController::class, 'index']);
-
-        Route::get('/job_sub_category/{id}', [JobController::class, 'get_job_sub_category']);
-        Route::get('/job_sub_category', [JobController::class, 'job_sub_category']);
-        Route::post('/job_sub_category', [JobController::class, 'job_sub_category']);
-        Route::put('/job_sub_category', [JobController::class, 'job_sub_category']);
     });
 
 

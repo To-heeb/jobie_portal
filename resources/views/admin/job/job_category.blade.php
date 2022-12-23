@@ -15,20 +15,20 @@
                 <x-flash-message />
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Add Industry</h4>
+                        <h4 class="card-title">Add Job Category</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form class="needs-validation" novalidate action="/admin/industry" method="POST">
+                            <form class="needs-validation" novalidate action="/admin/job_category" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="industry_name">Industry Name</label>
-                                        <input type="text" class="form-control" name="name" id="industry_name" placeholder="Health" required>
+                                        <label class="form-label" for="name">Job Category Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Health" required>
                                         <div class="invalid-feedback">
-                                            Please Enter Industry Name.
+                                            Please Enter Job Category Name.
                                         </div>
-                                        @error('industry_name')
+                                        @error('name')
                                             <p class="text-danger fs-6">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -44,7 +44,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Industry</h4>
+                        <h4 class="card-title">Job Category</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" >
@@ -59,11 +59,11 @@
                                 <tbody id="edit_delete_td">
 
                                     @php $kounter = 0 @endphp
-                                    @foreach ($industries as $industry)		
+                                    @foreach ($job_categories as $job_category)		
                                         <tr>
                                             <td>{{$loop->iteration }}</td>
-                                            <td>{{$industry->name}}</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$industry->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a></td>
+                                            <td>{{$job_category->name}}</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job_category->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -74,27 +74,27 @@
             </div>
 
             <!-- Large modal -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="edit_category_modal">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title"><b id="">Edit Industry</b></h5>
+                            <h5 class="modal-title"><b id="">Edit Job Category</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation" novalidate action="/admin/industry" method="POST">
+                            <form class="needs-validation" novalidate action="/admin/job_category" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="industry_name_edit">Name</label>
-                                        <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
-                                        <input type="hidden" name="id" id="industry_id">
+                                        <label class="form-label" for="category_name_edit">Name</label>
+                                        <input type="text" class="form-control" name="category_name_edit" id="category_name_edit" placeholder="" required>
+                                        <input type="hidden" name="id" id="category_id">
                                         <div class="invalid-feedback">
-                                            Please Enter Industry Name.
+                                            Please Enter Job Category.
                                         </div>
-                                        @error('industry_name_edit')
+                                        @error('category_name_edit')
                                             <p class="text-danger fs-6">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -143,23 +143,23 @@
         
 
 		
-		$('#edit_industry_modal').on('show.bs.modal', function(e) {
+		$('#edit_category_modal').on('show.bs.modal', function(e) {
 
-			var industry_id = $(e.relatedTarget).data('id');
+			var category_id = $(e.relatedTarget).data('id');
 			
-			var url = '{{  url("/admin/industry/:id") }}';
-			url = url.replace(':id', industry_id);
+			var url = '{{  url("/admin/job_category/:id") }}';
+			url = url.replace(':id', category_id);
 
-			var industry_name_edit = document.querySelector("#industry_name_edit")
-			var industry_id = document.querySelector("#industry_id")
-			industry_name_edit.value = "";
+			var category_name_edit = document.querySelector("#category_name_edit")
+			var category_id = document.querySelector("#category_id")
+			category_name_edit.value = "";
 
 			fetch(url)
 			.then((response) => response.json())
-			.then((industry_data) => {
+			.then((category_data) => {
 				//console.log(range_data)
-				industry_name_edit.value = industry_data.name;
-				industry_id.value = industry_data.id
+				category_name_edit.value = category_data.name;
+				category_id.value = category_data.id
 
 			})
 			.catch((error) => {

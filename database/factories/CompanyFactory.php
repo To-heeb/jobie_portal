@@ -22,7 +22,7 @@ class CompanyFactory extends Factory
             'twitter_link' => $this->faker->url,
             'facebook_link' => $this->faker->url,
             'instagram_link' => $this->faker->url,
-            'industry' => $this->faker->randomDigit,
+            'industry_id' => rand(1, 10),
             'company_logo' => $this->faker->imageUrl,
             'phone_number' => $this->faker->phoneNumber,
             'city' =>  $this->faker->city,

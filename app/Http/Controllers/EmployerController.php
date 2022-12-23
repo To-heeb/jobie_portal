@@ -121,6 +121,12 @@ class EmployerController extends Controller
         return view('auth.employer.login', compact('title'));
     }
 
+    public function profile()
+    {
+        $title = $this->title;
+        return view('employer.profile', compact('title'));
+    }
+
     public function authenticate(Request $request)
     {
         $employerInfo = $request->validate([

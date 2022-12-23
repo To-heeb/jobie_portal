@@ -169,7 +169,7 @@
 											<div class="col-lg-6 mb-2">
 												<div class="form-group">
 													<label class="text-label">Industry <span class="text-danger">*</span></label>
-													<select class="default-select form-control wide mb-3" name="industry" required>
+													<select class="default-select form-control wide mb-3" name="industry_id" required>
 														<option value="">Select Industry</option>
 														@foreach ($industries as $industry)
 															<option value="{{ $industry->id }}" @if($industry->id == old('industry')) selected @endif>{{ $industry->name }}</option>

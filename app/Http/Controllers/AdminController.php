@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Company;
+use App\Models\Employer;
 use App\Models\SalaryRange;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
+
 
 class AdminController extends Controller
 {
@@ -21,7 +29,10 @@ class AdminController extends Controller
     {
         //
         return view('admin.dashboard', [
-            //'featured_companies' => Company::all(),
+            'all_companies' => Company::count(),
+            'all_employers' => Employer::count(),
+            //'all_applications' => Application::count(),
+            'all_users' => User::count(),
             'title' => $this->title,
         ]);
     }
@@ -125,7 +136,7 @@ class AdminController extends Controller
 
         $title = $this->title;
         $salary_ranges = SalaryRange::all();
-        return view('admin.jobs.salary_range', compact('title', 'salary_ranges'));
+        return view('admin.job.salary_range', compact('title', 'salary_ranges'));
     }
 
     public function get_salary_range($range_id)
@@ -136,6 +147,60 @@ class AdminController extends Controller
         return $rangeInfo;
     }
 
+    // Profile
+    public function profile()
+    {
+        // 
+        $title = $this->title;
+        $admin = Admin::find(Auth::id());
+        return view('admin.profile', compact('title', 'admin'));
+    }
+
+    public function update_profile(Request $request)
+    {
+        //dd($request);
+        $adminInfo = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => ['required', 'email'],
+            //'phone_number' => 'exclude_if:phone_number,null|required',
+            'password' => 'exclude_if:password,null|required|min:6|same:password_confirmation',
+            'password_confirmation' => 'exclude_if:password_confirmation,null|min:6|required'
+
+        ]);
+
+        //dd($request);
+        $result = Admin::updateAdmin((object) $adminInfo);
+
+        if ($result)  return redirect('/admin/profile')->with('success', 'Details successfully updated.');
+    }
+
+    public function employers()
+    {
+        //
+        return view('admin.employer.employers', [
+            'employers' => Employer::all(),
+            'title' => $this->title,
+        ]);
+    }
+
+    public function jobs()
+    {
+
+        return view('admin.job.jobs', [
+            'jobs' => Job::all(),
+            'title' => $this->title,
+        ]);
+    }
+
+    public function companies()
+    {
+
+        return view('admin.company.companies', [
+            'companies' => Company::all(),
+            'title' => $this->title,
+        ]);
+    }
 
     // Show Login Form
     public function login()

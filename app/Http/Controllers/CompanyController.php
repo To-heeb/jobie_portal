@@ -56,7 +56,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'employer_type' => ['required', Rule::in(['employee', 'recruiter'])],
             'address' => 'required',
-            'industry' => 'required',
+            'industry_id' => 'required',
             'website_link' =>  'nullable',
             'twitter_link' =>  'nullable',
             'facebook_link' =>  'nullable',
@@ -75,7 +75,7 @@ class CompanyController extends Controller
         $result = Company::create($companyInfo);
 
         // Update employers Information;
-        $response = Employer::updateEmployer($result->id, $request);
+        $response = Employer::updateEmployerCompany($result->id, $request);
         //$employer = Employer::find(auth()->id());
 
         if ($response)  return redirect('/employer/dashboard')->with('success', 'Company successfully created');

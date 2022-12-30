@@ -52,12 +52,12 @@
 
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Profile</p>
+								<p class="fs-18 text-white mb-2">Hired</p>
 								<span class="fs-48 text-white font-w600">45</span>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
 			<div class="col-xl-3 col-xxl-3 col-sm-6">
 				<div class="card bg-secondary">
@@ -70,7 +70,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Message</p>
+								<p class="fs-18 text-white mb-2">Reviews</p>
 								<span class="fs-48 text-white font-w600">93</span>
 							</div>
 						</div>

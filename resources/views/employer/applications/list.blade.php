@@ -1,5 +1,5 @@
 @extends('layouts.employer')
-@section('page_title', 'Jobs')
+@section('page_title', 'Applications')
 @section('content')
     <div class="container-fluid">
 		<div class="page-titles">
@@ -18,7 +18,7 @@
             <div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Jobs</h4>
+						<h4 class="card-title">Applications</h4>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive" >

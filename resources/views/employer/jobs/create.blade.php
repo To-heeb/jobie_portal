@@ -32,61 +32,77 @@
 							<div class="row form-material">
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom01">Job Title</label>
-									<input type="text" name="job_title" class="form-control" placeholder="" id="validationCustom01" required>
+									<input type="text" name="title" class="form-control" placeholder="" id="validationCustom01" value="{{ old('title') }}" >
+									<input type="hidden" name="company_id" value="{{ auth()->user()->company_id }}">
 									<div class="invalid-feedback">
 										Please Enter the Job Title.
 									</div>
-									@error('job_title')
+									@error('title')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-									<label class="form-label" for="validationCustom02">Job Category</label>
-									<input type="text" name="job_category" class="form-control" placeholder="" id="validationCustom02" required>
+									<label class="form-label" for="job_category_id">Job Category</label>
+									<select name="job_category_id" id="job_category_id" class="form-select form-control" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Job Category</option>
+										@foreach ($job_categories as $job_category)
+											<option value="{{ $job_category->id }}" @if($job_category->id == old('job_category_id')) selected @endif>{{ $job_category->name }}</option>
+										@endforeach
+									</select>
 									<div class="invalid-feedback">
 										Please Select the Job Category.
 									</div>
-									@error('job_category')
+									@error('job_category_id')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-									<label class="form-label" for="validationCustom03">Job Sub-Category</label>
-									<input type="text" name="job_sub_category" class="form-control" placeholder="" id="validationCustom03" required>
+									<label class="form-label" for="job_sub_category_id">Job Sub-Category</label>
+									<select name="job_sub_category_id" id="job_sub_category_id" class="form-select form-control" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Job Sub-Category</option>
+										@php 
+											if(old('job_sub_category_id')):
+												foreach($job_sub_categories as $job_sub_category):
+													 $selected = (old('job_sub_category_id') == $job_sub_category->id) ? 'selected' : '';
+													echo '<option value="'.old('job_sub_category_id').'" '.$selected.'>'.$job_sub_category->name.'</option>';
+												endforeach;
+											endif;
+										@endphp
+									</select>
 									<div class="invalid-feedback">
-										Please Select the Job Industry.
+										Please Select the Job Sub-Category.
 									</div>
-									@error('job_industry')
+									@error('job_sub_category_id')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom04">Job Type</label>
-									<select name="job_type" class="form-select form-control" id="validationCustom04" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+									<select name="type" class="form-select form-control" id="validationCustom04" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
 										<option value="">Select Job Type</option>
-										<option value="freelance" @if(old('job_type') == "freelance") selected @endif >Freelance</option>
-										<option value="contract" @if(old('job_type') == "contract") selected @endif>Contract</option>
-										<option value="fulltime" @if(old('job_type') == "fulltime") selected @endif>Fulltime</option>
-										<option value="parttime" @if(old('job_type') == "parttime") selected @endif>Part-time</option>
+										<option value="freelance" @if(old('type') == "freelance") selected @endif >Freelance</option>
+										<option value="contract" @if(old('type') == "contract") selected @endif>Contract</option>
+										<option value="fulltime" @if(old('type') == "fulltime") selected @endif>Fulltime</option>
+										<option value="parttime" @if(old('type') == "parttime") selected @endif>Part-time</option>
 									</select>
 									<div class="invalid-feedback">
 										Please Enter the Job Type.
 									</div>
-									@error('job_type')
+									@error('type')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6">
 									<label class="form-label" for="validationCustom05">Job Status</label>	
-									<select name="job_status" class="form-select form-control" id="validationCustom05" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+									<select name="status" class="form-select form-control" id="validationCustom05" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
 										<option value="">Select Job Status</option>
-										<option value="pending" @if(old('job_status') == "pending") selected @endif >Pending</option>
-										<option value="live" @if(old('job_status') == "live") selected @endif>Live</option>
+										<option value="pending" @if(old('status') == "pending") selected @endif >Pending</option>
+										<option value="live" @if(old('status') == "live") selected @endif>Live</option>
 									</select>
 									<div class="invalid-feedback">
 										Please Select the Job Status.
 									</div>
-									@error('job_status')
+									@error('status')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
@@ -107,11 +123,11 @@
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom07">Job Tags</label>
-									<input type="text" name="job_tags" class="form-control" id="validationCustom07" placeholder="php, css, laravel, html" required>
+									<input type="text" name="tags" class="form-control" id="validationCustom07" placeholder="php, css, laravel, html" value="{{ old('tags') }}" required>
 									<div class="invalid-feedback">
 										Please Enter a username.
 									</div>
-									@error('job_tags')
+									@error('tags')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
@@ -131,21 +147,40 @@
 									<div class="invalid-feedback">
 										Please Select the Location Type.
 									</div>
-									@error('location_type')
+									@error('level')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-									<label class="form-label" for="validationCustom08">Salary Range</label>
-									<input type="text" name="salary_range" class="form-control" placeholder="" id="validationCustom08" required>
+									<label class="form-label" for="salary_range_id">Salary Range</label>
+									<select name="salary_range_id" id="salary_range_id" class="form-select form-control" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Salary Range</option>
+										@foreach ($salary_ranges as $salary_range)
+											<option value="{{ $salary_range->id }}" @if($salary_range->id == old('salary_range_id')) selected @endif>{{ "₦".number_format($salary_range->start_range, 2, '.', ',').' - '.  "₦".number_format($salary_range->end_range, 2, '.', ',')}}</option>
+										@endforeach
+									</select>
 									<div class="invalid-feedback">
 										Please Select the Salary Range.
 									</div>
-									@error('salary_range')
+									@error('salary_range_id')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
-
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label">Duration Range</label>
+									<input class="form-control input-limit-datepicker" type="text" name="daterange" value="<?= date('d/m/Y') ."-".date('d/m/Y')?>" required>
+									<input type="hidden" name="start_range" id="start_range_id" value="{{ old('start_range')}}">
+									<input type="hidden" name="end_range" id="end_range_id" value="{{ old('end_range')}}">
+									<div class="invalid-feedback">
+										Please Select the Duration Range.
+									</div>
+									@error('start_range')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
+									@error('end_range')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
+								</div>
 								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom09">Salary Status</label>
 									<select name="salary_status" class="form-select form-control" id="validationCustom09" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
@@ -160,29 +195,28 @@
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
-
-								<div  id="custom-sibling"></div>
+								<div id="custom-sibling"></div>
 								<div class="col-lg-12 mb-2">
 									<button type="button" class="btn btn-primary" id="add-custom-field-btn" style="float: right;">Add Custom Fields</button>
 									<p style="clear: both"></p>
 								</div>
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-4">
 									<label class="form-label" >Job Summary</label>
-									<textarea name="job_summary" class="form-control" placeholder="The summary helps you attract the right candidate, only include the most important information to grab the attention of the job seekers. Keep it as short as possible." rows="3" required></textarea>
+									<textarea name="summary" class="form-control" placeholder="The summary helps you attract the right candidate, only include the most important information to grab the attention of the job seekers. Keep it as short as possible." rows="3" required>{{ old('summary') }}</textarea>
 									<div class="invalid-feedback">
 										Please Enter the Job Summary.
 									</div>
-									@error('job_summary')
+									@error('summary')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label">Job Description</label>
-									<textarea id="ckeditor" class="form-control" name="job_description" required placeholder="The job description/requirements should accurately reflect the duties and responsibilities of the position. It helps give a realistic overview of the job and what is required from the candidate applying."></textarea>
+									<textarea id="ckeditor" class="form-control" name="description" required placeholder="The job description/requirements should accurately reflect the duties and responsibilities of the position. It helps give a realistic overview of the job and what is required from the candidate applying.">{{  old('description') }}</textarea>
 									<div class="invalid-feedback">
 										Please Enter the Job Description.
 									</div>
-									@error('job_description')
+									@error('description')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
@@ -205,6 +239,7 @@
 <script src="https://cdn.tiny.cloud/1/nwn241m8p8fyxf4m834j6okt29kjcp4dt4ga5szmz70ssq3o/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function(){
 			// SmartWizard initialize
@@ -237,38 +272,95 @@
 			document.querySelector('#add-custom-field-btn').addEventListener('click', (event) => {
 				let custom_questions_length = document.querySelectorAll(".custom-questions").length;
 				if(custom_questions_length >= 5){
-					alert("The maximum number of custom questions allowed is 5")
+						Swal.fire(
+						'Exceeded Limit',
+						'The maximum number of custom questions allowed is 5',
+						'warning'
+						)
 					return false;
 				}
 
-				let title = prompt("Please enter custom question:");
+				
 
 				Swal.fire({
 					title: 'Please enter custom question',
 					input: 'text',
-					inputLabel: "Question "+custom_questions_length,
+					inputLabel: "Question "+(custom_questions_length+1),
 					showCancelButton: true,
 					inputValidator: (value) => {
 						if (!value) {
-						return 'You need to write something!'
+							return 'You need to write something!'
+						}else{
+							let field_input = `<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+													<label class="form-label">Custom Question ((number))</label>
+													<input type="text" class="form-control custom-questions" id="" name="custom_question[]" value="${value}" required>
+													<div class="invalid-feedback">
+														Please fill Custom Question ((number)) field.
+													</div>
+												</div>`;
+					
+								custom_question_template = field_input.replaceAll('((number))', custom_questions_length + 1);
+								document.querySelector("#custom-sibling").insertAdjacentHTML('beforebegin', custom_question_template)
 						}
 					}
 				})
-
-				if (title !== null && title !== "") {
-					
-					let field_input = `<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
-											<label class="form-label">Custom Question ((number))</label>
-											<input type="text" class="form-control custom-questions" id="" name="question_((number))" value="${title}" readonly>
-									   </div>`;
-					
-					custom_question_template = field_input.replaceAll('((number))', custom_questions_length + 1);
-					document.querySelector("#custom-sibling").insertAdjacentHTML('beforebegin', custom_question_template)
-				}else{
-					alert("The custom question can't be empty");
-				}
 			});
-			
+
+
+			document.querySelector('#job_category_id').addEventListener('change', (event) => {
+
+				var job_category_id = event.target.value;
+				
+				var url = '{{  url("/employer/jobs/job_sub_categories/:id") }}';
+				url = url.replace(':id', job_category_id);
+
+				var job_sub_category_select = document.querySelector("#job_sub_category_id")
+
+				fetch(url)
+				.then((response) => response.json())
+				.then((sub_categories_data) => {
+					//console.log(sub_categories_data)
+
+					var output = "<option value=''>Select Job Sub-Category</option>";
+					sub_categories_data.forEach((sub_category_data) =>{
+
+						output +=`<option value="${sub_category_data.id}">${sub_category_data.name}</option>`;
+					})
+					job_sub_category_select.innerHTML = output;
+					
+				})
+				.catch((error) => {
+					console.log('Error:', error);
+				})
+				
+			})
+
+			document.querySelector('#job_sub_category_id').addEventListener('click', (event) => {
+				var job_category_id = document.querySelector("#job_category_id")
+				if(job_category_id.value === '') {
+
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'Please Select Job Category first',
+					})
+					return false
+				}
+			})
+
+
+			$(function() {
+				$('input[name="daterange"]').daterangepicker({
+					opens: 'left'
+				}, function(start, end, label) {
+					var start_range = document.querySelector("#start_range_id")
+					var end_range = document.querySelector("#end_range_id")
+					start_range.value = start.format('YYYY-MM-DD');
+					end_range.value = end.format('YYYY-MM-DD');
+					console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+				});
+			});
+							
 		});
 </script>
 @endsection

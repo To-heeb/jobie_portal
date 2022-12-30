@@ -27,23 +27,23 @@ class DatabaseSeeder extends Seeder
         Industry::factory(10)->create();
 
         // Remove all
-        // User::create([
-        //     'first_name' => 'Toheeb',
-        //     'last_name' => 'Oyekola',
-        //     'email' => 'toheeb.olawale.to23@gmail.com',
-        //     'password' =>  Hash::make(env('APP_PASS')),
-        // ]);
-        // Admin::create([
-        //     'first_name' => 'Toheeb',
-        //     'last_name' => 'Oyekola',
-        //     'email' => 'toheeb.olawale.to23@gmail.com',
-        //     'password' =>  Hash::make(env('APP_PASS')),
-        // ]);
-        // Employer::create([
-        //     'first_name' => 'Toheeb',
-        //     'last_name' => 'Oyekola',
-        //     'email' => 'toheeb.olawale.to23@gmail.com',
-        //     'password' =>  Hash::make(env('APP_PASS')),
-        // ]);
+        User::create([
+            'first_name' => 'Toheeb',
+            'last_name' => 'Oyekola',
+            'email' => 'toheeb.olawale.to23@gmail.com',
+            'password' =>  Hash::make(env('APP_PASS')),
+        ]);
+        Admin::create([
+            'first_name' => 'Toheeb',
+            'last_name' => 'Oyekola',
+            'email' => 'toheeb.olawale.to23@gmail.com',
+            'password' =>  Hash::make(env('APP_PASS')),
+        ]);
+        Employer::create([
+            'first_name' => 'Toheeb',
+            'last_name' => 'Oyekola',
+            'email' => 'toheeb.olawale.to23@gmail.com',
+            'password' =>  Hash::make(env('APP_PASS')),
+        ]);
     }
 }

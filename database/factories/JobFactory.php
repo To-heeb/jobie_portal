@@ -23,8 +23,12 @@ class JobFactory extends Factory
             'company_id' => $this->faker->randomDigit,
             'job_category_id' => $this->faker->randomDigit,
             'job_sub_category_id' =>  $this->faker->randomDigit,
+            'salary_range_id' => rand(1, 3),
             'summary' => $this->faker->sentence(),
             'status' => $this->job_status(),
+            'salary_status' => $this->salary_status(),
+            'start_range' => date('Y-m-d'),
+            'end_range' => date('Y-m-d', strtotime("+1 week")),
             'description' => $this->faker->paragraph(5),
         ];
     }
@@ -40,6 +44,13 @@ class JobFactory extends Factory
     {
         $index = rand(0, 1);
         $type = ['pending', 'live',];
+        return $type[$index];
+    }
+
+    private function salary_status()
+    {
+        $index = rand(0, 1);
+        $type = ['confidential', 'public',];
         return $type[$index];
     }
 

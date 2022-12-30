@@ -17,7 +17,9 @@ class Employer extends Authenticatable
         'email',
         'password',
         'first_name',
-        'last_name'
+        'last_name',
+        'profile_photo',
+        'phone_number'
     ];
 
 
@@ -31,6 +33,28 @@ class Employer extends Authenticatable
         if ($employer->save()) return true;
     }
 
+    public static function updateEmployer($request)
+    {
+        //dd($request);
+        $employer = Employer::find(Auth::id());
+        $employer->email  = $request->email;
+        $employer->first_name = $request->first_name;
+        $employer->last_name = $request->last_name;
+
+        if (isset($request->password)) {
+            $employer->password = $request->password;
+        }
+
+        if (isset($request->profile_photo)) {
+            $employer->profile_photo = $request->profile_photo;
+        }
+
+        // if (isset($request->phone_number)) {
+        //     $admin->phone_number = $request->phone_number;
+        // }
+
+        if ($employer->save()) return true;
+    }
 
     public function company()
     {

@@ -199,15 +199,15 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab" class="nav-link active show">Posts</a>
+                                <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab" class="nav-link">Posts</a>
                                 </li>
                                 <li class="nav-item"><a href="#about" data-bs-toggle="tab" class="nav-link">About</a>
                                 </li>
-                                <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link">Setting</a>
+                                <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link active show">Setting</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div id="my-posts" class="tab-pane fade active show">
+                                <div id="my-posts" class="tab-pane fade">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
                                             <textarea name="textarea" id="textarea" cols="30" rows="5" class="form-control bg-transparent" placeholder="Please type what you want...."></textarea> 
@@ -376,7 +376,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="profile-settings" class="tab-pane fade">
+                                <div id="profile-settings" class="tab-pane fade active show">
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             <h4 class="text-primary">Account Setting</h4>
@@ -487,13 +487,13 @@
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
                                                         <label class="text-label">Industry <span class="text-danger">*</span></label>
-													    <select class="default-select form-control wide mb-3" name="industry" required>
-														<option value="">Select Industry</option>
+													    <select class="default-select form-control wide mb-3" name="industry_id" required>
+														<option value="">Select Industry</option>  
 														@foreach ($industries as $industry)
-															<option value="{{ $industry->id }}" @if($industry->id == $companyInfo->industry) selected @endif>{{ $industry->name }}</option>
+															<option value="{{ $industry->id }}" @if($industry->id == $companyInfo->industry_id) selected @endif>{{ $industry->name }}</option>
 														@endforeach
                                                         </select>
-                                                        @error('industry')
+                                                        @error('industry_id')
                                                             <p class="text-danger fs-6">{{ $message }}</p>
                                                         @enderror
                                                     </div>

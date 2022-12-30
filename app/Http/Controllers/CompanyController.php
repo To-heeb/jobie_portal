@@ -91,6 +91,7 @@ class CompanyController extends Controller
     {
         //
         $industries = Industry::all();
+        //dd($industries);
         $companyInfo = Company::where(['id' =>  $id, 'employer_id' => auth()->user()->id])->firstOrFail();
         return view('employer.company.show', compact('companyInfo', 'industries'));
     }
@@ -130,7 +131,7 @@ class CompanyController extends Controller
             'address' => 'required',
             'employer_type' => ['required', Rule::in(['employee', 'recruiter'])],
             'address' => 'required',
-            'industry' => 'required',
+            'industry_id' => 'required',
             'website_link' =>  'nullable|string',
             'twitter_link' =>  'nullable|string',
             'facebook_link' =>  'nullable|string',
@@ -144,6 +145,7 @@ class CompanyController extends Controller
             $companyInfo['company_logo'] = $request->file('company_logo')->store('company_logos', 'public');
         }
 
+        dd($request);
         $result = Company::updateCompany((object) $companyInfo);
 
         // Update employers Information;

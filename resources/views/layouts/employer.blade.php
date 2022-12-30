@@ -21,6 +21,8 @@
 	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>		
+	<link href="{{ asset('assets/vendor/clockpicker/css/bootstrap-clockpicker.min.css') }}" rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
 	@yield('link')	
 </head>
@@ -690,7 +692,7 @@
 							</div>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end">
-							<a href="app_profile.html" class="dropdown-item ai-icon">
+							<a href="/employer/profile" class="dropdown-item ai-icon">
 								<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
 								<span class="ms-2">Profile </span>
 							</a>
@@ -727,7 +729,7 @@
                     <li><a href="/employer/jobs/create">Add Job</a></li>
                     <li><a href="/employer/jobs">All Jobs</a></li>
                     <li><a href="/employer/search_job.html">Search Job</a></li>
-                    <li><a href="/employer/jobs/application">Job Applications</a></li>
+                    <li><a href="/employer/applications">Job Applications</a></li>
                 </ul>
             </li>
 			@endif
@@ -752,8 +754,8 @@
 					<span class="nav-text">Settings</span>
 				</a>
 				<ul aria-expanded="false">
-					<li><a href="email_compose.html">Account Settings</a></li>
-					<li><a href="email_inbox.html">Privacy Settings</a></li>
+					<li><a href="/admin/profile">Account Settings</a></li>
+					<li><a href="/employer/company/profile/{{auth()->user()->company_id}}">Company Settings</a></li>
 				</ul>
 			</li>
 			<form action="/employer/logout" class="inline" method="POST" id="logoutForm">
@@ -801,6 +803,8 @@
 			<script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
 			<script src="{{ asset('assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
 			<script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
+			<script src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+			<script src="{{ asset('assets/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 		
 			<script src="{{ asset('assets/js/custom.js') }}"></script>
 			<script src="{{ asset('assets/js/deznav-init.js') }}"></script>

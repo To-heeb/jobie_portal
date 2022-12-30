@@ -29,4 +29,9 @@ class JobSubCategory extends Model
     {
         return $this->belongsTo(JobCategory::class);
     }
+
+    public function jobs()
+    {
+        return $this->hasMany(Jobs::class);
+    }
 }

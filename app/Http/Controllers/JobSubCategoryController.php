@@ -112,4 +112,11 @@ class JobSubCategoryController extends Controller
 
         return $subCategoryInfo;
     }
+
+    public function get_job_sub_categories($job_category_id)
+    {
+        $jobSubCategoriesInfo = JobSubCategory::where('job_category_id', $job_category_id)->get();
+
+        return $jobSubCategoriesInfo;
+    }
 }

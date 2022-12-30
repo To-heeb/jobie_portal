@@ -21,7 +21,8 @@ class Admin extends Authenticatable
         'password',
         'first_name',
         'last_name',
-        'phone_number'
+        'phone_number',
+        'profile_photo'
     ];
 
     public static function updateAdmin($request)
@@ -36,11 +37,13 @@ class Admin extends Authenticatable
             $admin->password = $request->password;
         }
 
+        if (isset($request->profile_photo)) {
+            $admin->profile_photo = $request->profile_photo;
+        }
+
         // if (isset($request->phone_number)) {
         //     $admin->phone_number = $request->phone_number;
         // }
-
-
 
         if ($admin->save()) return true;
     }

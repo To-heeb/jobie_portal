@@ -95,12 +95,30 @@ class EmployerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $id (removed)
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request);
+        $employerInfo = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => ['required', 'email'],
+            //'phone_number' => 'exclude_if:phone_number,null|required',
+            'password' => 'exclude_if:password,null|required|min:6|same:password_confirmation',
+            'password_confirmation' => 'exclude_if:password_confirmation,null|min:6|required',
+            'profile_photo' => 'nullable',
+        ]);
+
+        if ($request->hasFile('profile_photo')) {
+            $employerInfo['profile_photo'] = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
+
+        //dd($request);
+        $result = Employer::updateEmployer((object) $employerInfo);
+
+        if ($result)  return redirect('/employer/profile')->with('success', 'Details successfully updated.');
     }
 
     /**
@@ -124,7 +142,15 @@ class EmployerController extends Controller
     public function profile()
     {
         $title = $this->title;
-        return view('employer.profile', compact('title'));
+        $employer = Employer::find(Auth::id());
+        return view('employer.profile', compact('title', 'employer'));
+    }
+
+    public function applications()
+    {
+        // 
+        $title = $this->title;
+        return view('employer.applications.list', compact('title'));
     }
 
     public function authenticate(Request $request)

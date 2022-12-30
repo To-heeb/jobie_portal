@@ -48,7 +48,7 @@ class Company extends Model
         $companyInfo->twitter_link = $request->twitter_link;
         $companyInfo->facebook_link = $request->facebook_link;
         $companyInfo->instagram_link = $request->instagram_link;
-        $companyInfo->industry = $request->industry;
+        $companyInfo->industry_id = $request->industry_id;
         $companyInfo->no_of_employees = $request->no_of_employees;
         $companyInfo->about = $request->about;
 

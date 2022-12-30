@@ -103,6 +103,7 @@ Route::group([
     });
 });
 
+
 Route::group([
     'prefix' => '/employer',
     'as' => 'employer.',
@@ -113,6 +114,8 @@ Route::group([
     Route::get('/login', [EmployerController::class, 'login'])->name('login')->withoutMiddleware(['auth:employer']);
     Route::post('/login', [EmployerController::class, 'authenticate'])->withoutMiddleware(['auth:employer']);
     Route::get('/profile', [EmployerController::class, 'profile']);
+    Route::put('/profile', [EmployerController::class, 'update']);
+    Route::get('/applications', [EmployerController::class, 'applications']);
     Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth:employer']);
     Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth:employer']);
     Route::post('/logout', [EmployerController::class, 'logout']);
@@ -121,9 +124,14 @@ Route::group([
         'prefix' => '/jobs',
         'as' => 'jobs.',
     ], function () {
+        Route::get('/', [JobController::class, 'jobs']);
+        Route::get('/{id}', [JobController::class, 'edit']);
+        Route::put('/{id}', [JobController::class, 'update']);
         Route::get('/create', [JobController::class, 'create']);
         Route::get('/dashboard', [JobController::class, 'index']);
         Route::post('/store', [JobController::class, 'store']);
+
+        Route::get('/job_sub_categories/{id}', [JobSubCategoryController::class, 'get_job_sub_categories']);
     });
 
     Route::group([

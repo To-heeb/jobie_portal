@@ -39,7 +39,7 @@
                                             <td>{{$loop->iteration }}</td>
                                             <td>{{$job->title}}</td>
                                             <td>{{$job->company->name ?? "NILL"}}</td> 
-                                            <td>{{ucfirst($job->employer_type)}}</td>
+                                            <td>{{ucfirst($job->type)}}</td>
                                             <td>{{$job->position_in_company ?? "NILL"}}</td>
                                             <td>
                                                 <div class="d-flex">

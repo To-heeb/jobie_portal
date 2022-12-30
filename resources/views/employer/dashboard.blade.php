@@ -15,7 +15,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Interviews</p>
+								<p class="fs-18 text-white mb-2">Jobs</p>
 								<span class="fs-48 text-white font-w600">86</span>
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 								</svg>
 							</span>
 							<div class="media-body text-end feature-icon-text">
-								<p class="fs-18 text-white mb-2">Apply</p>
+								<p class="fs-18 text-white mb-2">Applications</p>
 								<span class="fs-48 text-white font-w600">75</span>
 							</div>
 						</div>

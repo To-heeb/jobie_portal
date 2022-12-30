@@ -14,7 +14,7 @@
 								
 							</div>
 							<div class="card-body">
-								<form action="/admin/profile" method="POST">
+								<form action="/admin/profile" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 									<div class="mb-5">
@@ -24,6 +24,9 @@
 												<div class="form-group">
 													<label>First Name</label>
 													<input type="text" name="first_name" class="form-control" placeholder="Enter name" value="{{$admin->first_name}}">
+													<div class="invalid-feedback">
+														Please Enter Your First Name.
+													</div>
                                                     @error('first_name')
                                                         <p class="text-danger fs-6">{{ $message }}</p>
                                                     @enderror
@@ -33,6 +36,9 @@
 												<div class="form-group">
 													<label>Last Name</label>
 													<input type="text" name="last_name" class="form-control" placeholder="Last name" value="{{$admin->last_name}}">
+													<div class="invalid-feedback">
+														Please Enter Your Last Name.
+													</div>
                                                     @error('last_name')
                                                         <p class="text-danger fs-6">{{ $message }}</p>
                                                     @enderror
@@ -42,12 +48,25 @@
 												<div class="form-group">
 													<label>Email</label>
 													<input type="text" name="email" class="form-control" placeholder="Type here" value="{{$admin->email}}">
+													<div class="invalid-feedback">
+														Please Enter Your Email.
+													</div>
                                                     @error('email')
                                                         <p class="text-danger fs-6">{{ $message }}</p>
                                                     @enderror
 												</div>
 											</div>
 											
+											<div class="col-xl-4 col-sm-6">
+												<div class="form-group">
+													<label>Profile Photo</label>
+													<input type="file" class="form-file-input form-control" name="profile_photo">
+													@error('profile_photo')
+                                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                                    @enderror
+												</div>
+											</div>
+
 											<div class="col-xl-4 col-sm-6">
 												<div class="form-group">
 													<label>Password</label>
@@ -85,28 +104,6 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-xl-4 col-sm-6">
-												<div class="form-group">
-													<label>Whatsapp</label>
-													<div class="input-group input-icon mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon2"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
-														</div>
-														<input type="text" class="form-control" placeholder="Phone no.">
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-4 col-sm-6">
-												<div class="form-group">
-													<label>Email</label>
-													<div class="input-group input-icon mb-3">
-														<div class="input-group-prepend">
-															<span class="input-group-text" id="basic-addon3"><i class="las la-envelope"></i></span>
-														</div>
-														<input type="text" class="form-control" placeholder="Enter email" value="{{$admin->email}}">
-													</div>
-												</div>
-											</div>
 										</div>
 									</div> --}}
                                     <div class="d-sm-flex d-block">
@@ -125,7 +122,7 @@
 						<div class="card  flex-lg-column flex-md-row ">
 							<div class="card-body card-body  text-center border-bottom profile-bx">
 								<div class="profile-image mb-4">
-									<img src="public/assets/images/avatar/1.jpg" class="rounded-circle" alt="">
+									<img src="{{ asset('storage/'.auth()->user()->profile_photo)}}" class="rounded-circle" alt="">
 								</div>
 								<h4 class="fs-22 text-black mb-1">{{$admin->last_name.' '.$admin->first_name}}</h4>
 								<p class="mb-4">Super Admin</p>

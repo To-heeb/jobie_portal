@@ -165,9 +165,13 @@ class AdminController extends Controller
             'email' => ['required', 'email'],
             //'phone_number' => 'exclude_if:phone_number,null|required',
             'password' => 'exclude_if:password,null|required|min:6|same:password_confirmation',
-            'password_confirmation' => 'exclude_if:password_confirmation,null|min:6|required'
-
+            'password_confirmation' => 'exclude_if:password_confirmation,null|min:6|required',
+            'profile_photo' => 'nullable',
         ]);
+
+        if ($request->hasFile('profile_photo')) {
+            $adminInfo['profile_photo'] = $request->file('profile_photo')->store('profile_photos', 'public');
+        }
 
         //dd($request);
         $result = Admin::updateAdmin((object) $adminInfo);

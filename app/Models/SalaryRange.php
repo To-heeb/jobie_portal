@@ -25,4 +25,9 @@ class SalaryRange extends Model
             return true;
         }
     }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

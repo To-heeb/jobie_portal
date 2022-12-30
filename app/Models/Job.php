@@ -7,6 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
+    protected $fillable = [
+        'title',
+        'job_category_id',
+        'job_sub_category_id',
+        'company_id',
+        'type',
+        'job_status',
+        'location_type',
+        'tags',
+        'level',
+        'salary_range_id',
+        'salary_status',
+        'summary',
+        'description',
+        'start_range',
+        'end_range',
+        'custom_question',
+    ];
+
     use HasFactory;
 
     public function scopeFilter($query, array $filters)
@@ -27,5 +46,15 @@ class Job extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function job_sub_category()
+    {
+        return $this->belongsTo(JobSubCategory::class);
+    }
+
+    public function salary_range()
+    {
+        return $this->belongsTo(SalaryRange::class);
     }
 }

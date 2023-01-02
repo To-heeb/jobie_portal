@@ -729,9 +729,16 @@
                     <li><a href="/employer/jobs/create">Add Job</a></li>
                     <li><a href="/employer/jobs">All Jobs</a></li>
                     <li><a href="/employer/search_job.html">Search Job</a></li>
-                    <li><a href="/employer/applications">Job Applications</a></li>
                 </ul>
             </li>
+			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+				<i class="flaticon-381-networking"></i>
+				<span class="nav-text">Applications</span>
+			</a>
+			<ul aria-expanded="false">
+				<li><a href="/employer/applications">Applications</a></li>
+			</ul>
+		</li>
 			@endif
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
@@ -754,7 +761,7 @@
 					<span class="nav-text">Settings</span>
 				</a>
 				<ul aria-expanded="false">
-					<li><a href="/admin/profile">Account Settings</a></li>
+					<li><a href="/employer/profile">Account Settings</a></li>
 					<li><a href="/employer/company/profile/{{auth()->user()->company_id}}">Company Settings</a></li>
 				</ul>
 			</li>

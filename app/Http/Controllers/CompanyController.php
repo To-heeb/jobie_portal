@@ -145,7 +145,7 @@ class CompanyController extends Controller
             $companyInfo['company_logo'] = $request->file('company_logo')->store('company_logos', 'public');
         }
 
-        dd($request);
+        //dd($request);
         $result = Company::updateCompany((object) $companyInfo);
 
         // Update employers Information;

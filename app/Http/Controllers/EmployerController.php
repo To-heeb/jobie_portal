@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,8 @@ class EmployerController extends Controller
         //
         return view('employer.dashboard', [
             //'featured_companies' => Company::all(),
+            'jobs' => Job::all(),
+            'all_employers' => Employer::count(),
             'title' => $this->title,
         ]);
     }

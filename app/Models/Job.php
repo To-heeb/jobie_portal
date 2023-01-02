@@ -43,6 +43,34 @@ class Job extends Model
     }
 
 
+    public static function updateJob($request)
+    {
+
+        //eloquence
+        //dd($request);
+        $jobInfo = Job::find($request->id);
+        $jobInfo->title = $request->title;
+        $jobInfo->job_category_id = $request->job_category_id;
+        $jobInfo->job_sub_category_id = $request->job_sub_category_id;
+        $jobInfo->company_id = $request->company_id;
+        $jobInfo->type = $request->type;
+        $jobInfo->status = $request->status;
+        $jobInfo->location_type = $request->location_type;
+        $jobInfo->tags = $request->tags;
+        $jobInfo->level = $request->level;
+        $jobInfo->salary_range_id = $request->salary_range_id;
+        $jobInfo->salary_status = $request->salary_status;
+        $jobInfo->summary = $request->summary;
+        $jobInfo->description = $request->description;
+        $jobInfo->start_range = $request->start_range;
+        $jobInfo->end_range = $request->end_range;
+        $jobInfo->custom_question = $request->custom_question;
+
+        if ($jobInfo->save()) {
+            return true;
+        }
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);

@@ -114,9 +114,37 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request);
+        $jobInfo = $request->validate([
+            'title' => 'required',
+            'id' => 'required|integer',
+            'job_category_id' => 'required|numeric',
+            'job_sub_category_id' =>  'required|numeric',
+            'company_id' =>  'required',
+            'type' =>  'required',
+            'status' =>  'required',
+            'location_type' => 'required',
+            'tags' => 'required',
+            'level' => 'required',
+            'salary_range_id' => 'required|numeric',
+            'salary_status' =>  'required',
+            'summary' =>  'required',
+            'description' =>  'required',
+            'start_range' =>  'required',
+            'end_range' =>  'required',
+            'custom_question'   => 'nullable|array',
+            // validate custom field here
+            "custom_question.*"  => "required_unless:custom_question,null|string|exclude_if:custom_question,null",
+        ]);
+
+        //dd($request);
+        $jobInfo['custom_question'] = (!empty($jobInfo['custom_question'])) ? json_encode($jobInfo['custom_question']) : "";
+
+        $job = Job::updateJob((object) $jobInfo);
+
+        return redirect('/employer/dashboard')->with('success', 'Job successfully updated');
     }
 
     /**
@@ -135,5 +163,11 @@ class JobController extends Controller
         $jobs = Job::where('company_id', auth()->user()->company_id)->get();
 
         return view('employer.jobs.list', compact('jobs'));
+    }
+
+    public function applications($id)
+    {
+
+        return view('employer.applications.job');
     }
 }

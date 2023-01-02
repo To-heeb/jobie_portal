@@ -34,6 +34,8 @@
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom01">Job Title</label>
 									<input type="text" name="title" class="form-control" placeholder="" id="validationCustom01" value="{{ $job_info->title }}" required>
+									<input type="hidden" name="company_id" value="{{ auth()->user()->company_id }}">
+									<input type="hidden" name="id" value="{{ $job_info->id }}">
 									<div class="invalid-feedback">
 										Please Enter the Job Title.
 									</div>
@@ -188,6 +190,24 @@
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
+								@php 
+									if($job_info->custom_question):
+										$custom_questions = json_decode($job_info->custom_question);
+										@endphp
+										@foreach($custom_questions as $custom_question)
+								
+											<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+												<label class="form-label">Custom Question {{$loop->iteration }}</label>
+												<input type="text" class="form-control custom-questions" id="" name="custom_question[]" value="{{$custom_question}}" required>
+												<div class="invalid-feedback">
+													Please fill Custom Question {{$loop->iteration }} field.
+												</div>
+											</div>
+								
+										@endforeach
+										@php
+									endif;
+								@endphp
 								<div id="custom-sibling"></div>
 								<div class="col-lg-12 mb-2">
 									<button type="button" class="btn btn-primary" id="add-custom-field-btn" style="float: right;">Add Custom Fields</button>

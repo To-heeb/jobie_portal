@@ -130,7 +130,7 @@ Route::group([
         Route::get('/create', [JobController::class, 'create']);
         Route::get('/dashboard', [JobController::class, 'index']);
         Route::post('/store', [JobController::class, 'store']);
-
+        Route::get('/applications/{id}', [JobController::class, 'applications']);
         Route::get('/job_sub_categories/{id}', [JobSubCategoryController::class, 'get_job_sub_categories']);
     });
 

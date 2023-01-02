@@ -52,6 +52,7 @@
                                             <td>
                                                 <div class="d-flex"> 
                                                     <a href="#" class="btn btn-sm btn-primary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job->id}}">View</a>
+													<a href="/employer/jobs/applications/{{$job->id}}" class="btn btn-sm btn-info sharp shadow me-4">Applications</a>
                                                     <a href="/employer/jobs/{{$job->id}}" class="btn btn-sm btn-secondary sharp shadow me-4">Edit</a>
                                                     <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a>
                                                 </div>
@@ -70,7 +71,7 @@
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title"><b id="">View Employer</b></h5>
+							<h5 class="modal-title"><b id="">View Job</b></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal">
 							</button>
 						</div>

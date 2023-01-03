@@ -720,7 +720,7 @@
 		<ul class="metismenu" id="menu">
 			<li><a href="/admin/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-381-networking"></i>
+                <i class="flaticon-381-id-card-1"></i>
                 <span class="nav-text">Employers</span>
             </a>
             <ul aria-expanded="false">
@@ -729,7 +729,7 @@
             </ul>
         </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    <i class="flaticon-381-tab"></i>
                     <span class="nav-text">Jobs</span>
                 </a>
                 <ul aria-expanded="false">
@@ -741,7 +741,7 @@
                 </ul>
             </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    <i class="flaticon-381-home"></i>
                     <span class="nav-text">Companies</span>
                 </a>
                 <ul aria-expanded="false">

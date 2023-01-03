@@ -797,6 +797,7 @@
 			jQuery('.testimonial-one').owlCarousel({
 				loop:true,
 				autoplay:true,
+				autoHeight: true,
 				margin:15,
 				nav:false,
 				dots: false,
@@ -825,6 +826,7 @@
 			jQuery('.testimonial-two').owlCarousel({
 				loop:true,
 				autoplay:true,
+				autoHeight: true,
 				margin:15,
 				nav:false,
 				dots: true,

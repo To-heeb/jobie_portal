@@ -163,6 +163,6 @@ Route::group([
     Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/search_job', [UserController::class, 'search_job']);
     Route::get('/companies', [UserController::class, 'companies']);
-    Route::get('/campany/{:id}', [UserController::class, 'companies']);
+    Route::get('/company/{id}', [UserController::class, 'company']);
     Route::post('/logout', [UserController::class, 'logout']);
 });

@@ -77,92 +77,71 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-xxl-4">
+        <div class="col-xl-4 col-xxl-5">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card d-flex flex-xl-column flex-sm-column flex-md-row flex-column">
-                        <div class="card-body text-center profile-bx">
-                            <div class="profile-image mb-4">
-                                <img src="public/assets/images/avatar/1.jpg" class="rounded-circle" alt="">
-                            </div>
-                            <h4 class="fs-22 text-black mb-1">Oda Dink</h4>
-                            <p class="mb-4">Programmer</p>
-                            <div class="row">
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(255, 142, 38)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>7/9</span>
-                                        <small class="text-black">66%</small>
-                                    </div>
-                                    <span class="d-block">PHP</span>
-                                </div>
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(62, 168, 52)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>4/9</span>
-                                        <small class="text-black">31%</small>
-                                    </div>
-                                    <span class="d-block">Vue</span>
-                                </div>
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(34, 172, 147)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>2/9</span>
-                                        <small class="text-black">7%</small>
-                                    </div>
-                                    <span class="d-block">Laravel</span>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="card-body col-xl-12 col-md-6 col-sm-12 activity-card">
                             <h4 class="fs-18 text-black mb-3">Recent Activities</h4>
-                            <div class="media mb-4">
-                                <span class="p-3 border me-3 rounded">
-                                    <svg class="primary-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.3955 10.8038C19.9733 10.8038 19.5767 10.8742 19.2057 11.0213V4.79104H12.9883C13.1226 4.42004 13.193 4.01066 13.193 3.58849C13.193 1.60554 11.5874 0 9.60447 0C7.62152 0 6.01598 1.60554 6.01598 3.58849C6.01598 4.01066 6.08634 4.41365 6.22067 4.79104H0.00958252V11.7441C0.642845 11.1684 1.48719 10.8102 2.4083 10.8102C4.39125 10.8102 5.99679 12.4158 5.99679 14.3987C5.99679 16.3817 4.39125 17.9872 2.4083 17.9872C1.48719 17.9872 0.642845 17.629 0.00958252 17.0533V24H19.2121V17.7697C19.5831 17.9104 19.9797 17.9872 20.4019 17.9872C22.3912 17.9872 23.9904 16.3817 23.9904 14.3987C23.9904 12.4158 22.3912 10.8038 20.3955 10.8038Z" fill="#40189D"/>
-                                    </svg>
-                                </span>
-                                <div class="media-body">
-                                    <p class="fs-14 mb-1 text-black font-w500">Your application has accepted in <strong>3 Vacancy</strong></p>
-                                    <span class="fs-14">12h ago</span>
-                                </div>
-                            </div>
-                            <div class="media mb-4">
-                                <span class="p-3 border me-3 rounded">
-                                    <svg class="primary-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.3955 10.8038C19.9733 10.8038 19.5767 10.8742 19.2057 11.0213V4.79104H12.9883C13.1226 4.42004 13.193 4.01066 13.193 3.58849C13.193 1.60554 11.5874 0 9.60447 0C7.62152 0 6.01598 1.60554 6.01598 3.58849C6.01598 4.01066 6.08634 4.41365 6.22067 4.79104H0.00958252V11.7441C0.642845 11.1684 1.48719 10.8102 2.4083 10.8102C4.39125 10.8102 5.99679 12.4158 5.99679 14.3987C5.99679 16.3817 4.39125 17.9872 2.4083 17.9872C1.48719 17.9872 0.642845 17.629 0.00958252 17.0533V24H19.2121V17.7697C19.5831 17.9104 19.9797 17.9872 20.4019 17.9872C22.3912 17.9872 23.9904 16.3817 23.9904 14.3987C23.9904 12.4158 22.3912 10.8038 20.3955 10.8038Z" fill="#40189D"/>
-                                    </svg>
-                                </span>
-                                <div class="media-body">
-                                    <p class="fs-14 mb-1 text-black font-w500">Your application has accepted in <strong>3 Vacancy</strong></p>
-                                    <span class="fs-14">12h ago</span>
-                                </div>
-                            </div>
-                            <div class="media mb-4">
-                                <span class="p-3 border me-3 rounded">
-                                    <svg class="primary-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.3955 10.8038C19.9733 10.8038 19.5767 10.8742 19.2057 11.0213V4.79104H12.9883C13.1226 4.42004 13.193 4.01066 13.193 3.58849C13.193 1.60554 11.5874 0 9.60447 0C7.62152 0 6.01598 1.60554 6.01598 3.58849C6.01598 4.01066 6.08634 4.41365 6.22067 4.79104H0.00958252V11.7441C0.642845 11.1684 1.48719 10.8102 2.4083 10.8102C4.39125 10.8102 5.99679 12.4158 5.99679 14.3987C5.99679 16.3817 4.39125 17.9872 2.4083 17.9872C1.48719 17.9872 0.642845 17.629 0.00958252 17.0533V24H19.2121V17.7697C19.5831 17.9104 19.9797 17.9872 20.4019 17.9872C22.3912 17.9872 23.9904 16.3817 23.9904 14.3987C23.9904 12.4158 22.3912 10.8038 20.3955 10.8038Z" fill="#40189D"/>
-                                    </svg>
-                                </span>
-                                <div class="media-body">
-                                    <p class="fs-14 mb-1 text-black font-w500">Your application has accepted in <strong>3 Vacancy</strong></p>
-                                    <span class="fs-14">12h ago</span>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <span class="p-3 border me-3 rounded">
-                                    <svg class="primary-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.3955 10.8038C19.9733 10.8038 19.5767 10.8742 19.2057 11.0213V4.79104H12.9883C13.1226 4.42004 13.193 4.01066 13.193 3.58849C13.193 1.60554 11.5874 0 9.60447 0C7.62152 0 6.01598 1.60554 6.01598 3.58849C6.01598 4.01066 6.08634 4.41365 6.22067 4.79104H0.00958252V11.7441C0.642845 11.1684 1.48719 10.8102 2.4083 10.8102C4.39125 10.8102 5.99679 12.4158 5.99679 14.3987C5.99679 16.3817 4.39125 17.9872 2.4083 17.9872C1.48719 17.9872 0.642845 17.629 0.00958252 17.0533V24H19.2121V17.7697C19.5831 17.9104 19.9797 17.9872 20.4019 17.9872C22.3912 17.9872 23.9904 16.3817 23.9904 14.3987C23.9904 12.4158 22.3912 10.8038 20.3955 10.8038Z" fill="#40189D"/>
-                                    </svg>
-                                </span>
-                                <div class="media-body">
-                                    <p class="fs-14 mb-1 text-black font-w500">Your application has accepted in <strong>3 Vacancy</strong></p>
-                                    <span class="fs-14">12h ago</span>
-                                </div>
-                            </div>
+                            <div id="DZ_W_TimeLine" class="widget-timeline dz-scroll height370">
+                                <ul class="timeline">
+                                    <li>
+                                        <div class="timeline-badge primary"></div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>10 minutes ago</span>
+                                            <h6 class="mb-0">Youtube, a video-sharing website, goes live <strong class="text-primary">$500</strong>.</h6>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge light">
+                                        </div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>20 minutes ago</span>
+                                            <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+                                            <p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge danger">
+                                        </div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>30 minutes ago</span>
+                                            <h6 class="mb-0">john just buy your product <strong class="text-warning">Sell $250</strong></h6>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge success">
+                                        </div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>15 minutes ago</span>
+                                            <h6 class="mb-0">StumbleUpon is acquired by eBay. </h6>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge warning">
+                                        </div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>20 minutes ago</span>
+                                            <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge dark">
+                                        </div>
+                                        <a class="timeline-panel text-muted" href="#">
+                                            <span>20 minutes ago</span>
+                                            <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                                        </a>
+                                    </li>
+                                </ul>
+						    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-9 col-xxl-8">
+        <div class="col-xl-8 col-xxl-7">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -212,80 +191,15 @@
                     </div>
                 </div>
                 <div class="col-xl-12">
-                    <h4 class="fs-20 text-black mb-sm-4 mt-sm-0 mt-2  mb-2">Recomended Jobs</h4>
+                    <h4 class="fs-20 text-black mb-sm-4 mt-sm-0 mt-2  mb-2">Recommended Jobs</h4>
                     <div class="testimonial-one owl-carousel">
-                        <div class="items">
-                            <div class="card shadow">
-                                <div class="card-body">	
-                                    <div class="media mb-2">
-                                        <div class="media-body">
-                                            <p class="mb-1">Maximoz Team</p>
-                                            <h4 class="fs-20 text-black">PHP Progammer</h4>
-                                        </div>
-                                        <svg class="ms-3" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#D3D3D3"/>
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#3144F3"/>
-                                            <path d="M15.4662 15.4665C17.3565 13.5761 19.6007 12.0766 22.0705 11.0536C24.5403 10.0305 27.1875 9.50399 29.8608 9.50399C32.5342 9.50399 35.1813 10.0305 37.6512 11.0536C40.121 12.0766 42.3652 13.5761 44.2555 15.4665C46.1459 17.3568 47.6453 19.6009 48.6684 22.0708C49.6914 24.5406 50.218 27.1878 50.218 29.8611C50.218 32.5345 49.6914 35.1816 48.6684 37.6515C47.6453 40.1213 46.1458 42.3655 44.2555 44.2558L37.0582 37.0585C38.0033 36.1133 38.7531 34.9912 39.2646 33.7563C39.7761 32.5214 40.0394 31.1978 40.0394 29.8611C40.0394 28.5245 39.7761 27.2009 39.2646 25.966C38.7531 24.731 38.0033 23.609 37.0582 22.6638C36.113 21.7186 34.9909 20.9689 33.756 20.4574C32.5211 19.9458 31.1975 19.6826 29.8608 19.6826C28.5242 19.6826 27.2006 19.9458 25.9657 20.4574C24.7307 20.9689 23.6087 21.7186 22.6635 22.6638L15.4662 15.4665Z" fill="#8FD7FF"/>
-                                            <path d="M15.4661 44.2558C11.6484 40.4381 9.50365 35.2601 9.50365 29.8611C9.50365 24.462 11.6484 19.2841 15.4661 15.4664C19.2838 11.6487 24.4617 9.50395 29.8608 9.50395C35.2598 9.50394 40.4378 11.6487 44.2555 15.4664L37.0581 22.6637C35.1493 20.7549 32.5603 19.6825 29.8608 19.6825C27.1613 19.6825 24.5723 20.7549 22.6635 22.6638C20.7546 24.5726 19.6822 27.1616 19.6822 29.8611C19.6822 32.5606 20.7546 35.1496 22.6635 37.0584L15.4661 44.2558Z" fill="white"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-primary font-w500 d-block mb-3">$14,000 - $25,000</span>
-                                    <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                    <div class="d-flex align-items-center mt-4">
-                                        <a href="companies.html" class="btn btn-primary light btn-rounded me-auto">REMOTE</a>
-                                        <span class="text-black font-w500 ps-3">London, England</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="card shadow">
-                                <div class="card-body">	
-                                    <div class="media mb-2">
-                                        <div class="media-body">
-                                            <p class="mb-1">Klean n Clin Studios</p>
-                                            <h4 class="fs-20 text-black">Senior Programmer</h4>
-                                        </div>
-                                        <svg class="ms-3" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#D3D3D3"/>
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#FE8024"/>
-                                            <path d="M15.4662 15.4665C17.3565 13.5761 19.6007 12.0766 22.0705 11.0536C24.5403 10.0305 27.1875 9.50398 29.8608 9.50398C32.5342 9.50399 35.1813 10.0305 37.6512 11.0536C40.121 12.0766 42.3652 13.5761 44.2555 15.4665C46.1459 17.3568 47.6453 19.6009 48.6684 22.0708C49.6914 24.5406 50.218 27.1878 50.218 29.8611C50.218 32.5345 49.6914 35.1816 48.6684 37.6515C47.6453 40.1213 46.1458 42.3655 44.2555 44.2558L37.0582 37.0585C38.0033 36.1133 38.7531 34.9912 39.2646 33.7563C39.7761 32.5214 40.0394 31.1978 40.0394 29.8611C40.0394 28.5245 39.7761 27.2009 39.2646 25.966C38.7531 24.731 38.0033 23.609 37.0582 22.6638C36.113 21.7186 34.9909 20.9689 33.756 20.4574C32.5211 19.9458 31.1975 19.6826 29.8608 19.6826C28.5242 19.6826 27.2006 19.9458 25.9657 20.4574C24.7307 20.9689 23.6087 21.7186 22.6635 22.6638L15.4662 15.4665Z" fill="white"/>
-                                            <path d="M15.4661 44.2558C11.6484 40.4381 9.50364 35.2601 9.50364 29.8611C9.50363 24.462 11.6484 19.2841 15.4661 15.4664C19.2838 11.6487 24.4617 9.50395 29.8608 9.50395C35.2598 9.50394 40.4377 11.6487 44.2554 15.4664L37.0581 22.6637C35.1493 20.7549 32.5603 19.6825 29.8608 19.6825C27.1613 19.6825 24.5723 20.7549 22.6634 22.6638C20.7546 24.5726 19.6822 27.1616 19.6822 29.8611C19.6822 32.5606 20.7546 35.1496 22.6634 37.0584L15.4661 44.2558Z" fill="white"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-primary font-w500 d-block mb-3">$14,000 - $25,000</span>
-                                    <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                    <div class="d-flex align-items-center mt-4">
-                                        <a href="companies.html" class="btn btn-primary light btn-rounded me-auto">REMOTE</a>
-                                        <span class="text-black font-w500 ps-3">Manchester, England</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="items">
-                            <div class="card shadow">
-                                <div class="card-body">	
-                                    <div class="media mb-2">
-                                        <div class="media-body">
-                                            <p class="mb-1">Maximoz Team</p>
-                                            <h4 class="fs-20 text-black">Intern UX Designer</h4>
-                                        </div>
-                                        <svg class="ms-3" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#D3D3D3"/>
-                                            <path d="M0 8.72727C0 3.90733 3.90733 0 8.72727 0H51.2727C56.0927 0 60 3.90733 60 8.72727V51.2727C60 56.0927 56.0927 60 51.2727 60H8.72727C3.90733 60 0 56.0927 0 51.2727V8.72727Z" fill="#FE8024"/>
-                                            <path d="M15.4662 15.4665C17.3565 13.5761 19.6007 12.0766 22.0705 11.0536C24.5403 10.0305 27.1875 9.50398 29.8608 9.50398C32.5342 9.50399 35.1813 10.0305 37.6512 11.0536C40.121 12.0766 42.3652 13.5761 44.2555 15.4665C46.1459 17.3568 47.6453 19.6009 48.6684 22.0708C49.6914 24.5406 50.218 27.1878 50.218 29.8611C50.218 32.5345 49.6914 35.1816 48.6684 37.6515C47.6453 40.1213 46.1458 42.3655 44.2555 44.2558L37.0582 37.0585C38.0033 36.1133 38.7531 34.9912 39.2646 33.7563C39.7761 32.5214 40.0394 31.1978 40.0394 29.8611C40.0394 28.5245 39.7761 27.2009 39.2646 25.966C38.7531 24.731 38.0033 23.609 37.0582 22.6638C36.113 21.7186 34.9909 20.9689 33.756 20.4574C32.5211 19.9458 31.1975 19.6826 29.8608 19.6826C28.5242 19.6826 27.2006 19.9458 25.9657 20.4574C24.7307 20.9689 23.6087 21.7186 22.6635 22.6638L15.4662 15.4665Z" fill="white"/>
-                                            <path d="M15.4661 44.2558C11.6484 40.4381 9.50364 35.2601 9.50364 29.8611C9.50363 24.462 11.6484 19.2841 15.4661 15.4664C19.2838 11.6487 24.4617 9.50395 29.8608 9.50395C35.2598 9.50394 40.4377 11.6487 44.2554 15.4664L37.0581 22.6637C35.1493 20.7549 32.5603 19.6825 29.8608 19.6825C27.1613 19.6825 24.5723 20.7549 22.6634 22.6638C20.7546 24.5726 19.6822 27.1616 19.6822 29.8611C19.6822 32.5606 20.7546 35.1496 22.6634 37.0584L15.4661 44.2558Z" fill="white"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-primary font-w500 d-block mb-3">$14,000 - $25,000</span>
-                                    <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                    <div class="d-flex align-items-center mt-4">
-                                        <a href="companies.html" class="btn btn-primary light btn-rounded me-auto">FULTIME</a>
-                                        <span class="text-black font-w500 ps-3">London, England</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @unless (count($recommended_jobs) == 0)
+                            @foreach($recommended_jobs as $recommended_job)
+                                <x-recommended-job-card :recommended_job="$recommended_job"/>
+                            @endforeach
+                        @else
+                            <p>No Recommended job found.</p>
+                        @endunless
                     </div>
                 </div>
             </div>

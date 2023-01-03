@@ -28,6 +28,7 @@ class UserController extends Controller
         //
         return view('user.dashboard', [
             'featured_companies' => Company::all(),
+            'recommended_jobs' => Job::all(),
             'title' => "User"
         ]);
     }
@@ -150,6 +151,13 @@ class UserController extends Controller
             'featured_companies' => Company::all(),
             'title' => $this->title,
         ]);
+    }
+
+    public function company($id)
+    {
+        $companyInfo = Company::find($id);
+        $title = $this->title;
+        return view('user.company', compact('companyInfo', 'title'));
     }
 
     public function show_company()

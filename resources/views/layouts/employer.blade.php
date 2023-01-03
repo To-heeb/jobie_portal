@@ -722,7 +722,7 @@
 			<li><a href="/employer/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
 			@if(!is_null(auth()->user()->company_id))
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    <i class="flaticon-381-tab"></i>
                     <span class="nav-text">Jobs</span>
                 </a>
                 <ul aria-expanded="false">
@@ -732,7 +732,7 @@
                 </ul>
             </li>
 			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-				<i class="flaticon-381-networking"></i>
+				<i class="flaticon-381-notepad-2"></i>
 				<span class="nav-text">Applications</span>
 			</a>
 			<ul aria-expanded="false">
@@ -741,7 +741,7 @@
 		</li>
 			@endif
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    <i class="flaticon-381-home"></i>
                     <span class="nav-text">Company</span>
                 </a>
                 <ul aria-expanded="false">

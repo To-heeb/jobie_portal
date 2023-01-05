@@ -162,6 +162,7 @@ Route::group([
     Route::post('/register', [UserController::class, 'store'])->withoutMiddleware(['auth']);
     Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/search_job', [UserController::class, 'search_job']);
+    Route::get('/job_details/{id}', [UserController::class, 'get_job_details']);
     Route::get('/companies', [UserController::class, 'companies']);
     Route::get('/company/{id}', [UserController::class, 'company']);
     Route::post('/logout', [UserController::class, 'logout']);

@@ -26,6 +26,10 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('company_id')->nullable();
             $table->string('country')->nullable();
+            // phone_number
+            // country code
+            // country
+            // headline
             $table->string('dob')->nullable();
             $table->text('about')->nullable();
             $table->string('city')->nullable();

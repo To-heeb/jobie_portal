@@ -192,7 +192,7 @@
                 </div>
                 <div class="col-xl-12">
                     <h4 class="fs-20 text-black mb-sm-4 mt-sm-0 mt-2  mb-2">Recommended Jobs</h4>
-                    <div class="testimonial-one owl-carousel">
+                    <div class="testimonial-one owl-carousel" style="display:flex !important;">
                         @unless (count($recommended_jobs) == 0)
                             @foreach($recommended_jobs as $recommended_job)
                                 <x-recommended-job-card :recommended_job="$recommended_job"/>
@@ -207,7 +207,7 @@
         <div class="col-xl-12">
             <div class="d-sm-flex align-items-center mb-3 mt-sm-0 mt-2">
                 <h4 class="text-black fs-20 me-auto">Featured Companies</h4>
-                <a href="companies.html" class="btn btn-primary light btn-rounded">View More
+                <a href="/user/companies" class="btn btn-primary light btn-rounded">View More
                     <svg class="ms-3" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23.5607 5.93941L18.2461 0.62482C17.9532 0.331898 17.5693 0.185461 17.1854 0.185461C16.8015 0.185461 16.4176 0.331898 16.1247 0.62482C15.539 1.21062 15.539 2.16035 16.1247 2.74615L18.8787 5.50005L1.5 5.50005C0.671578 5.50005 0 6.17163 0 7.00005C0 7.82848 0.671578 8.50005 1.5 8.50005L18.8787 8.50005L16.1247 11.254C15.539 11.8398 15.539 12.7895 16.1247 13.3753C16.7106 13.9611 17.6602 13.9611 18.2461 13.3753L23.5607 8.06069C24.1464 7.47495 24.1464 6.52516 23.5607 5.93941Z" fill="#40189D"/>
                     </svg>

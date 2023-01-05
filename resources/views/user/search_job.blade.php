@@ -102,4 +102,287 @@
         </div>
     </div>
 </div>
+<input type="hidden" name="" id="additional_questions_status">
+<!-- Modal -->
+<div class="modal fade" id="apply_now_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Apply to <span id="modal_title_company_name"></span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"  onclick="onCancel()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12 col-xxl-12">     
+                        <div id="smartwizard" class="form-wizard order-create">
+                            <ul class="nav nav-wizard">
+                                <li><a class="nav-link" href="#wizard_start"> 
+                                    <span>0</span> 
+                                </a></li>
+                                <li><a class="nav-link" href="#wizard_info"> 
+                                    <span>1</span> 
+                                </a></li>
+                                <li><a class="nav-link" href="#wizard_document">
+                                    <span>2</span>
+                                </a></li>
+                                <li id="wizard_additional_questions_link"><a class="nav-link" href="#wizard_additional_questions" >
+                                    <span id="wizard_additional_questions_span">3</span>
+                                </a></li>
+                                <li><a class="nav-link" href="#wizard_preview">
+                                    <span id="wizard_preview_span">4</span>
+                                </a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <form>
+                                    <div id="wizard_start" class="tab-pane" role="tabpanel">
+                                        <div class="d-flex justify-content-center">
+                                            <h2>Apply to <span id="wizard_start_company_name" ></span></h2>
+                                        </div>
+                                    </div>
+                                    <div id="wizard_info" class="tab-pane" role="tabpanel" style="display: block;">
+                                        <h3 class="mb-3">Contact info</h3>
+                                        <div class="clearfix mb-3">
+                                            <div class="d-flex flex-row">
+                                                <img src="{{ asset('assets/images/profile/17.jpg')}}" width="50" alt="" class="rounded img-fluid d-inline-flex me-2"/>
+                                                <div class="">
+                                                    <h4 class="">{{auth()->user()->first_name.' '.auth()->user()->last_name}}</h4>
+                                                    <h5>HeadLine</h5>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 mb-2">
+                                                <div class="form-group">
+                                                    <label class="text-label">First Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="firstName" class="form-control" placeholder="Parsley" value="{{ auth()->user()->first_name }}" readonly required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-12 mb-2">
+                                                <div class="form-group">
+                                                    <label class="text-label">Last Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="lastName" class="form-control" placeholder="Montana" value="{{ auth()->user()->last_name }}" readonly required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <div class="form-group">
+                                                    <label class="text-label">Email Address <span class="text-danger">*</span></label>
+                                                    <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email_address }}" placeholder="example@example.com.com" readonly required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <div class="form-group">
+                                                    <label class="text-label">Phone Number <span class="text-danger">*</span></label>
+                                                    <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" readonly required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 mb-3">
+                                                <div class="form-group">
+                                                    <label class="text-label">Where are you from <span class="text-danger">*</span></label>
+                                                    <input type="text" name="place" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="wizard_document" class="tab-pane" role="tabpanel">
+                                        <h3 class="mb-2">Documents</h3>
+                                        <div class="row">
+                                            <div class="col-sm-12 mb-2">
+                                                <div class="form-group">
+                                                    <label class="text-label">Resume <span class="text-danger">*</span></label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">Upload</span>
+                                                        <div class="form-file">
+                                                            <input type="file" class="form-file-input form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 mb-2">
+                                                <div class="form-group"> <!---- Cover letter not compulsory -->
+                                                    <label class="text-label">Cover Letter <span class="text-danger">*</span></label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text">Upload</span>
+                                                        <div class="form-file">
+                                                            <input type="file" class="form-file-input form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="wizard_additional_questions" class="tab-pane" role="tabpanel">
+                                        <h3 class="mb-3">Additional Questions</h3>
+                                        <div class="row">
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="wizard_preview" class="tab-pane" role="tabpanel">
+                                        <h3 class="mb-3">Preview Your Application</h3>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="mailclient11" class="mailclinet mailclinet-gmail">
+                                                        <input type="radio" name="emailclient" id="mailclient11">
+                                                        <span class="mail-icon">
+                                                            <i class="mdi mdi-google-plus" aria-hidden="true"></i>
+                                                        </span>
+                                                        <span class="mail-text">I'm using Gmail</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="mailclient12" class="mailclinet mailclinet-office">
+                                                        <input type="radio" name="emailclient" id="mailclient12">
+                                                        <span class="mail-icon">
+                                                            <i class="mdi mdi-office" aria-hidden="true"></i>
+                                                        </span>
+                                                        <span class="mail-text">I'm using Office</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="mailclient13" class="mailclinet mailclinet-drive">
+                                                        <input type="radio" name="emailclient" id="mailclient13">
+                                                        <span class="mail-icon">
+                                                            <i class="mdi mdi-google-drive" aria-hidden="true"></i>
+                                                        </span>
+                                                        <span class="mail-text">I'm using Drive</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-6 col-6">
+                                                <div class="form-group">
+                                                    <label for="mailclient14" class="mailclinet mailclinet-another">
+                                                        <input type="radio" name="emailclient" id="mailclient14">
+                                                        <span class="mail-icon">
+                                                            <i class="fas fa-question-circle"
+                                                                aria-hidden="true"></i>
+                                                        </span>
+                                                        <span class="mail-text">Another Service</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="onCancel()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('script')
+    
+    <script type="text/javascript">
+
+        function onCancel() { 
+                // Reset wizard
+                $('#smartwizard').smartWizard("reset");
+            }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            $('#smartwizard').smartWizard("reset");
+        })
+
+        $(document).ready(function(){
+
+			// SmartWizard initialize
+			$('#smartwizard').smartWizard();
+            
+            
+            $('#apply_now_modal').on('show.bs.modal', function(e) {
+
+                var job_id = $(e.relatedTarget).data('id');
+                var company_name = $(e.relatedTarget).data('company-name');
+
+                var url = '{{  url("/user/job_details/:id") }}';
+                    url = url.replace(':id', job_id);
+
+                var modal_title_company_name = document.querySelector("#modal_title_company_name")
+                var wizard_start_company_name = document.querySelector("#wizard_start_company_name")
+            // var job_category_id_edit = document.querySelector("#job_category_id_edit")
+            // sub_category_name_edit.value = "";
+
+                //alert(company_name)
+
+                fetch(url)
+                .then((response) => response.json())
+                .then((job_details) => {
+                    console.log(job_details)
+                    //sub_category_name_edit.value = sub_category_data.name;
+                    if(job_details.custom_question !== ""){
+
+                        document.querySelector("#wizard_additional_questions_link").style.display = "block";
+                        document.querySelector("#wizard_additional_questions").style.display = "block";
+                        document.querySelector("#additional_questions_status").value = "yes";
+                        document.querySelector("#wizard_preview_span").innerHTML = 4;
+                        console.log(document.querySelector("#additional_questions_status").value)
+
+                    }else{
+
+                        document.querySelector("#wizard_additional_questions_link").style.display = "none";
+                        document.querySelector("#wizard_additional_questions").style.display = "none";
+                        document.querySelector("#additional_questions_status").value = "no";
+                        document.querySelector("#wizard_preview_span").innerHTML = 3;
+                        console.log(document.querySelector("#additional_questions_status").value)
+                    }
+                    
+                    modal_title_company_name.innerHTML = company_name;
+                    wizard_start_company_name.innerHTML = company_name
+
+                })
+                .catch((error) => {
+                    console.log('Error:', error);
+                })
+            })
+
+
+            $(function() {
+
+                 // Leave step event is used for validating the forms
+                $("#smartwizard").on("leaveStep", function(e, anchorObject, currentStepIdx, nextStepIdx, stepDirection) {
+                    // Validate only on forward movement  
+                    if (stepDirection == 'forward') {
+                        
+                        let additional_questions_status = document.querySelector("#additional_questions_status").value
+
+                        alert(currentStepIdx);
+                        let stepNext = currentStepIdx;
+                        if(additional_questions_status == 'no' && stepNext == 2) {
+                            alert(stepNext);
+                            alert(additional_questions_status)
+
+                            $(document).find('a').trigger('click');
+                            //$('#smartwizard').smartWizard("goToStep", 5, true);
+                            //$(obj).find('li').eq(idx).children('a').trigger('click');
+                            
+                            var element = document.querySelector("#wizard_additional_questions")
+                            
+                            if(element){
+                                element.remove();
+                            }
+
+                            //return false;
+                        }
+                        
+                    }
+                });
+
+
+            })
+		});
+
+        
+    </script>
 @endsection

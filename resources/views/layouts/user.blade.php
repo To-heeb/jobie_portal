@@ -2,8 +2,8 @@
 <html lang="en">
 
 
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:10 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +24,9 @@
 	<link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }} " rel="stylesheet" type="text/css"/>	
 	<link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css"/>	
+	<link href="{{ asset('assets/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>		
+	<link href="{{ asset('assets/vendor/clockpicker/css/bootstrap-clockpicker.min.css') }}" rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
 		
 </head>
@@ -762,7 +765,7 @@
 ***********************************-->
 <div class="footer">
 	<div class="copyright">
-		<p>Copyright © Designed &amp; Developed by <a href="https://github.com/ikeolu0" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
+		<p>Copyright © Designed &amp; Developed by <a href="https://github.com/ikeolu03" target="_blank">Liadi Aminat Ikeoluwa </a> 2022</p>
 	</div>
 </div>
 <!--**********************************
@@ -775,6 +778,10 @@
 			<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 			<script src="{{ asset('assets/vendor/owl-carousel/owl.carousel.js')}}"></script>
 			<script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
+			<script src="{{ asset('assets/vendor/jquery-steps/build/jquery.steps.min.js')}}"></script>
+			{{-- <script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.min.js') }}"></script> --}}
+			<script src="{{ asset('assets/js/plugins-init/jquery.validate-init.js') }}"></script>
+			<script src="{{ asset('assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
 			<script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
 		
 			<script src="{{ asset('assets/js/custom.js') }}"></script>
@@ -797,7 +804,6 @@
 			jQuery('.testimonial-one').owlCarousel({
 				loop:true,
 				autoplay:true,
-				autoHeight: true,
 				margin:15,
 				nav:false,
 				dots: false,
@@ -826,7 +832,7 @@
 			jQuery('.testimonial-two').owlCarousel({
 				loop:true,
 				autoplay:true,
-				autoHeight: true,
+				
 				margin:15,
 				nav:false,
 				dots: true,
@@ -859,11 +865,10 @@
 			}, 1000); 
 		});
 	</script>
-	
+	@yield('script')
     <!--**********************************
         Main wrapper end
     ***********************************-->
 </body>
 
-<!-- Mirrored from jobie.dexignzone.com/codeigniter/demo/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 30 Oct 2022 16:18:48 GMT -->
 </html>

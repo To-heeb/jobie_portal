@@ -808,6 +808,7 @@
 			<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 			<script src="{{ asset('assets/vendor/owl-carousel/owl.carousel.js')}}"></script>
 			<script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
+			<script src="{{ asset('assets/vendor/jquery-steps/build/jquery.steps.min.js')}}"></script>
 			<script src="{{ asset('assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
 			<script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
 			<script src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>

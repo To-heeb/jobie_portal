@@ -144,6 +144,13 @@ class UserController extends Controller
         return view('user.search_job', compact('jobs', 'title'));
     }
 
+    public function get_job_details($id)
+    {
+
+        $job_details = Job::find($id);
+        return $job_details;
+    }
+
     public function companies()
     {
         // 

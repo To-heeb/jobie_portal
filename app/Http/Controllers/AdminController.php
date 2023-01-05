@@ -143,7 +143,6 @@ class AdminController extends Controller
     {
 
         $rangeInfo = SalaryRange::find($range_id);
-
         return $rangeInfo;
     }
 

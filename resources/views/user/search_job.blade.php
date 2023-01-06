@@ -125,11 +125,8 @@
                                 <li><a class="nav-link" href="#wizard_document">
                                     <span>2</span>
                                 </a></li>
-                                <li id="wizard_additional_questions_link"><a class="nav-link" href="#wizard_additional_questions" >
-                                    <span id="wizard_additional_questions_span">3</span>
-                                </a></li>
                                 <li><a class="nav-link" href="#wizard_preview">
-                                    <span id="wizard_preview_span">4</span>
+                                    <span id="wizard_preview_span">3</span>
                                 </a></li>
                             </ul>
                             <div class="tab-content">
@@ -148,7 +145,6 @@
                                                     <h4 class="">{{auth()->user()->first_name.' '.auth()->user()->last_name}}</h4>
                                                     <h5>HeadLine</h5>
                                                 </div>
-                                                
                                             </div>
                                         </div>
                                         <div class="row">
@@ -167,7 +163,7 @@
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Email Address <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email_address }}" placeholder="example@example.com.com" readonly required>
+                                                    <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email }}" placeholder="example@example.com.com" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
@@ -210,60 +206,48 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="wizard_additional_questions" class="tab-pane" role="tabpanel">
-                                        <h3 class="mb-3">Additional Questions</h3>
-                                        <div class="row">
-                                            
+                                        <div id="additional_questions_div">
+                                            <h3 class="mb-3">Additional Questions</h3>
+                                            <div class="row" id="additional_questions_input_div">
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="wizard_preview" class="tab-pane" role="tabpanel">
                                         <h3 class="mb-3">Preview Your Application</h3>
+                                        <hr>
                                         <div class="row">
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <div class="form-group">
-                                                    <label for="mailclient11" class="mailclinet mailclinet-gmail">
-                                                        <input type="radio" name="emailclient" id="mailclient11">
-                                                        <span class="mail-icon">
-                                                            <i class="mdi mdi-google-plus" aria-hidden="true"></i>
-                                                        </span>
-                                                        <span class="mail-text">I'm using Gmail</span>
-                                                    </label>
+                                            <div class="col-sm-12 mb-2">
+                                                <h4>Contact info</h4>
+                                                <div class="clearfix mb-3">
+                                                    <div class="d-flex flex-row">
+                                                        <img src="{{ asset('assets/images/profile/17.jpg')}}" width="50" alt="" class="rounded img-fluid d-inline-flex me-2"/>
+                                                        <div class="">
+                                                            <h4 class="">{{auth()->user()->first_name.' '.auth()->user()->last_name}}</h4>
+                                                            <h5>HeadLine</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p>Email</p>
+                                                    <h6>{{ auth()->user()->email }}</h6>
+                                                </div>
+                                                <div>
+                                                    <p>Country</p>
+                                                </div>
+                                                <div>
+                                                    <p>Phone Number</p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <div class="form-group">
-                                                    <label for="mailclient12" class="mailclinet mailclinet-office">
-                                                        <input type="radio" name="emailclient" id="mailclient12">
-                                                        <span class="mail-icon">
-                                                            <i class="mdi mdi-office" aria-hidden="true"></i>
-                                                        </span>
-                                                        <span class="mail-text">I'm using Office</span>
-                                                    </label>
-                                                </div>
+                                            <hr>
+                                            <div class="col-sm-12 mb-2">
+                                                <h4>Document</h4>
+                                                <p> </p>
                                             </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <div class="form-group">
-                                                    <label for="mailclient13" class="mailclinet mailclinet-drive">
-                                                        <input type="radio" name="emailclient" id="mailclient13">
-                                                        <span class="mail-icon">
-                                                            <i class="mdi mdi-google-drive" aria-hidden="true"></i>
-                                                        </span>
-                                                        <span class="mail-text">I'm using Drive</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-sm-6 col-6">
-                                                <div class="form-group">
-                                                    <label for="mailclient14" class="mailclinet mailclinet-another">
-                                                        <input type="radio" name="emailclient" id="mailclient14">
-                                                        <span class="mail-icon">
-                                                            <i class="fas fa-question-circle"
-                                                                aria-hidden="true"></i>
-                                                        </span>
-                                                        <span class="mail-text">Another Service</span>
-                                                    </label>
-                                                </div>
+                                            <hr>
+                                            <div class="col-sm-12 mb-2">
+                                                <h4>Additional Questions</h4>
+                                                <p> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +294,8 @@
                     url = url.replace(':id', job_id);
 
                 var modal_title_company_name = document.querySelector("#modal_title_company_name")
-                var wizard_start_company_name = document.querySelector("#wizard_start_company_name")
+                var wizard_start_company_name = document.querySelector("#wizard_start_company_name");
+                var additional_questions_input_div = document.querySelector("#additional_questions_input_div");
             // var job_category_id_edit = document.querySelector("#job_category_id_edit")
             // sub_category_name_edit.value = "";
 
@@ -323,19 +308,31 @@
                     //sub_category_name_edit.value = sub_category_data.name;
                     if(job_details.custom_question !== ""){
 
-                        document.querySelector("#wizard_additional_questions_link").style.display = "block";
-                        document.querySelector("#wizard_additional_questions").style.display = "block";
+                        //document.querySelector("#wizard_additional_questions_link").style.display = "block";
+                        document.querySelector("#additional_questions_div").style.display = "block";
                         document.querySelector("#additional_questions_status").value = "yes";
-                        document.querySelector("#wizard_preview_span").innerHTML = 4;
-                        console.log(document.querySelector("#additional_questions_status").value)
+
+                        let custom_questions = JSON.parse(job_details.custom_question) ;
+
+                        let additional_field_input = '';
+                        custom_questions.forEach((custom_question) =>{
+                            additional_field_input +=`<div class="col-sm-12 col-lg-12 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="text-label">${custom_question} <span class="text-danger">*</span></label>
+                                                            <input type="text" name="custom_response[]" class="form-control" placeholder="" value="" required>
+                                                        </div>
+                                                    </div>`;
+                        });
+
+                        additional_questions_input_div.innerHTML = additional_field_input;
+                        
 
                     }else{
 
-                        document.querySelector("#wizard_additional_questions_link").style.display = "none";
-                        document.querySelector("#wizard_additional_questions").style.display = "none";
+                        //document.querySelector("#wizard_additional_questions_link").style.display = "none";
+                        document.querySelector("#additional_questions_div").style.display = "none";
                         document.querySelector("#additional_questions_status").value = "no";
-                        document.querySelector("#wizard_preview_span").innerHTML = 3;
-                        console.log(document.querySelector("#additional_questions_status").value)
+
                     }
                     
                     modal_title_company_name.innerHTML = company_name;
@@ -357,23 +354,17 @@
                         
                         let additional_questions_status = document.querySelector("#additional_questions_status").value
 
-                        alert(currentStepIdx);
+                        //alert(currentStepIdx);
                         let stepNext = currentStepIdx;
                         if(additional_questions_status == 'no' && stepNext == 2) {
-                            alert(stepNext);
-                            alert(additional_questions_status)
-
-                            $(document).find('a').trigger('click');
+                        
+                            //document.getElementById("next-wizard-btn").click();
                             //$('#smartwizard').smartWizard("goToStep", 5, true);
-                            //$(obj).find('li').eq(idx).children('a').trigger('click');
+                            // var element = document.querySelector("#wizard_additional_questions")
                             
-                            var element = document.querySelector("#wizard_additional_questions")
-                            
-                            if(element){
-                                element.remove();
-                            }
-
-                            //return false;
+                            // if(element){
+                            //     element.remove();
+                            // }
                         }
                         
                     }

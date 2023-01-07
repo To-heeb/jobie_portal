@@ -117,16 +117,16 @@
                         <div id="smartwizard" class="form-wizard order-create">
                             <ul class="nav nav-wizard">
                                 <li><a class="nav-link" href="#wizard_start"> 
-                                    <span>0</span> 
-                                </a></li>
-                                <li><a class="nav-link" href="#wizard_info"> 
                                     <span>1</span> 
                                 </a></li>
+                                <li><a class="nav-link" href="#wizard_info"> 
+                                    <span>2</span> 
+                                </a></li>
                                 <li><a class="nav-link" href="#wizard_document">
-                                    <span>2</span>
+                                    <span>3</span>
                                 </a></li>
                                 <li><a class="nav-link" href="#wizard_preview">
-                                    <span id="wizard_preview_span">3</span>
+                                    <span id="">4</span>
                                 </a></li>
                             </ul>
                             <div class="tab-content">
@@ -241,7 +241,7 @@
                                             </div>
                                             <hr>
                                             <div class="col-sm-12 mb-2">
-                                                <h4>Document</h4>
+                                                <h4>Documents</h4>
                                                 <p> </p>
                                             </div>
                                             <hr>
@@ -258,7 +258,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="onCancel()">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="close-modal-btn">Close</button>
             </div>
         </div>
     </div>
@@ -270,22 +270,35 @@
     
     <script type="text/javascript">
 
-        function onCancel() { 
-                // Reset wizard
-                $('#smartwizard').smartWizard("reset");
+
+        $('#apply_now_modal').on('hide.bs.modal', function (e) {
+            
+            // update to sweet alert later
+            var response = confirm('Are you sure you want to cancel this?');
+
+            //alert(response)
+            if(!response){
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
             }
+                    
+            $('#smartwizard').smartWizard("reset");
+
+        });
 
         document.addEventListener('DOMContentLoaded', function(){
             $('#smartwizard').smartWizard("reset");
         })
 
         $(document).ready(function(){
-
+            
 			// SmartWizard initialize
 			$('#smartwizard').smartWizard();
             
             
             $('#apply_now_modal').on('show.bs.modal', function(e) {
+               //$('#smartwizard').smartWizard("reset");
 
                 var job_id = $(e.relatedTarget).data('id');
                 var company_name = $(e.relatedTarget).data('company-name');
@@ -296,17 +309,14 @@
                 var modal_title_company_name = document.querySelector("#modal_title_company_name")
                 var wizard_start_company_name = document.querySelector("#wizard_start_company_name");
                 var additional_questions_input_div = document.querySelector("#additional_questions_input_div");
-            // var job_category_id_edit = document.querySelector("#job_category_id_edit")
-            // sub_category_name_edit.value = "";
-
-                //alert(company_name)
-
+            
+                //console.log(company_name);
                 fetch(url)
                 .then((response) => response.json())
                 .then((job_details) => {
                     console.log(job_details)
                     //sub_category_name_edit.value = sub_category_data.name;
-                    if(job_details.custom_question !== ""){
+                    if(job_details.custom_question !== "" && job_details.custom_question != null){
 
                         //document.querySelector("#wizard_additional_questions_link").style.display = "block";
                         document.querySelector("#additional_questions_div").style.display = "block";
@@ -355,6 +365,8 @@
                         let additional_questions_status = document.querySelector("#additional_questions_status").value
 
                         //alert(currentStepIdx);
+
+                        // Validate  each step here
                         let stepNext = currentStepIdx;
                         if(additional_questions_status == 'no' && stepNext == 2) {
                         

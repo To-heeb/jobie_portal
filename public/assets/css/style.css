@@ -20201,7 +20201,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     .form-wizard .nav-wizard {
       flex-direction: unset !important; }
     .form-wizard .tab-content {
-      height: 100% !important; } }
+      /*height: 100% !important;*/ } }
   @media only screen and (max-width: 575px) {
     .form-wizard .nav-wizard li .nav-link {
       padding: 0; } }

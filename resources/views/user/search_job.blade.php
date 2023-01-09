@@ -129,14 +129,21 @@
                                     <span id="">4</span>
                                 </a></li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="tab-content wizard_adjustable_height">
                                 <form>
                                     <div id="wizard_start" class="tab-pane" role="tabpanel">
                                         <div class="d-flex justify-content-center">
                                             <h2>Apply to <span id="wizard_start_company_name" ></span></h2>
                                         </div>
+                                        <div class="d-flex justify-content-center">
+                                            <h5>All field with <span class="text-danger">*</span> are compulsory</h5>
+                                        </div>
+                                       
                                     </div>
                                     <div id="wizard_info" class="tab-pane" role="tabpanel" style="display: block;">
+                                        <div class="alert alert-danger" id="contact-info-error" role="alert" style="display: none;">
+                                            Please fill all compulsory fields
+                                          </div>
                                         <h3 class="mb-3">Contact info</h3>
                                         <div class="clearfix mb-3">
                                             <div class="d-flex flex-row">
@@ -151,36 +158,39 @@
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">First Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="firstName" class="form-control" placeholder="Parsley" value="{{ auth()->user()->first_name }}" readonly required>
+                                                    <input type="text" name="firstName" class="form-control contact-info" placeholder="Parsley" value="{{ auth()->user()->first_name }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-lg-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Last Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="lastName" class="form-control" placeholder="Montana" value="{{ auth()->user()->last_name }}" readonly required>
+                                                    <input type="text" name="lastName" class="form-control contact-info" placeholder="Montana" value="{{ auth()->user()->last_name }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Email Address <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email }}" placeholder="example@example.com.com" readonly required>
+                                                    <input type="email" class="form-control contact-info" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Phone Number <span class="text-danger">*</span></label>
-                                                    <input type="text" name="phoneNumber" class="form-control" placeholder="(+1)408-657-9007" readonly required>
+                                                    <input type="text" name="phoneNumber" class="form-control contact-info" placeholder="(+1)408-657-9007" value="+2349020414123" readonly required>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 mb-3">
+                                            <div class="col-sm-12 mb-5">
                                                 <div class="form-group">
                                                     <label class="text-label">Where are you from <span class="text-danger">*</span></label>
-                                                    <input type="text" name="place" class="form-control" required>
+                                                    <input type="text" name="place" class="form-control contact-info" required>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="wizard_document" class="tab-pane" role="tabpanel">
+                                        <div class="alert alert-danger" id="document-error" role="alert" style="display: none;">
+                                            Please fill all compulsory fields
+                                          </div>
                                         <h3 class="mb-2">Documents</h3>
                                         <div class="row">
                                             <div class="col-sm-12 mb-2">
@@ -189,7 +199,7 @@
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text">Upload</span>
                                                         <div class="form-file">
-                                                            <input type="file" class="form-file-input form-control">
+                                                            <input type="file" class="form-file-input form-control documents" name="resume" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,8 +209,8 @@
                                                     <label class="text-label">Cover Letter <span class="text-danger">*</span></label>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text">Upload</span>
-                                                        <div class="form-file">
-                                                            <input type="file" class="form-file-input form-control">
+                                                        <div class="form-file"> <!---- Cover letter depends if it is compoulsory or not -->
+                                                            <input type="file" class="form-file-input form-control documents" name="cover_letter" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -267,24 +277,50 @@
 @endsection
 
 @section('script')
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
 
 
         $('#apply_now_modal').on('hide.bs.modal', function (e) {
-            
-            // update to sweet alert later
-            var response = confirm('Are you sure you want to cancel this?');
 
-            //alert(response)
-            if(!response){
+            if(!$('#apply_now_modal').hasClass('programmatic')){
                 e.preventDefault();
-                e.stopPropagation();
-                return false;
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You will loose your data and can't contnue with the application this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, close it!'
+                    }).then((result) => {
+                        
+                    if (result.isConfirmed) {
+
+                        $('#apply_now_modal').addClass('programmatic');
+                        $('#apply_now_modal').modal('hide');
+                        e.stopPropagation();
+                    }else{
+                        e.stopPropagation();
+                        return false;
+                    }
+                })
             }
-                    
+
+            // update to sweet alert later
+            // var response = confirm('Are you sure you want to cancel this?');
+            //alert(response)
+            // if(!response){
+            //     e.preventDefault();
+            //     e.stopPropagation();
+            //     return false;
+            // }
             $('#smartwizard').smartWizard("reset");
 
+        });
+        $('#apply_now_modal').on('hidden.bs.modal', function () {
+            $('#apply_now_modal').removeClass('programmatic');
+            $('#smartwizard').smartWizard("reset");
         });
 
         document.addEventListener('DOMContentLoaded', function(){
@@ -299,6 +335,7 @@
             
             $('#apply_now_modal').on('show.bs.modal', function(e) {
                //$('#smartwizard').smartWizard("reset");
+                document.querySelector(".wizard_adjustable_height").setAttribute("style","height:63.91px");
 
                 var job_id = $(e.relatedTarget).data('id');
                 var company_name = $(e.relatedTarget).data('company-name');
@@ -329,7 +366,7 @@
                             additional_field_input +=`<div class="col-sm-12 col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">${custom_question} <span class="text-danger">*</span></label>
-                                                            <input type="text" name="custom_response[]" class="form-control" placeholder="" value="" required>
+                                                            <input type="text" name="custom_response[]" class="form-control additional-questions" placeholder="" value="" required>
                                                         </div>
                                                     </div>`;
                         });
@@ -367,16 +404,100 @@
                         //alert(currentStepIdx);
 
                         // Validate  each step here
-                        let stepNext = currentStepIdx;
-                        if(additional_questions_status == 'no' && stepNext == 2) {
+                        if(currentStepIdx == 1) {
                         
-                            //document.getElementById("next-wizard-btn").click();
-                            //$('#smartwizard').smartWizard("goToStep", 5, true);
-                            // var element = document.querySelector("#wizard_additional_questions")
+                            var elements = document.querySelectorAll(".contact-info");
+                            var contact_info_error = document.querySelector("#contact-info-error");
+                            var wizard_height = document.querySelector(".wizard_adjustable_height")
+                            var status = true;
+
                             
-                            // if(element){
-                            //     element.remove();
-                            // }
+                            elements.forEach(function (element) {
+                                if(element.value == ''){
+                                   
+                                    status = false;
+                                    contact_info_error.style.display = 'block';
+                                    //alert(height)
+                                    wizard_height.setAttribute("style","height:695px");
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    return false;
+                                }
+                            })
+                            console.log(elements);
+
+                            if(status){
+                                contact_info_error.style.display = 'none';
+                            }
+                           
+                         }
+
+                         if(currentStepIdx == 2) {
+                            var elements = document.querySelectorAll(".documents");
+                            var additional_questions = document.querySelectorAll(".additional-questions");
+                            var document_error = document.querySelector("#document-error");
+                            var wizard_height = document.querySelector(".wizard_adjustable_height")
+                            var status = true;
+
+                            //alert(additional_questions.length);
+                            elements.forEach(function (element) {
+                                if(element.value == ''){
+                                   
+                                   status = false;
+                                   document_error.style.display = 'block';
+                                   
+                                    wizard_height.setAttribute("style","height:270px");
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    return false;
+                                }
+                            })
+
+                            
+                            switch (additional_questions.length) {
+                                case 5:
+                                    //alert(additional_questions.length)
+                                    var height = wizard_height.offsetHeight + 550 +'px' ;
+                                    break;
+                                case 4:
+                                    var height = wizard_height.offsetHeight + 440 +'px' ;
+                                    break;
+                                case 3:
+                                    var height = wizard_height.offsetHeight + 330 +'px' ;
+                                    break;
+                                case 2:
+                                    var height = wizard_height.offsetHeight + 220 +'px' ;
+                                    break;
+                                case 1:
+                                    var height = wizard_height.offsetHeight + 110 +'px' ;
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+                            additional_questions.forEach(function(additional_question){
+                                if(additional_question.value == ''){
+                                   
+                                   status = false;
+                                   document_error.style.display = 'block';
+                                
+                                   wizard_height.setAttribute("style","height:"+height);
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    return false;
+                                }
+                            })
+                            //console.log(elements);
+
+                            if(status){
+                                document_error.style.display = 'none';
+                            }
+                        }
+
+
+                        if(currentStepIdx == 2) {
+                            
+                            
                         }
                         
                     }

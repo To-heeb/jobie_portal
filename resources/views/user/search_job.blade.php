@@ -122,7 +122,7 @@
                                 <li><a class="nav-link" href="#wizard_info"> 
                                     <span>2</span> 
                                 </a></li>
-                                <li><a class="nav-link" href="#wizard_document">
+                                <li><a class="nav-link" id="wizard_document_link" href="#wizard_document">
                                     <span>3</span>
                                 </a></li>
                                 <li><a class="nav-link" href="#wizard_preview">
@@ -130,7 +130,8 @@
                                 </a></li>
                             </ul>
                             <div class="tab-content wizard_adjustable_height">
-                                <form>
+                                <form action="/user/application/store" method="POST" enctype="multipart/form-data" id="application_form">
+                                    @csrf
                                     <div id="wizard_start" class="tab-pane" role="tabpanel">
                                         <div class="d-flex justify-content-center">
                                             <h2>Apply to <span id="wizard_start_company_name" ></span></h2>
@@ -158,25 +159,25 @@
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">First Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="firstName" class="form-control contact-info" placeholder="Parsley" value="{{ auth()->user()->first_name }}" readonly required>
+                                                    <input type="text" name="first_name" class="form-control contact-info" placeholder="Parsley" value="{{ auth()->user()->first_name }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-lg-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Last Name <span class="text-danger">*</span></label>
-                                                    <input type="text" name="lastName" class="form-control contact-info" placeholder="Montana" value="{{ auth()->user()->last_name }}" readonly required>
+                                                    <input type="text" name="last_name" class="form-control contact-info" placeholder="Montana" value="{{ auth()->user()->last_name }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Email Address <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control contact-info" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email }}" readonly required>
+                                                    <input type="email" name="email" class="form-control contact-info" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" value="{{ auth()->user()->email }}" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
                                                     <label class="text-label">Phone Number <span class="text-danger">*</span></label>
-                                                    <input type="text" name="phoneNumber" class="form-control contact-info" placeholder="(+1)408-657-9007" value="+2349020414123" readonly required>
+                                                    <input type="text" name="phone_number" class="form-control contact-info" placeholder="(+1)408-657-9007" value="+2349020414123" readonly required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-5">
@@ -191,33 +192,33 @@
                                         <div class="alert alert-danger" id="document-error" role="alert" style="display: none;">
                                             Please fill all compulsory fields
                                           </div>
-                                        <h3 class="mb-2">Documents</h3>
+                                        <h3 class="mb-2">Documents </h3>
                                         <div class="row">
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group">
-                                                    <label class="text-label">Resume <span class="text-danger">*</span></label>
+                                                    <label class="text-label">Resume(only pdf documents allowed) <span class="text-danger">*</span> </label>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text">Upload</span>
                                                         <div class="form-file">
-                                                            <input type="file" class="form-file-input form-control documents" name="resume" required>
+                                                            <input type="file" class="form-file-input form-control documents" name="resume" accept=".pdf" id="resume-upload" max-file-size="2048" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group"> <!---- Cover letter not compulsory -->
-                                                    <label class="text-label">Cover Letter <span class="text-danger">*</span></label>
+                                                    <label class="text-label">Cover Letter(only pdf documents allowed) <span class="text-danger">*</span></label>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text">Upload</span>
                                                         <div class="form-file"> <!---- Cover letter depends if it is compoulsory or not -->
-                                                            <input type="file" class="form-file-input form-control documents" name="cover_letter" required>
+                                                            <input type="file" class="form-file-input form-control documents" accept=".pdf" name="cover_letter" id="cover-letter-upload" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="additional_questions_div">
-                                            <h3 class="mb-3">Additional Questions</h3>
+                                            <h3 class="mb-3">Additional Questions </h3>
                                             <div class="row" id="additional_questions_input_div">
                                                 
                                             </div>
@@ -251,14 +252,27 @@
                                             </div>
                                             <hr>
                                             <div class="col-sm-12 mb-2">
-                                                <h4>Documents</h4>
-                                                <p> </p>
+                                                <h4>Documents <span class="me-3"><button type="button" class="btn btn-sm btn-dark" id="edit_documents" onclick="alert('I am here')">Edit</button></span></h4>
+                                                <div>
+                                                    <p>Resume</p>
+                                                    <embed src="" type="" width="95%" height="400px" id="embedded-resume-upload" class="border border-3 border-primary rounded-2">
+                                                </div>
+                                                {{-- hide if not required --}}
+                                                <div class="mt-3">
+                                                    <p>Cover letter</p>
+                                                    <embed src="" type="" width="95%" height="400px" id="embedded-cover-letter-upload" class="border border-3 border-primary rounded-2"/>
+                                                </div>
                                             </div>
                                             <hr>
                                             <div class="col-sm-12 mb-2">
-                                                <h4>Additional Questions</h4>
-                                                <p> </p>
+                                                <h4>Additional Questions <span class="me-3"><button type="button" class="btn btn-sm btn-dark" id="edit_additional_questions">Edit</button></span></h4>
+                                                <div class="row" id="additional_questions_preview_div">
+                                                
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end mb-4">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>
@@ -279,8 +293,8 @@
 @section('script')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
-
-
+        const MAX_FILE_SIZE = 2 * 1024 * 1024;
+        
         $('#apply_now_modal').on('hide.bs.modal', function (e) {
 
             if(!$('#apply_now_modal').hasClass('programmatic')){
@@ -318,8 +332,11 @@
             $('#smartwizard').smartWizard("reset");
 
         });
+        
         $('#apply_now_modal').on('hidden.bs.modal', function () {
             $('#apply_now_modal').removeClass('programmatic');
+            // clear form here and clear all other places
+            document.getElementById('application_form').reset();
             $('#smartwizard').smartWizard("reset");
         });
 
@@ -331,11 +348,13 @@
             
 			// SmartWizard initialize
 			$('#smartwizard').smartWizard();
+
+            //reset SmartWizard 
+            $('#smartwizard').smartWizard("reset");
             
             
             $('#apply_now_modal').on('show.bs.modal', function(e) {
-               //$('#smartwizard').smartWizard("reset");
-                document.querySelector(".wizard_adjustable_height").setAttribute("style","height:63.91px");
+               $('#smartwizard').smartWizard("reset");
 
                 var job_id = $(e.relatedTarget).data('id');
                 var company_name = $(e.relatedTarget).data('company-name');
@@ -366,7 +385,7 @@
                             additional_field_input +=`<div class="col-sm-12 col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">${custom_question} <span class="text-danger">*</span></label>
-                                                            <input type="text" name="custom_response[]" class="form-control additional-questions" placeholder="" value="" required>
+                                                            <input type="text" name="custom_response[]" class="form-control additional-questions" placeholder="" value="" data-question="${custom_question}" required>
                                                         </div>
                                                     </div>`;
                         });
@@ -390,12 +409,28 @@
                     console.log('Error:', error);
                 })
             })
+            
+            $('#apply_now_modal').on('shown.bs.modal', event => {
+                document.querySelector(".wizard_adjustable_height").setAttribute("style","height:64px");
+            })
 
+            document.querySelector("#edit_additional_questions").addEventListener('click', function(event){
+                var link = document.querySelector('#wizard_document_link');
+                link.click();
+            })
+
+            document.querySelector("#edit_documents").addEventListener('click', function(event){
+                var link = document.querySelector('#wizard_document_link');
+                link.click();
+            })
 
             $(function() {
 
                  // Leave step event is used for validating the forms
                 $("#smartwizard").on("leaveStep", function(e, anchorObject, currentStepIdx, nextStepIdx, stepDirection) {
+
+                    
+
                     // Validate only on forward movement  
                     if (stepDirection == 'forward') {
                         
@@ -408,23 +443,21 @@
                         
                             var elements = document.querySelectorAll(".contact-info");
                             var contact_info_error = document.querySelector("#contact-info-error");
-                            var wizard_height = document.querySelector(".wizard_adjustable_height")
+                            var wizard_height = document.querySelector(".wizard_adjustable_height");
                             var status = true;
 
-                            
                             elements.forEach(function (element) {
                                 if(element.value == ''){
                                    
                                     status = false;
                                     contact_info_error.style.display = 'block';
-                                    //alert(height)
                                     wizard_height.setAttribute("style","height:695px");
                                     e.preventDefault();
                                     e.stopPropagation();
                                     return false;
                                 }
                             })
-                            console.log(elements);
+                            //console.log(elements);
 
                             if(status){
                                 contact_info_error.style.display = 'none';
@@ -446,7 +479,7 @@
                                    status = false;
                                    document_error.style.display = 'block';
                                    
-                                    wizard_height.setAttribute("style","height:270px");
+                                    wizard_height.setAttribute("style","height:280px");
                                     e.preventDefault();
                                     e.stopPropagation();
                                     return false;
@@ -457,24 +490,32 @@
                             switch (additional_questions.length) {
                                 case 5:
                                     //alert(additional_questions.length)
-                                    var height = wizard_height.offsetHeight + 550 +'px' ;
+                                    //809px
+                                    var height =  "809px" ;
                                     break;
                                 case 4:
-                                    var height = wizard_height.offsetHeight + 440 +'px' ;
+                                    //709px
+                                    var height =  "709px" ;
                                     break;
                                 case 3:
-                                    var height = wizard_height.offsetHeight + 330 +'px' ;
+                                    //609px
+                                    //var height = wizard_height.offsetHeight + 330 +'px' ;
+                                    var height =  "609px" ;
                                     break;
                                 case 2:
-                                    var height = wizard_height.offsetHeight + 220 +'px' ;
+                                    //509px
+                                    var height =  "509px" ;
                                     break;
                                 case 1:
-                                    var height = wizard_height.offsetHeight + 110 +'px' ;
+                                    //409px
+                                    var height =  "409px" ;
                                     break;
                             
                                 default:
+                                    //var height = wizard_height.offsetHeight + 550 +'px' ;
                                     break;
                             }
+                            
                             additional_questions.forEach(function(additional_question){
                                 if(additional_question.value == ''){
                                    
@@ -491,13 +532,20 @@
 
                             if(status){
                                 document_error.style.display = 'none';
+                                
+                                // additonal element here
+                                let additional_question_preveiw = "";
+                                additional_questions.forEach( additional_question => {
+                                    additional_question_preveiw += `<div>
+                                                                        <p>${additional_question.dataset.question}</p>
+                                                                        <h6>${additional_question.value}</h6>
+                                                                    </div>`
+                                })
+
+                                //console.log(additional_question_preveiw);
+                                document.querySelector("#additional_questions_preview_div").innerHTML = additional_question_preveiw;
+                                                
                             }
-                        }
-
-
-                        if(currentStepIdx == 2) {
-                            
-                            
                         }
                         
                     }
@@ -505,6 +553,73 @@
 
 
             })
+
+
+            document.querySelector("#cover-letter-upload").addEventListener('change', function (event) {
+                if (event.target.files[0].name != "") {
+                    console.log(event.target.files)
+                    if (event.target.files[0].size > MAX_FILE_SIZE){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Cover letter must be less than " + (MAX_FILE_SIZE/1024/1024) + "MB",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            event.target.value = "";
+                            return false;
+                    }
+
+                    var file_type = event.target.files[0].type
+                    let file_name = event.target.files[0].name;
+                    var embed_id = "#embedded-cover-letter-upload";
+                    //var content = readURL(event.target);  
+                    let data = {input: event.target, file_type: file_type, id: embed_id}
+                    readURL(data);  
+                }  
+            });
+
+            document.querySelector("#resume-upload").addEventListener('change', function (event) {
+                if (event.target.files[0].name != "") {
+                    console.log(event.target.files)
+
+                    if (event.target.files[0].size > MAX_FILE_SIZE){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Resume must be less than " + (MAX_FILE_SIZE/1024/1024) + "MB",
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            event.target.value = "";
+                            return false;
+                    }
+                    var file_type = event.target.files[0].type
+                    let file_name = event.target.files[0].name;
+                    var embed_id = "#embedded-resume-upload";
+                    //var content = readURL(event.target);  
+                    let data = {input: event.target, file_type: file_type, id: embed_id}
+                    readURL(data);  
+                }  
+            });
+
+
+            function readURL(data) {
+                if (data.input.files && data.input.files[0]) {
+                    //console.log(data.input.files)
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var content =  e.target.result;
+                        //console.log(e.target.result);
+                        content += "#toolbar=0&navpanes=0&scrollbar=0";
+                        $(data.id).attr({src: content, type: data.file_type});
+                           
+                    }
+                    reader.readAsDataURL(data.input.files[0]);
+                }
+                //console.log(event.target.result)
+                //return content;
+            } 
 		});
 
         

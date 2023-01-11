@@ -1,9 +1,7 @@
 @extends('layouts.employer')
 
 @section('link')
-
 <link href="{{ asset('assets/vendor/lightgallery/css/lightgallery.min.css') }}" rel="stylesheet" type="text/css"/>	
-		
 <link href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css"/>
 @endsection
 

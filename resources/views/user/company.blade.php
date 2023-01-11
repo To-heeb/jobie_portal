@@ -1,4 +1,8 @@
 @extends('layouts.user')
+@section('link')
+<link href="{{ asset('assets/vendor/lightgallery/css/lightgallery.min.css') }}" rel="stylesheet" type="text/css"/>	
+<link href="{{ asset('assets/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
 @section('page_title', 'Company')
 @section('content')
 
@@ -52,27 +56,27 @@
                 <div class="col-xl-12">
                     <div class="card d-sm-flex flex-xl-column flex-md-row">
                         <div class="card-body border-bottom col-xl-12 col-md-6">
-                            <h4 class="fs-22 text-black font-w600 mb-1">{{$company_info->name}}</h4>
+                            <h4 class="fs-22 text-black font-w600 mb-2">{{$company_info->name}}</h4>
                             {{-- <p>{{$job_details->company->name}}</p> --}}
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="media pr-2 mb-2">
                                     <i class="fa fa-building me-3" style="font-size:24px"></i>
                                     <div class="media-body text-left">
-                                        <h4 class="fs-8 mb-0 text-black font-w600">{{$job_details->company->no_of_employees }}</h4>
+                                        <h4 class="fs-8 mb-0 text-black font-w600">{{ $company_info->no_of_employees }}</h4>
                                         <span class="fs-6">Employee</span>
                                     </div>
                                 </div>
                                 <div class="media pr-2 mb-4">
-                                    <i class="fa fa-briefcase me-3" style="font-size:24px"></i>
+                                    <i class="fa fa-tag me-3" style="font-size:24px"></i>
                                     <div class="media-body text-left">
-                                        <span class="fs-6">{{ ucfirst(str_replace('_', '-',$job_details->location_type)) }}</span>
+                                        <h4 class="fs-18 text-black font-w600 mb-0">{{ $company_info->industry->name }}</h4>
                                     </div>
                                 </div>
                                 <div class="media pr-2 mb-2">
-                                    <i class="fa fa-building me-3" style="font-size:24px"></i>
+                                    <i class="fa fa-map-marker me-3" style="font-size:24px"></i>
                                     <div class="media-body text-left">
-                                        <h4 class="fs-8 mb-0 text-black font-w600">{{$job_details->company->no_of_employees }}</h4>
-                                        <span class="fs-6">Employee</span>
+                                        <h4 class="fs-18 text-black font-w600 mb-0">{{$company_info->state.', '.$company_info->country}}</h4>
+                                        <span class="fs-14">Location</span>
                                     </div>
                                 </div>
                                 <div class="media pr-2 mb-2">
@@ -82,14 +86,59 @@
                                         <span class="fs-6">Review</span>
                                     </div>
                                 </div>
+                                <div class="media pr-2 mb-2">
+                                    <i class="fa fa-phone me-3" style="font-size:24px"></i>
+                                    <div class="media-body text-left">
+                                        <h4 class="fs-8 mb-0 text-black font-w600">{{ $company_info->phone_number }}</h4>
+                                        <span class="fs-6">Phone Number</span>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
-                        <div class="card-body col-xl-12 col-md-6 border-left ">
+                        <div class="card-body col-xl-12 col-md-6 border-left">
                             <h6 class="fs-16 text-black font-w600 mb-4">About Company</h6>
-                            <p class="fs-14"><?= substr_replace($job_details->company->about, "...", 150); ?></p>
-                            <div class="d-flex justify-content-between flex-wrap pt-3">
-                                {{-- <a href="javascript:void(0);" class="btn btn-primary btn-rounded btn-sm mb-2">23 Vacancy</a> --}}
-                                <a href="/user/company/{{$job_details->company->id}}" class="btn btn-dark btn-rounded btn-sm mb-2">More Detail</a>
+                            <p class="fs-14"><?= $company_info->about ?></p>
+                            <div class="profile-skills mb-3">
+                                <h6 class="mb-2">Website</h6>
+                                <a href="{{$company_info->website_link}}" class="btn btn-primary light btn-xs mb-1">{{$company_info->name."'s website" }}</a>
+                            </div>
+                            <div class="profile-personal-info mb-2">
+                                <h6 class="mb-2">Socials Link</h6>
+                                <div class="row mb-2">
+                                    @if($company_info->facebook_link)<a class="btn-social facebook" href="{{$company_info->facebook_link}}"><i class="fab fa-facebook-f"></i></a>@endif
+                            
+                                </div>
+                                <div class="row mb-2">
+                                    @if($company_info->twitter_link)<a class="btn-social twitter" href="{{$company_info->twitter_link}}"><i class="fab fa-twitter"></i></a>@endif
+                           
+                                </div>
+                                <div class="row mb-4">
+                                    @if($company_info->instagram_link)<a class="btn-social instagram" href="{{$company_info->instagram_link}}"><i class="fab fa-instagram"></i></a>@endif
+                                </div>
+                            </div>
+                            <div class="profile-skills mb-3">
+                                <h6 class="mb-4">Gallery</h6>
+                                <div class="row mt-4 sp4" id="lightgallery">
+                                    <a href="{{ asset('assets/images/profile/2.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/2.jpg')}}" data-src="{{ asset('assets/images/profile/2.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/2.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                    <a href="{{ asset('assets/images/profile/3.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/3.jpg')}}" data-src="{{ asset('assets/images/profile/3.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/3.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                    <a href="{{ asset('assets/images/profile/4.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/4.jpg')}}" data-src="{{ asset('assets/images/profile/4.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/4.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                    <a href="{{ asset('assets/images/profile/3.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/3.jpg')}}" data-src="{{ asset('assets/images/profile/3.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/3.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                    <a href="{{ asset('assets/images/profile/4.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/4.jpg')}}" data-src="{{ asset('assets/images/profile/4.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/4.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                    <a href="{{ asset('assets/images/profile/2.jpg')}}" data-exthumbimage="{{ asset('assets/images/profile/2.jpg')}}" data-src="{{ asset('assets/images/profile/2.jpg')}}" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                        <img src="{{ asset('assets/images/profile/2.jpg')}}" alt="" class="img-fluid">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,4 +148,20 @@
     </div>
 </div>
 
+@endsection
+
+@section('script');
+<script src="{{ asset('assets/vendor/magnific-popup/jquery.magnific-popup.js')}}"></script>
+<script src="{{ asset('assets/vendor/lightgallery/js/lightgallery-all.min.js')}}"></script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.test-popup-link').magnificPopup({
+            type:'image'
+        });
+        
+        jQuery('#lightgallery').lightGallery({
+            thumbnail:true,
+        });
+    });
+</script>
 @endsection

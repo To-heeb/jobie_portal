@@ -190,6 +190,20 @@
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom10">Cover Letter Status</label>
+									<select name="cover_letter_status" class="form-select form-control" id="validationCustom10" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Cover Letter Status</option>
+										<option value="yes" @if($job_info->cover_letter_status  == "yes") selected @endif >Required</option>
+										<option value="no" @if($job_info->cover_letter_status  == "no") selected @endif >Not Required</option>
+									</select>
+									<div class="invalid-feedback">
+										Please Select the Cover Letter Status.
+									</div>
+									@error('cover_letter_status')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
+								</div>
 								@php 
 									if($job_info->custom_question):
 										$custom_questions = json_decode($job_info->custom_question);

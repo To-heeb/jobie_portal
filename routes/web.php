@@ -164,6 +164,7 @@ Route::group([
     Route::get('/applications/{id}', [UserController::class, 'applications']);
     Route::post('/application/store', [ApplicationController::class, 'store']);
     Route::get('/search_job', [UserController::class, 'search_job']);
+    Route::get('/job/{id}', [UserController::class, 'job']);
     Route::get('/job_details/{id}', [UserController::class, 'get_job_details']);
     Route::get('/companies', [UserController::class, 'companies']);
     Route::get('/company/{id}', [UserController::class, 'company']);

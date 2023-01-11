@@ -144,6 +144,14 @@ class UserController extends Controller
         return view('user.search_job', compact('jobs', 'title'));
     }
 
+    public function job($id)
+    {
+        //
+        $job_details = Job::find($id);
+        $title = $this->title;
+        return view('user.job', compact('job_details', 'title'));
+    }
+
     public function get_job_details($id)
     {
 
@@ -162,9 +170,9 @@ class UserController extends Controller
 
     public function company($id)
     {
-        $companyInfo = Company::find($id);
+        $company_info = Company::find($id);
         $title = $this->title;
-        return view('user.company', compact('companyInfo', 'title'));
+        return view('user.company', compact('company_info', 'title'));
     }
 
     public function show_company()

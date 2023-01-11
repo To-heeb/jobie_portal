@@ -1,16 +1,16 @@
 @extends('layouts.user')
-
+@section('page_title', 'Search Jobs')
 @section('content')
 <div class="container-fluid">
     <div class="d-flex align-items-center flex-wrap search-job bg-white rounded py-3 px-3 mb-4">
         <svg class="min-w20 primary-icon" width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 0C4.93398 0 0.8125 4.12148 0.8125 9.1875C0.8125 10.8091 1.24094 12.4034 2.05145 13.7979C2.24041 14.123 2.45162 14.4398 2.67934 14.7396L9.60081 24H10.3991L17.3207 14.7397C17.5483 14.4398 17.7595 14.1231 17.9485 13.7979C18.7591 12.4034 19.1875 10.8091 19.1875 9.1875C19.1875 4.12148 15.066 0 10 0ZM10 12.2344C8.31995 12.2344 6.95312 10.8675 6.95312 9.1875C6.95312 7.50745 8.31995 6.14062 10 6.14062C11.68 6.14062 13.0469 7.50745 13.0469 9.1875C13.0469 10.8675 11.68 12.2344 10 12.2344Z" fill="#40189D"/>
         </svg>
-        <select class="form-control style-2 default-select mt-3 mt-sm-0">
+        {{-- <select class="form-control style-2 default-select mt-3 mt-sm-0">
             <option>Monthly</option>
             <option>Weekly</option>
             <option>Daily</option>
-        </select>
+        </select> --}}
         <div class="col-lg-9 d-md-flex">
             <input class="form-control input-rounded me-auto mb-md-0 mb-3" type="text" name="search" placeholder="Search by Title, Company or any jobs keyword...">
             <a href="javascript:void(0);" class="bg-light btn btn-rounded text-primary me-3">
@@ -50,11 +50,11 @@
             <input type="checkbox" class="form-check-input" id="customCheckBox14" required>
             <label class="form-check-label" for="customCheckBox14">Salary</label>
         </div>
-        <select class="form-control style-3 default-select mt-3 mt-sm-0 me-3">
+        {{-- <select class="form-control style-3 default-select mt-3 mt-sm-0 me-3">
             <option>Monthly</option>
             <option>Weekly</option>
             <option>Daily</option>
-        </select>
+        </select> --}}
         <ul class="nav grid-tabs">
             <li class="nav-item">
                 <a href="#List" class="nav-link" data-bs-toggle="tab" aria-expanded="false">
@@ -183,7 +183,7 @@
                                             <div class="col-sm-12 mb-5">
                                                 <div class="form-group">
                                                     <label class="text-label">Where are you from <span class="text-danger">*</span></label>
-                                                    <input type="text" name="place" class="form-control contact-info" required>
+                                                    <input type="text" name="place" class="form-control contact-info" value="OYO" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,7 +252,7 @@
                                             </div>
                                             <hr>
                                             <div class="col-sm-12 mb-2">
-                                                <h4>Documents <span class="me-3"><button type="button" class="btn btn-sm btn-dark" id="edit_documents" onclick="alert('I am here')">Edit</button></span></h4>
+                                                <h4>Documents <span class="me-3"><button type="button" class="btn btn-sm btn-dark" id="edit_documents">Edit</button></span></h4>
                                                 <div>
                                                     <p>Resume</p>
                                                     <embed src="" type="" width="95%" height="400px" id="embedded-resume-upload" class="border border-3 border-primary rounded-2">
@@ -264,7 +264,7 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="col-sm-12 mb-2">
+                                            <div class="col-sm-12 mb-2" id="additional_questions_main_div">
                                                 <h4>Additional Questions <span class="me-3"><button type="button" class="btn btn-sm btn-dark" id="edit_additional_questions">Edit</button></span></h4>
                                                 <div class="row" id="additional_questions_preview_div">
                                                 
@@ -336,6 +336,9 @@
         $('#apply_now_modal').on('hidden.bs.modal', function () {
             $('#apply_now_modal').removeClass('programmatic');
             // clear form here and clear all other places
+            document.querySelector("#contact-info-error").style.display = 'none';
+            document.querySelector("#document-error").style.display = 'none';
+            document.querySelector("#additional_questions_input_div").innerHTML = "";
             document.getElementById('application_form').reset();
             $('#smartwizard').smartWizard("reset");
         });
@@ -370,11 +373,12 @@
                 fetch(url)
                 .then((response) => response.json())
                 .then((job_details) => {
-                    console.log(job_details)
+                    //console.log(job_details)
                     //sub_category_name_edit.value = sub_category_data.name;
+                    //console.log(job_details.custom_question);
                     if(job_details.custom_question !== "" && job_details.custom_question != null){
 
-                        //document.querySelector("#wizard_additional_questions_link").style.display = "block";
+                        document.querySelector("#additional_questions_main_div").style.display = "block";
                         document.querySelector("#additional_questions_div").style.display = "block";
                         document.querySelector("#additional_questions_status").value = "yes";
 
@@ -396,6 +400,7 @@
                     }else{
 
                         //document.querySelector("#wizard_additional_questions_link").style.display = "none";
+                        document.querySelector("#additional_questions_main_div").style.display = "none";
                         document.querySelector("#additional_questions_div").style.display = "none";
                         document.querySelector("#additional_questions_status").value = "no";
 

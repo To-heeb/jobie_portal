@@ -32,7 +32,7 @@
 							<div class="row form-material">
 								<div class="col-xl-3 col-xxl-12 col-md-6 mb-3">
 									<label class="form-label" for="validationCustom01">Job Title</label>
-									<input type="text" name="title" class="form-control" placeholder="" id="validationCustom01" value="{{ old('title') }}">
+									<input type="text" name="title" class="form-control" placeholder="" id="validationCustom01" value="{{ old('title') }}" required>
 									<input type="hidden" name="company_id" value="{{ auth()->user()->company_id }}">
 									<div class="invalid-feedback">
 										Please Enter the Job Title.
@@ -192,6 +192,20 @@
 										Please Select the Salary Range Status.
 									</div>
 									@error('salary_status')
+										<p class="text-danger fs-6">{{ $message }}</p>
+									@enderror
+								</div>
+								<div class="col-xl-3 col-xxl-6 col-md-6 mb-3">
+									<label class="form-label" for="validationCustom10">Cover Letter Status</label>
+									<select name="cover_letter_status" class="form-select form-control" id="validationCustom10" required style="background: url(https://static.thenounproject.com/png/1720660-200.png) 99% / 15% no-repeat;">
+										<option value="">Select Cover Letter Status</option>
+										<option value="yes" @if(old('cover_letter_status') == "yes") selected @endif >Required</option>
+										<option value="no" @if(old('cover_letter_status') == "no") selected @endif >Not Required</option>
+									</select>
+									<div class="invalid-feedback">
+										Please Select the Cover Letter Status.
+									</div>
+									@error('cover_letter_status')
 										<p class="text-danger fs-6">{{ $message }}</p>
 									@enderror
 								</div>

@@ -27,6 +27,7 @@ class JobFactory extends Factory
             'summary' => $this->faker->sentence(),
             'status' => $this->job_status(),
             'salary_status' => $this->salary_status(),
+            'cover_letter_status' => $this->cover_letter_status(),
             'start_range' => date('Y-m-d'),
             'end_range' => date('Y-m-d', strtotime("+1 week")),
             'description' => $this->faker->paragraph(5),
@@ -51,6 +52,13 @@ class JobFactory extends Factory
     {
         $index = rand(0, 1);
         $type = ['confidential', 'public',];
+        return $type[$index];
+    }
+
+    private function cover_letter_status()
+    {
+        $index = rand(0, 1);
+        $type = ['yes', 'no',];
         return $type[$index];
     }
 

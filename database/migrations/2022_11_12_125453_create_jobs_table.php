@@ -20,8 +20,9 @@ class CreateJobsTable extends Migration
             $table->string('tags');
             $table->enum('location_type', ['remote', 'on_site', 'hybrid']); //'remote', 'on_site', 'hybrid'
             $table->enum('type', ['freelance', 'contract', 'fulltime', 'parttime']); //freelance, contract, fulltime, parttime 
-            $table->enum('status',  ['pending', 'live',]); //pending, live
-            $table->enum('salary_status',  ['confidential', 'public',]); //confidential, public
+            $table->enum('status',  ['pending', 'live']); //pending, live
+            $table->enum('salary_status',  ['confidential', 'public']); //confidential, public
+            $table->enum('cover_letter_status',  ['yes', 'no']);
             $table->text('custom_question')->nullable();
             $table->integer('company_id');
             $table->integer('job_category_id');

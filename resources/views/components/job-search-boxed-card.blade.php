@@ -4,8 +4,8 @@
         <div class="card-body">	
             <div class="media mb-2">
                 <div class="media-body">
-                    <a href="#"><p class="mb-1">{{ $job->company->name }}</p></a>
-                    <a href="#"><h4 class="fs-20 text-black">{{$job->title}}</h4></a>
+                    <a href="/user/company/{{$job->company->id}}"><p class="mb-1">{{ $job->company->name }}</p></a>
+                    <a href="/user/job/{{$job->id}}"><h4 class="fs-20 text-black">{{$job->title}}</h4></a>
                     <p class="btn btn-xs btn-rounded btn-outline-primary">{{ ucfirst(str_replace('_', '-',$job->location_type)) }}</p>
                 </div>
                 <img src="{{ asset('storage/'.$job->company->company_logo)}}" alt="" class="me-3" style="width: 25% !important;" width="" height="50">

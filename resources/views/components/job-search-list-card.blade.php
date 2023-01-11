@@ -3,8 +3,8 @@
     <div class="d-flex col-xl-4 col-xxl-3 col-lg-4 col-sm-6 align-items-center">
         <img src="{{ asset('storage/'.$job->company->company_logo)}}" alt="" class="me-3" style="width: 25% !important;" width="" height="50">
         <div>
-            <h2 class="title"><a href="profile.html" class="text-black">{{$job->title}}</a></h2>
-            <span class="text-primary">{{ $job->company->name }}</span>
+            <h2 class="title"><a href="/user/job/{{$job->id}}" class="text-black">{{$job->title}}</a></h2>
+            <span class="text-primary">  <a href="/user/company/{{$job->company->id}}">{{ $job->company->name }}</a></span>
         </div>
     </div>
     <div class="d-flex col-xl-3 col-lg-4 col-sm-6 align-items-center">
@@ -39,10 +39,10 @@
         </div>
     </div>
     <div class="col-xl-2 col-xxl-3 text-xl-end text-lg-start text-sm-end col-lg-12 col-sm-6 mt-xl-0 mt-3">
-        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary rounded me-2" data-bs-toggle="modal" data-bs-target="#apply_now_modal">Apply Now</a>
-        <label class="like-btn mb-2 mt-3 mt-sm-0">
+        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary rounded me-2" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job->id}}" data-company-name="{{$job->company->name}}">Apply Now</a>
+        {{-- <label class="like-btn mb-2 mt-3 mt-sm-0">
               <input type="checkbox">
               <span class="checkmark"></span>
-        </label>
+        </label> --}}
     </div>
 </div>

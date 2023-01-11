@@ -28,7 +28,8 @@
 	<link href="{{ asset('assets/vendor/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>		
 	<link href="{{ asset('assets/vendor/clockpicker/css/bootstrap-clockpicker.min.css') }}" rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/css/style.css') }} " rel="stylesheet" type="text/css"/>	
-		
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	{{-- <script src="https://kit.fontawesome.com/5ce0b3e9f8.js" crossorigin="anonymous"></script>  --}}
 </head>
 <body>
 

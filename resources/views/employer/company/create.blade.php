@@ -207,14 +207,14 @@
 													<label class="text-label">Number of Employees <span class="text-danger">*</span></label>
 													<select class="default-select form-control wide mb-3" name="no_of_employees" required>
 														<option selected="">Select employee strength</option>
-														<option value="1-4" @if(old('no_of_employees') == "1-4") selected @endif>1-4</option>
-														<option value="5-10" @if(old('no_of_employees') == "5-10") selected @endif>5-10</option>
-														<option value="11-25" @if(old('no_of_employees') == "11-25") selected @endif>11-25</option>
-														<option value="26-50" @if(old('no_of_employees') == "26-50") selected @endif>26-50</option>
-														<option value="51-100" @if(old('no_of_employees') == "51-100") selected @endif>51-100</option>
-														<option value="101-200" @if(old('no_of_employees') == "101-200") selected @endif>101-200</option>
-														<option value="201-500" @if(old('no_of_employees') == "201-500") selected @endif>201-500</option>
-														<option value="501-1000" @if(old('no_of_employees') == "501-1000") selected @endif>501-1000</option>
+														<option value="1 - 4" @if(old('no_of_employees') == "1 - 4") selected @endif>1 - 4</option>
+														<option value="5 - 10" @if(old('no_of_employees') == "5 - 10") selected @endif>5 - 10</option>
+														<option value="11 - 25" @if(old('no_of_employees') == "11 - 25") selected @endif>11 - 25</option>
+														<option value="26 - 50" @if(old('no_of_employees') == "26 - 50") selected @endif>26 - 50</option>
+														<option value="51 - 100" @if(old('no_of_employees') == "51 - 100") selected @endif>51 - 100</option>
+														<option value="101 - 200" @if(old('no_of_employees') == "101 - 200") selected @endif>101 - 200</option>
+														<option value="201 - 500" @if(old('no_of_employees') == "201 - 500") selected @endif>201 - 500</option>
+														<option value="501 - 1000" @if(old('no_of_employees') == "501 - 1000") selected @endif>501 - 1000</option>
 														<option value="1001+" @if(old('no_of_employees') == "1001+") selected @endif>1001+</option>
 													</select>
 												</div>

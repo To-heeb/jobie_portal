@@ -1,5 +1,5 @@
 @extends('layouts.user')
-
+@section('page_title', 'Companies')
 @section('content')
 <div class="container-fluid">
     <div class="page-titles">

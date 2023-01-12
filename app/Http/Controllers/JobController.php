@@ -131,6 +131,7 @@ class JobController extends Controller
             'level' => 'required',
             'salary_range_id' => 'required|numeric',
             'salary_status' =>  'required',
+            'cover_letter_status' => 'required',
             'summary' =>  'required',
             'description' =>  'required',
             'start_range' =>  'required',

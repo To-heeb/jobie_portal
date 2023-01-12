@@ -19,6 +19,7 @@ class Job extends Model
         'level',
         'salary_range_id',
         'salary_status',
+        'cover_letter_status',
         'summary',
         'description',
         'start_range',
@@ -58,6 +59,7 @@ class Job extends Model
         $jobInfo->location_type = $request->location_type;
         $jobInfo->tags = $request->tags;
         $jobInfo->level = $request->level;
+        $jobInfo->cover_letter_status = $request->cover_letter_status;
         $jobInfo->salary_range_id = $request->salary_range_id;
         $jobInfo->salary_status = $request->salary_status;
         $jobInfo->summary = $request->summary;

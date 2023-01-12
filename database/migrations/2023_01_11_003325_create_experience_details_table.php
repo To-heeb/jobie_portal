@@ -23,7 +23,7 @@ class CreateExperienceDetailsTable extends Migration
             $table->string('location')->nullable();
             $table->enum('location_type', ['remote', 'on_site', 'hybrid'])->nullable();
             $table->text('description')->nullable();
-            $table->string('status', ['pending', 'approved']);
+            $table->enum('status', ['pending', 'approved']);
             $table->string('start_month');
             $table->year('start_year');
             $table->string('end_month');

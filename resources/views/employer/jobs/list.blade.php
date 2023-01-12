@@ -46,7 +46,7 @@
                                             <td>{{$job->job_sub_category->name}}</td> 
                                             <td>{{ucfirst($job->type)}}</td>
                                             <td>{{ucfirst($job->status)}}</td>
-                                            <td>{{ucfirst($job->level)}}</td>
+                                            <td>{{ucfirst(str_replace('_', ' ',$job->level))}}</td>
                                             <td>{{ date("F j, Y", strtotime($job->start_range)) }}</td>
                                             <td>{{ date("F j, Y", strtotime($job->end_range))}}</td>
                                             <td>

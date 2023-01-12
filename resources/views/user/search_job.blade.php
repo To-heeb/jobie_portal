@@ -207,11 +207,11 @@
                                             </div>
                                             <div class="col-sm-12 mb-2">
                                                 <div class="form-group"> <!---- Cover letter not compulsory -->
-                                                    <label class="text-label">Cover Letter(only pdf documents allowed) <span class="text-danger">*</span></label>
+                                                    <label class="text-label">Cover Letter(only pdf documents allowed) <span class="text-danger" id="required_star_for_cover_letter" style="display: none">*</span></label>
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text">Upload</span>
                                                         <div class="form-file"> <!---- Cover letter depends if it is compoulsory or not -->
-                                                            <input type="file" class="form-file-input form-control documents" accept=".pdf" name="cover_letter" id="cover-letter-upload" required>
+                                                            <input type="file" class="form-file-input form-control" accept=".pdf" name="cover_letter" id="cover-letter-upload">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -258,7 +258,7 @@
                                                     <embed src="" type="" width="95%" height="400px" id="embedded-resume-upload" class="border border-3 border-primary rounded-2">
                                                 </div>
                                                 {{-- hide if not required --}}
-                                                <div class="mt-3">
+                                                <div class="mt-3" id="preveiw_cover_letter_div">
                                                     <p>Cover letter</p>
                                                     <embed src="" type="" width="95%" height="400px" id="embedded-cover-letter-upload" class="border border-3 border-primary rounded-2"/>
                                                 </div>
@@ -341,6 +341,13 @@
             document.querySelector("#additional_questions_input_div").innerHTML = "";
             document.getElementById('application_form').reset();
             $('#smartwizard').smartWizard("reset");
+
+            document.querySelector("#required_star_for_cover_letter").style.display = "none";
+            if($('#cover-letter-upload').hasClass('documents')){
+                document.querySelector("#cover-letter-upload").classList.remove("documents")
+                document.querySelector("#cover-letter-upload").setAttribute("required", false)
+            }
+           
         });
 
         document.addEventListener('DOMContentLoaded', function(){
@@ -361,13 +368,21 @@
 
                 var job_id = $(e.relatedTarget).data('id');
                 var company_name = $(e.relatedTarget).data('company-name');
+                var cover_letter_status = $(e.relatedTarget).data('cover-letter-status');
+                
+                //alert(cover_letter_status);
+                if(cover_letter_status == "yes"){
+                    document.querySelector("#required_star_for_cover_letter").style.display = "block";
+                    document.querySelector("#cover-letter-upload").classList.add("documents")
+                    document.querySelector("#cover-letter-upload").setAttribute("required", true)
+                }
 
                 var url = '{{  url("/user/job_details/:id") }}';
                     url = url.replace(':id', job_id);
-
                 var modal_title_company_name = document.querySelector("#modal_title_company_name")
                 var wizard_start_company_name = document.querySelector("#wizard_start_company_name");
                 var additional_questions_input_div = document.querySelector("#additional_questions_input_div");
+                
             
                 //console.log(company_name);
                 fetch(url)
@@ -475,6 +490,7 @@
                             var additional_questions = document.querySelectorAll(".additional-questions");
                             var document_error = document.querySelector("#document-error");
                             var wizard_height = document.querySelector(".wizard_adjustable_height")
+                            var cover_letter_upload = document.querySelector("#cover-letter-upload");
                             var status = true;
 
                             //alert(additional_questions.length);
@@ -484,7 +500,7 @@
                                    status = false;
                                    document_error.style.display = 'block';
                                    
-                                    wizard_height.setAttribute("style","height:280px");
+                                    wizard_height.setAttribute("style","height:305px");
                                     e.preventDefault();
                                     e.stopPropagation();
                                     return false;
@@ -496,24 +512,24 @@
                                 case 5:
                                     //alert(additional_questions.length)
                                     //809px
-                                    var height =  "809px" ;
+                                    var height =  "834px" ;
                                     break;
                                 case 4:
                                     //709px
-                                    var height =  "709px" ;
+                                    var height =  "734px" ;
                                     break;
                                 case 3:
                                     //609px
                                     //var height = wizard_height.offsetHeight + 330 +'px' ;
-                                    var height =  "609px" ;
+                                    var height =  "634px" ;
                                     break;
                                 case 2:
                                     //509px
-                                    var height =  "509px" ;
+                                    var height =  "534px" ;
                                     break;
                                 case 1:
                                     //409px
-                                    var height =  "409px" ;
+                                    var height =  "434px" ;
                                     break;
                             
                                 default:
@@ -549,6 +565,13 @@
 
                                 //console.log(additional_question_preveiw);
                                 document.querySelector("#additional_questions_preview_div").innerHTML = additional_question_preveiw;
+
+                                // if cover letter is not selected hide the 
+                                if(cover_letter_upload.value == ""){
+                                    document.querySelector("#preveiw_cover_letter_div").style.display = "none";
+                                }else{
+                                    document.querySelector("#preveiw_cover_letter_div").style.display = "block";
+                                }
                                                 
                             }
                         }

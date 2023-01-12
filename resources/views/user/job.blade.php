@@ -49,7 +49,7 @@
 								<p class="fs-14"><?= substr_replace($job_details->company->about, "...", 150); ?></p>
 								<div class="d-flex justify-content-between flex-wrap pt-3">
 									{{-- <a href="javascript:void(0);" class="btn btn-primary btn-rounded btn-sm mb-2">23 Vacancy</a> --}}
-									<a href="/user/company/{{$job_details->company->id}}" class="btn btn-dark btn-rounded btn-sm mb-2">More Detail</a>
+									<a href="/user/company/{{$job_details->company->id}}" class="btn btn-dark btn-rounded btn-sm mb-2">More Details</a>
 								</div>
                                 <div class="row mt-5">
 									<div class="col-xl-12">

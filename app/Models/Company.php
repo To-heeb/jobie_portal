@@ -76,4 +76,9 @@ class Company extends Model
     {
         return $this->hasMany(Jobs::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(CompanyReview::class);
+    }
 }

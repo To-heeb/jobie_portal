@@ -39,7 +39,8 @@
         </div>
     </div>
     <div class="col-xl-2 col-xxl-3 text-xl-end text-lg-start text-sm-end col-lg-12 col-sm-6 mt-xl-0 mt-3">
-        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary rounded me-2" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job->id}}" data-company-name="{{$job->company->name}}" data-cover-letter-status="{{$job->cover_letter_status}}">Apply Now</a>
+        <?php $user_application_status = $job->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job->id)->first()['user_id']?>
+        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary rounded me-2" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job->id}}" data-company-name="{{$job->company->name}}" data-cover-letter-status="{{$job->cover_letter_status}}" <?= (!is_null($user_application_status)) ? "style='pointer-events: none; opacity: 0.3;'" : ''; ?> >Apply Now</a>
         {{-- <label class="like-btn mb-2 mt-3 mt-sm-0">
               <input type="checkbox">
               <span class="checkmark"></span>

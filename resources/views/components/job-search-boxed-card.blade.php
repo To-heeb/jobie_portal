@@ -10,10 +10,12 @@
                 </div>
                 <img src="{{ asset('storage/'.$job->company->company_logo)}}" alt="" class="me-3" style="width: 25% !important;" width="" height="50">
             </div>
+            <?php $user_application_status = $job->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job->id)->first()['user_id']?>
             <span class="text-primary font-w500 d-block mb-3">{{ "₦".number_format($job->salary_range->start_range, 0, '.', ',').' - '."₦".number_format($job->salary_range->end_range, 0, '.', ',')}}</span>
             <p class="fs-14">{{ substr_replace($job->summary, "...", 150); }}</p>
             <div class="d-flex align-items-center mt-4">
-                <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job->id}}" data-company-name="{{$job->company->name}}" data-cover-letter-status="{{$job->cover_letter_status}}">Apply Now</a>
+                <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job->id}}" data-company-name="{{$job->company->name}}" data-cover-letter-status="{{$job->cover_letter_status}}" <?= (!is_null($user_application_status)) ? "style='pointer-events: none; opacity: 0.3;'" : ''; ?> >Apply Now</a>
+                {{-- make it  a class instead --}}
                 <span class="text-black font-w500">{{$job->city, $job->country}}</span>
             </div>
         </div>

@@ -8,11 +8,20 @@
                 <li class="breadcrumb-item"><a href="javascript:void(0)">{{$job_details->company->name}}</a></li>
             </ol>
         </div>
-
+       
         <div class="row">
             <div class="col-xl-12 col-xxl-12">
 				<div class="row">
 					<div class="col-xl-12">
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        @endif
 						<div class="card d-sm-flex flex-xl-column flex-md-row">
 							<div class="card-body border-bottom col-xl-12 col-md-6">
 								<h4 class="fs-22 text-black font-w600 mb-1">{{$job_details->title}}</h4>
@@ -32,7 +41,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job_details->id}}" data-company-name="{{$job_details->company->name}}" data-cover-letter-status="{{$job_details->cover_letter_status}}">Apply Now</a>
+                                        <?php $user_application_status = $job_details->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job_details->id)->first()['user_id']?>
+                                        <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job_details->id}}" data-company-name="{{$job_details->company->name}}" data-cover-letter-status="{{$job_details->cover_letter_status}}" <?= (!is_null($user_application_status)) ? "style='pointer-events: none; opacity: 0.3;'" : ''; ?> >Apply Now</a>
                                     </div>
                                 </div>
                                 <div class="row">

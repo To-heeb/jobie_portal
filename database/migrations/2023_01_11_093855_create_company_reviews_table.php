@@ -18,7 +18,7 @@ class CreateCompanyReviewsTable extends Migration
             $table->integer('user_id');
             $table->integer('company_id');
             $table->string('review_summary');
-            $table->string('summary');
+            $table->string('summary'); //update to review instead of summary and update to type text
             $table->string('rating');
             $table->string('pros');
             $table->string('cons');

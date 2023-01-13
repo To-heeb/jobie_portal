@@ -29,6 +29,16 @@
         <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-2 mb-2">Photographer</a>
         <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-2 mb-2">Digital Marketing</a>
     </div>
+    <x-flash-message />
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="d-flex flex-wrap mb-4 align-items-center search-filter">
         <div class="me-auto mb-2 pe-2">
             <h6 class="text-black fs-16 font-w600 mb-1">Showing {{count($jobs)}} Jobs Results</h6>

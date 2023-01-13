@@ -87,4 +87,9 @@ class Job extends Model
     {
         return $this->belongsTo(SalaryRange::class);
     }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Console\Application;
+use App\Models\Resume;
 use Illuminate\Http\Request;
+use Illuminate\Console\Application;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application as JobApplication;
+use App\Models\CoverLetter;
 
 class ApplicationController extends Controller
 {
@@ -37,8 +39,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dd($request);
+        // dd($request);
         $applicationInfo = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -58,33 +59,33 @@ class ApplicationController extends Controller
         if ($request->hasFile('resume')) {
             $applicationInfo['resume'] = $request->file('resume')->store('resumes', 'public');
 
-            $user_id = Auth::user()->id;
-            $resume_name = $applicationInfo['resume'];
-            $resume_size = $request->file('resume')->getSize();
-            $resume_type = $request->file('resume')->getMimeType();
+            $resume["user_id"] = Auth::user()->id;
+            $resume["name"] = $applicationInfo['resume'];
+            $resume["size"] = $request->file('resume')->getSize();
+            $resume['type'] = $request->file('resume')->getMimeType();
 
             // submit to model
-            //$applicationInfo['resume_id'] = ""
+            $applicationInfo['resume_id'] = Resume::create($resume)->id;
         }
 
         if ($request->hasFile('cover_letter')) {
             $applicationInfo['cover_letter'] = $request->file('cover_letter')->store('cover_letters', 'public');
 
-            $user_id = Auth::user()->id;
-            $cover_letter_name = $applicationInfo['cover_letter'];
-            $cover_letter_size = $request->file('cover_letter')->getSize();
-            $cover_letter_type = $request->file('cover_letter')->getMimeType();
+            $cover_letter["user_id"] = Auth::user()->id;
+            $cover_letter["name"] = $applicationInfo['cover_letter'];
+            $cover_letter["size"] = $request->file('cover_letter')->getSize();
+            $cover_letter["type"] = $request->file('cover_letter')->getMimeType();
 
             // submit to model
-            //$applicationInfo['cover_letter_id'] = ""
+            $applicationInfo['cover_letter_id'] = CoverLetter::create($cover_letter)->id;
         }
 
         $applicationInfo['user_id'] = Auth::user()->id;
         $applicationInfo['custom_response'] = (!empty($applicationInfo['custom_response'])) ? json_encode($applicationInfo['custom_response']) : "";
 
-        //$application = JobApplication::create($applicationInfo);
+        $application = JobApplication::create($applicationInfo);
 
-        //return redirect('/user/search_job')->with('success', 'You have successfully applied for the job');
+        return redirect('/user/search_job')->with('success', 'Job Application Successful');
     }
 
     /**

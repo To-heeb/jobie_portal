@@ -132,6 +132,7 @@
                             <div class="tab-content wizard_adjustable_height">
                                 <form action="/user/application/store" method="POST" enctype="multipart/form-data" id="application_form">
                                     @csrf
+                                    <input type="hidden" name="job_id" id="job_id">
                                     <div id="wizard_start" class="tab-pane" role="tabpanel">
                                         <div class="d-flex justify-content-center">
                                             <h2>Apply to <span id="wizard_start_company_name" ></span></h2>
@@ -345,7 +346,7 @@
             document.querySelector("#required_star_for_cover_letter").style.display = "none";
             if($('#cover-letter-upload').hasClass('documents')){
                 document.querySelector("#cover-letter-upload").classList.remove("documents")
-                document.querySelector("#cover-letter-upload").setAttribute("required", false)
+                document.querySelector("#cover-letter-upload").removeAttribute("required")
             }
            
         });
@@ -369,6 +370,7 @@
                 var job_id = $(e.relatedTarget).data('id');
                 var company_name = $(e.relatedTarget).data('company-name');
                 var cover_letter_status = $(e.relatedTarget).data('cover-letter-status');
+                document.querySelector("#job_id").value = job_id;
                 
                 //alert(cover_letter_status);
                 if(cover_letter_status == "yes"){
@@ -500,7 +502,7 @@
                                    status = false;
                                    document_error.style.display = 'block';
                                    
-                                    wizard_height.setAttribute("style","height:305px");
+                                    wizard_height.setAttribute("style","height:300px");
                                     e.preventDefault();
                                     e.stopPropagation();
                                     return false;
@@ -510,25 +512,18 @@
                             
                             switch (additional_questions.length) {
                                 case 5:
-                                    //alert(additional_questions.length)
-                                    //809px
                                     var height =  "834px" ;
                                     break;
                                 case 4:
-                                    //709px
                                     var height =  "734px" ;
                                     break;
                                 case 3:
-                                    //609px
-                                    //var height = wizard_height.offsetHeight + 330 +'px' ;
                                     var height =  "634px" ;
                                     break;
                                 case 2:
-                                    //509px
                                     var height =  "534px" ;
                                     break;
                                 case 1:
-                                    //409px
                                     var height =  "434px" ;
                                     break;
                             

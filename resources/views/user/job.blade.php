@@ -31,15 +31,22 @@
                                         <i class="fa fa-building me-3" style="font-size:24px"></i>
                                         <div class="media-body text-left">
                                             <h4 class="fs-8 mb-0 text-black font-w600">{{$job_details->company->no_of_employees }}</h4>
-                                            <span class="fs-6">Employee</span>
+                                            <span class="fs-6">Employee</span> • <span>{{ ucfirst($job_details->job_sub_category->name) }}</span>
                                         </div>
                                     </div>
                                     <div class="media pr-2 mb-4">
                                         <i class="fa fa-briefcase me-3" style="font-size:24px"></i>
                                         <div class="media-body text-left">
+                                            <span class="fs-6">{{ ucfirst(str_replace('_', '-',$job_details->type)) }}</span> • <span>{{ ucfirst(str_replace('_', '-',$job_details->level)) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="media pr-2 mb-4">
+                                        <i class="fa fa-map me-3" style="font-size:24px"></i>
+                                        <div class="media-body text-left">
                                             <span class="fs-6">{{ ucfirst(str_replace('_', '-',$job_details->location_type)) }}</span>
                                         </div>
                                     </div>
+                                    {{-- Add job level and type --}}
                                     <div class="mb-3">
                                         <?php $user_application_status = $job_details->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job_details->id)->first()['user_id']?>
                                         <a href="javascript:void(0);" class="btn btn-primary light btn-rounded me-auto" data-bs-toggle="modal" data-bs-target="#apply_now_modal" data-id="{{$job_details->id}}" data-company-name="{{$job_details->company->name}}" data-cover-letter-status="{{$job_details->cover_letter_status}}" <?= (!is_null($user_application_status)) ? "style='pointer-events: none; opacity: 0.3;'" : ''; ?> >Apply Now</a>

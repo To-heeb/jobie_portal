@@ -595,7 +595,7 @@
 							<x-search-card />
 						</form>
 					</li>
-					<li class="nav-item dropdown notification_dropdown">
+					<li class="nav-item dropdown notification_dropdown" style="visibility: hidden;">
 						<a class="nav-link bell bell-link" href="#">
 							<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M22.5678 26.5202C22.8079 26.5202 23.0447 26.6115 23.2249 26.7856C24.3769 27.8979 26.0572 28.2683 27.551 27.8047C26.5897 25.802 26.4564 23.5075 27.2014 21.383C28.126 18.7398 28.3577 16.0905 27.3055 13.4334C26.381 11.0992 24.5971 9.15994 22.3395 8.05408C22.4784 8.79455 22.5484 9.54903 22.5484 10.3115C22.5484 13.5478 21.304 16.5916 19.0444 18.8823C16.7846 21.1733 13.7553 22.4615 10.5147 22.5097C9.91267 22.5191 9.31331 22.4837 8.72073 22.4056C10.5017 25.5274 13.8606 27.5606 17.5516 27.6153C19.1663 27.6403 20.7166 27.302 22.1604 26.6125C22.2904 26.5503 22.4296 26.5202 22.5678 26.5202Z" fill="#3E4954"/>
@@ -604,7 +604,7 @@
 							<span class="badge light text-white bg-primary rounded-circle">18</span>
 						</a>
 					</li>
-					<li class="nav-item dropdown notification_dropdown">
+					<li class="nav-item dropdown notification_dropdown" style="visibility: hidden;">
 						<a class="nav-link  ai-icon" href="#" role="button" data-bs-toggle="dropdown">
 							<svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M9.45251 25.6682C10.0606 27.0357 11.4091 28 13.0006 28C14.5922 28 15.9407 27.0357 16.5488 25.6682C15.4266 25.7231 14.2596 25.76 13.0006 25.76C11.7418 25.76 10.5748 25.7231 9.45251 25.6682Z" fill="#3E4954"/>
@@ -734,7 +734,7 @@
 				</a>
 				<ul aria-expanded="false">
 					<li><a href="/user/profile">Profile Settings</a></li>
-					<li><a href="email_inbox.html">Privacy Settings</a></li>
+					{{-- <li><a href="email_inbox.html">Privacy Settings</a></li> --}}
 				</ul>
 			</li>
 			<form action="/user/logout" class="inline" method="POST" id="logoutForm">

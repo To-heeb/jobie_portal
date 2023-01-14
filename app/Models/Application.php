@@ -12,7 +12,9 @@ class Application extends Model
         'job_id',
         'resume_id',
         'cover_letter_id',
-        'custom_response'
+        'custom_response',
+        'status',
+        'message',
     ];
 
     use HasFactory;

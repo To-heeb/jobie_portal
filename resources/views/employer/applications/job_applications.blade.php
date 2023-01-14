@@ -1,0 +1,1 @@
+{{-- All applications for a certain job post --}}

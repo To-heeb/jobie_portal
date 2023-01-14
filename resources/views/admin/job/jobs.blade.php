@@ -29,7 +29,7 @@
                                         <th>Title</th>
                                         <th>Company</th>
                                         <th>Type</th>
-                                        <th>Postition</th>
+                                        <th>Level</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -40,7 +40,7 @@
                                             <td>{{$job->title}}</td>
                                             <td>{{$job->company->name ?? "NILL"}}</td> 
                                             <td>{{ucfirst($job->type)}}</td>
-                                            <td>{{$job->position_in_company ?? "NILL"}}</td>
+                                            <td>{{ ucfirst(str_replace('_', '-',$job->level))}}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     
@@ -59,7 +59,7 @@
 
 			<!-- Large modal -->
 			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
-				<div class="modal-dialog modal-xl">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title"><b id="">View Employer</b></h5>

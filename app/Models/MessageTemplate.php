@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MessageTemplate extends Model
 {
+    protected $fillable = [
+        'slug',
+        'tag',
+        'content',
+    ];
+
     use HasFactory;
 }

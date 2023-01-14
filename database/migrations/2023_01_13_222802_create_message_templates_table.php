@@ -15,6 +15,9 @@ class CreateMessageTemplatesTable extends Migration
     {
         Schema::create('message_templates', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
+            $table->text('tag');
+            $table->text('content');
             $table->timestamps();
         });
     }

@@ -59,13 +59,14 @@
                             <div class="profile-statistics">
                                 <div class="text-center">
                                     <div class="row">
-                                        <div class="col">
+                                        {{-- <div class="col">
                                             <h3 class="m-b-0">150</h3><span>Follower</span>
-                                        </div>
+                                        </div> --}}
                                         {{-- <div class="col">
                                             <h3 class="m-b-0">140</h3><span>Place Stay</span>
                                         </div> --}}
                                         <div class="col">
+                                            <i class="fa fa-star" style="font-size:24px"></i>
                                             <h3 class="m-b-0">45</h3><span>Reviews</span>
                                         </div>
                                     </div>

@@ -15,7 +15,7 @@ class CreateExperienceDetailsTable extends Migration
     {
         Schema::create('experience_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->string('title');
             $table->string('company_name');
             $table->string('company_mail');

@@ -8,6 +8,9 @@ use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Employer;
 use App\Models\Industry;
+use App\Models\JobCategory;
+use App\Models\JobSubCategory;
+use App\Models\SalaryRange;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,9 +25,13 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Admin::factory(2)->create();
-        Job::factory(2)->create();
-        Company::factory(8)->create();
         Industry::factory(10)->create();
+        JobCategory::factory()->create();
+        JobSubCategory::factory()->create();
+        SalaryRange::factory()->create();
+        Company::factory(8)->create();
+        Job::factory(2)->create();
+
 
         // Remove all
         User::create([

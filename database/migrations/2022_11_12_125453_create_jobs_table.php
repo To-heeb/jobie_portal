@@ -24,10 +24,10 @@ class CreateJobsTable extends Migration
             $table->enum('salary_status',  ['confidential', 'public']); //confidential, public
             $table->enum('cover_letter_status',  ['yes', 'no']);
             $table->text('custom_question')->nullable();
-            $table->integer('company_id');
-            $table->integer('job_category_id');
-            $table->integer('job_sub_category_id');
-            $table->integer('salary_range_id');
+            $table->foreignId('company_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('job_category_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('job_sub_category_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('salary_range_id')->constrained()->onUpdate('cascade');
             $table->text('summary');
             $table->text('description');
             $table->date('start_range');

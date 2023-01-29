@@ -17,7 +17,7 @@ class CreateEmployersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
             $table->integer('company_id')->nullable();
             $table->enum('employer_type',  ['employee', 'recruiter'])->nullable();
             $table->string('position_in_company')->nullable();

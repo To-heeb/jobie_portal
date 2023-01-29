@@ -21,8 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->string('twitter_link')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
-            $table->integer('employer_id');
-            $table->integer('industry_id');
+            $table->integer('employer_id'); //TODO: come back to make use foreign key for this
+            $table->foreignId('industry_id')->constrained()->onUpdate('cascade');
             $table->string('no_of_employees');
             $table->string('company_logo')->nullable();
             $table->string('address');

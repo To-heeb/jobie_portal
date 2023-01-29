@@ -16,7 +16,7 @@ class CreateJobSubCategoriesTable extends Migration
         Schema::create('job_sub_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('job_category_id');
+            $table->foreignId('job_category_id')->constrained()->onUpdate('cascade');
             $table->timestamps();
         });
     }

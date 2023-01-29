@@ -15,7 +15,7 @@ class CreateEducationDetailsTable extends Migration
     {
         Schema::create('education_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->string('school_name');
             $table->string('degree')->nullable();
             $table->string('course_of_study')->nullable();

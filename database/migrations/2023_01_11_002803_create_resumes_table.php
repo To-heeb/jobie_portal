@@ -15,7 +15,7 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
             $table->string('name');
             $table->string('size');
             $table->string('type');

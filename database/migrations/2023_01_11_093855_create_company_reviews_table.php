@@ -15,10 +15,10 @@ class CreateCompanyReviewsTable extends Migration
     {
         Schema::create('company_reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('company_id');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
+            $table->foreignId('company_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->string('review_summary');
-            $table->string('summary'); //update to review instead of summary and update to type text
+            $table->text('review'); //update to review instead of summary and update to type text
             $table->string('rating');
             $table->string('pros');
             $table->string('cons');

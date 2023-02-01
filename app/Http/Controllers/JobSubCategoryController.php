@@ -104,6 +104,11 @@ class JobSubCategoryController extends Controller
     public function destroy($id)
     {
         //
+        $jobSubCategory = JobSubCategory::find($id);
+
+        if ($jobSubCategory->delete()) {
+            return;
+        }
     }
 
     public function get_job_sub_category($sub_category_id)

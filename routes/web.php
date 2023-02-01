@@ -71,11 +71,13 @@ Route::group([
     Route::get('/job_category/{id}', [JobCategoryController::class, 'get_job_category']);
     Route::post('/job_category', [JobCategoryController::class, 'store']);
     Route::put('/job_category', [JobCategoryController::class, 'update']);
+    Route::delete('/job_category/{id}', [JobCategoryController::class, 'destroy']);
 
     Route::get('/job_sub_category/{id}', [JobSubCategoryController::class, 'get_job_sub_category']);
     Route::get('/job_sub_category', [JobSubCategoryController::class, 'index']);
     Route::post('/job_sub_category', [JobSubCategoryController::class, 'store']);
     Route::put('/job_sub_category', [JobSubCategoryController::class, 'update']);
+    Route::delete('/job_sub_category/{id}', [JobSubCategoryController::class, 'destroy']);
 
     Route::get('/employers', [AdminController::class, 'employers']);
     Route::get('/companies', [AdminController::class, 'companies']);

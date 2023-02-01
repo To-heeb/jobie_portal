@@ -109,6 +109,8 @@
                     </div>
                 </div>
             </div>
+
+            <input type="hidden" name="" id="csrf_token" value="{{ csrf_token() }}">
         </div>
     </div>
 @endsection
@@ -186,19 +188,30 @@
                     //alert(event.target.dataset.id);
 			        var url = '{{  url("/admin/job_category/:id") }}';
 			        url = url.replace(':id', category_id);
+                    var csrf_token = document.querySelector('#csrf_token').value;
 
                     //alert(url);
-                    fetch(url, {method: 'DELETE', })
-                    .then((response) => response.json())
+                    fetch(url, 
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrf_token
+                        },
+                     })
+                    .then((response) => response)
                     .then((data) => {
+                        
                         console.log('Success:', data);
 
-                        if(data.status === 'successful'){
+                        if(data.status == 'successful'){
                             Swal.fire(
                             'Deleted!',
                             'Job category has been deleted.',
                             'success'
                             )
+
+                            location.reload();
                         }else{
                             Swal.fire({
                             icon: 'error',

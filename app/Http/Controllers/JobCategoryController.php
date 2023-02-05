@@ -107,7 +107,7 @@ class JobCategoryController extends Controller
         if ($jobCategory->delete()) {
 
             return response()->json([
-                'status' => 'successful',
+                'status_message' => 'successful',
                 'message' => 'Delete job category successfully',
             ], Response::HTTP_NO_CONTENT);
         }

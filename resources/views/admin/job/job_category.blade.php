@@ -204,7 +204,7 @@
                         
                         console.log('Success:', data);
 
-                        if(data.status == 'successful'){
+                        if(data.status === 204){
                             Swal.fire(
                             'Deleted!',
                             'Job category has been deleted.',

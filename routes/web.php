@@ -61,6 +61,7 @@ Route::group([
     Route::get('/salary_range/{id}', [AdminController::class, 'get_salary_range']);
     Route::post('/salary_range', [AdminController::class, 'salary_range']);
     Route::put('/salary_range', [AdminController::class, 'salary_range']);
+    Route::delete('/salary_range/{id}', [AdminController::class, 'delete_salary_range']);
 
     Route::get('/industry', [IndustryController::class, 'index']);
     Route::post('/industry', [IndustryController::class, 'store']);

@@ -76,7 +76,7 @@
 											<td>{{$loop->iteration }}</td>
 											<td>{{"₦".number_format($salary_range->start_range, 2, '.', ',')}}</td>
 											<td>{{"₦".number_format($salary_range->end_range, 2, '.', ',')}}</td>
-											<td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$salary_range->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a></td>
+											<td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$salary_range->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm" data-id="{{$salary_range->id}}">Delete</a></td>
 										</tr>
 										@if($loop->last)
 											<input type="text" style="display: none;" name="max_range" id="max_range" value="" data-max="{{ $salary_range->end_range }}" data-min="{{ $salary_range->start_range }}">
@@ -137,6 +137,8 @@
 					</div>
 				</div>
 			</div>
+
+			<input type="hidden" name="" id="csrf_token" value="{{ csrf_token() }}">
         </div>
     </div>
 @endsection
@@ -215,21 +217,51 @@
 				confirmButtonText: 'Yes, delete it!'
 				}).then((result) => {
 					// make ajax call here
-				if (result.isConfirmed) {
-					Swal.fire(
-					'Deleted!',
-					'Salary Range has been deleted.',
-					'success'
-					)
-				}else{
-					Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Something went wrong!',
-					})
-				}
+					if (result.isConfirmed) {
+
+						var category_id = event.target.dataset.id;
+						//alert(event.target.dataset.id);
+						var url = '{{  url("/admin/salary_range/:id") }}';
+						url = url.replace(':id', category_id);
+						var csrf_token = document.querySelector('#csrf_token').value;
+
+						//alert(url);
+						fetch(url, 
+						{
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-CSRF-TOKEN': csrf_token
+							},
+						})
+						.then((response) => response)
+						.then((data) => {
+							
+							console.log('Success:', data);
+
+							if(data.status === 204){
+								Swal.fire(
+								'Deleted!',
+								'Salaray Range has been deleted.',
+								'success'
+								)
+
+								location.reload();
+							}else{
+								Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: 'Something went wrong!',
+								})
+							}
+						})
+						.catch((error) => {
+							console.log('Error:', error);
+						});
+
+					}
+				})
 			})
-		})
 
     </script>
 @endsection

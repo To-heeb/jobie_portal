@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Employer;
 use App\Models\SalaryRange;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -144,6 +145,25 @@ class AdminController extends Controller
 
         $rangeInfo = SalaryRange::find($range_id);
         return $rangeInfo;
+    }
+
+    public function delete_salary_range($range_id)
+    {
+
+        $rangeInfo = SalaryRange::find($range_id);
+
+        if ($rangeInfo->delete()) {
+
+            return response()->json([
+                'status_message' => 'successful',
+                'message' => 'Delete job category successfully',
+            ], Response::HTTP_NO_CONTENT);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Delete job category failed',
+        ], Response::HTTP_NOT_FOUND);
     }
 
     // Profile

@@ -80,7 +80,7 @@
 											<td>{{$loop->iteration }}</td>
 											<td>{{$job_sub_category->job_category->name}}</td>
 											<td>{{$job_sub_category->name}}</td>
-											<td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job_sub_category->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a></td>
+											<td><a href="#" class="btn btn-sm btn-primary sharp shadow ml-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job_sub_category->id}}">Edit</a> <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm" data-id="{{$job_category->id}}">Delete</a></td>
 										</tr>
 									@endforeach
 								</tbody>
@@ -141,6 +141,8 @@
 					</div>
 				</div>
 			</div>
+
+			<input type="hidden" name="" id="csrf_token" value="{{ csrf_token() }}">
 		</div>
 	</div>
 @endsection
@@ -214,21 +216,51 @@
 				confirmButtonText: 'Yes, delete it!'
 				}).then((result) => {
 					// make ajax call here
-				if (result.isConfirmed) {
-					Swal.fire(
-					'Deleted!',
-					'Salary Range has been deleted.',
-					'success'
-					)
-				}else{
-					Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Something went wrong!',
-					})
-				}
+					if (result.isConfirmed) {
+
+						var category_id = event.target.dataset.id;
+						//alert(event.target.dataset.id);
+						var url = '{{  url("/admin/job_sub_category/:id") }}';
+						url = url.replace(':id', category_id);
+						var csrf_token = document.querySelector('#csrf_token').value;
+
+						alert(url);
+						fetch(url, 
+						{
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-CSRF-TOKEN': csrf_token
+							},
+						})
+						.then((response) => response)
+						.then((data) => {
+							
+							console.log('Success:', data);
+
+							if(data.status === 204){
+								Swal.fire(
+								'Deleted!',
+								'Job Sub-category has been deleted.',
+								'success'
+								)
+
+								location.reload();
+							}else{
+								Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: 'Something went wrong!',
+								})
+							}
+						})
+						.catch((error) => {
+							console.log('Error:', error);
+						});
+
+					}
+				})
 			})
-		})
 
 	</script>
 @endsection

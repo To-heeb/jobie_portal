@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JobCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\JobSubCategory;
 
 class JobSubCategoryController extends Controller
@@ -107,8 +108,17 @@ class JobSubCategoryController extends Controller
         $jobSubCategory = JobSubCategory::find($id);
 
         if ($jobSubCategory->delete()) {
-            return;
+
+            return response()->json([
+                'status_message' => 'successful',
+                'message' => 'Delete job category successfully',
+            ], Response::HTTP_NO_CONTENT);
         }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Delete job category failed',
+        ], Response::HTTP_NOT_FOUND);
     }
 
     public function get_job_sub_category($sub_category_id)

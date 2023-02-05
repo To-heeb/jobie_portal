@@ -85,7 +85,7 @@ class ApplicationController extends Controller
 
         $application = JobApplication::create($applicationInfo);
 
-        return redirect('/user/search_job')->with('success', 'Job Application Successful');
+        return redirect('/user/search-job')->with('success', 'Job Application Successful');
     }
 
     /**

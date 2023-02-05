@@ -724,7 +724,7 @@
 		<ul class="metismenu" id="menu">
 			<li><a href="/user/dashboard" ><i class="flaticon-381-networking"></i> <span class="nav-text">Dashboard</span></a></li>
 			<li><a href="/user/applications" ><i class="flaticon-381-file"></i> <span class="nav-text">Application</span></a></li>
-			<li><a href="/user/search_job"><i class="flaticon-381-search"></i> <span class="nav-text">Search Job</span></a></li>
+			<li><a href="/user/search-job"><i class="flaticon-381-search"></i> <span class="nav-text">Search Job</span></a></li>
 			<li><a href="/user/companies"> <i class="flaticon-381-home"></i> <span class="nav-text">Companies</span></a></li>
 			<li><a href="/user/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
 			<li><a href="/user/statistics"><i class="flaticon-381-layer"></i> <span class="nav-text">Statistics</span></a></li>

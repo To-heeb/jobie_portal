@@ -164,9 +164,10 @@ Route::group([
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/register', [UserController::class, 'create'])->withoutMiddleware(['auth']);
     Route::post('/register', [UserController::class, 'store'])->withoutMiddleware(['auth']);
+    Route::get('/applications', [UserController::class, 'applications']);
     Route::get('/applications/{id}', [UserController::class, 'applications']);
     Route::post('/application/store', [ApplicationController::class, 'store']);
-    Route::get('/search_job', [UserController::class, 'search_job']);
+    Route::get('/search-job', [UserController::class, 'search_job']);
     Route::get('/job/{id}', [UserController::class, 'job']);
     Route::get('/job_details/{id}', [UserController::class, 'get_job_details']);
     Route::get('/companies', [UserController::class, 'companies']);

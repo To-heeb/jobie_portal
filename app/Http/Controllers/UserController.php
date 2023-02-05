@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -130,18 +132,17 @@ class UserController extends Controller
     public function applications()
     {
         //
-        return view('user.applications', [
-            'featured_companies' => Company::all(),
-            'title' => $this->title
-        ]);
+        $applications = Application::latest()->where('user_id', Auth::user()->id)->simplePaginate(20);
+
+        return view('user.applications', compact('applications'));
     }
 
     public function search_job()
     {
         //
-        $jobs = Job::latest()->filter(request(['tag', 'search']))->simplePaginate(20);
+        $jobs = Job::latest()->where('status', 'live')->filter(request(['tag', 'search']))->simplePaginate(20);
         $title = $this->title;
-        return view('user.search_job', compact('jobs', 'title'));
+        return view('user.search-job', compact('jobs', 'title'));
     }
 
     public function job($id)
@@ -151,6 +152,7 @@ class UserController extends Controller
         $title = $this->title;
         return view('user.job', compact('job_details', 'title'));
     }
+
 
     public function get_job_details($id)
     {

@@ -6,8 +6,8 @@
         <div class="card-body">	
             <div class="media mb-2">
                 <div class="media-body">
-                    <a href="#"><p class="mb-1">{{$recommendedJob->company->name}}</p></a>
-                    <a href="#"><h4 class="fs-20 text-black"> {{$recommendedJob->title}}</h4></a>
+                    <a href="/user/company/{{$recommendedJob->company->id}}"><p class="mb-1">{{$recommendedJob->company->name}}</p></a>
+                    <a href="/user/job/{{$recommendedJob->id}}"><h4 class="fs-20 text-black"> {{$recommendedJob->title}}</h4></a>
                 </div>
                 
                 <img src="{{ asset('storage/'.$recommendedJob->company->company_logo)}}" alt="" class="me-3" style="width: 25% !important;" width="" height="50">

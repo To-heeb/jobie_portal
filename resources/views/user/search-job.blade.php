@@ -113,6 +113,7 @@
     </div>
 </div>
 <input type="hidden" name="" id="additional_questions_status">
+
 <!-- Modal -->
 <div class="modal fade" id="apply_now_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -312,7 +313,7 @@
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You will loose your data and can't contnue with the application this!",
+                    text: "You will loose your data and can't contnue with this application!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

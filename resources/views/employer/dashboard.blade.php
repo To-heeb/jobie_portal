@@ -16,7 +16,7 @@
 							</span>
 							<div class="media-body text-end feature-icon-text">
 								<p class="fs-18 text-white mb-2">Jobs</p>
-								<span class="fs-48 text-white font-w600">86</span>
+								<span class="fs-48 text-white font-w600">{{$all_jobs}}</span>
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 							</span>
 							<div class="media-body text-end feature-icon-text">
 								<p class="fs-18 text-white mb-2">Applications</p>
-								<span class="fs-48 text-white font-w600">75</span>
+								<span class="fs-48 text-white font-w600">{{$all_applications}}</span>
 							</div>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 							</span>
 							<div class="media-body text-end feature-icon-text">
 								<p class="fs-18 text-white mb-2">Hired</p>
-								<span class="fs-48 text-white font-w600">45</span>
+								<span class="fs-48 text-white font-w600">0</span>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 							</span>
 							<div class="media-body text-end feature-icon-text">
 								<p class="fs-18 text-white mb-2">Reviews</p>
-								<span class="fs-48 text-white font-w600">93</span>
+								<span class="fs-48 text-white font-w600">0</span>
 							</div>
 						</div>
 					</div>

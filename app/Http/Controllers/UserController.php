@@ -134,6 +134,7 @@ class UserController extends Controller
         //
         $applications = Application::latest()->where('user_id', Auth::user()->id)->simplePaginate(20);
 
+        //dd($applications);
         return view('user.applications', compact('applications'));
     }
 

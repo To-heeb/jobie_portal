@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Employer;
+use App\Models\Application;
 use App\Models\SalaryRange;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,7 +33,7 @@ class AdminController extends Controller
         return view('admin.dashboard', [
             'all_companies' => Company::count(),
             'all_employers' => Employer::count(),
-            //'all_applications' => Application::count(),
+            'all_applications' => Application::count(),
             'all_users' => User::count(),
             'title' => $this->title,
         ]);

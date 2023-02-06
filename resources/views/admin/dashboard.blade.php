@@ -71,7 +71,7 @@
 							</span>
 							<div class="media-body text-end feature-icon-text">
 								<p class="fs-18 text-white mb-2">Applications</p>
-								<span class="fs-48 text-white font-w600">93</span>
+								<span class="fs-48 text-white font-w600">{{$all_applications}}</span>
 							</div>
 						</div>
 					</div>

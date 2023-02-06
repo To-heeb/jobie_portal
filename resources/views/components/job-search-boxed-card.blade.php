@@ -10,7 +10,8 @@
                 </div>
                 <img src="{{ asset('storage/'.$job->company->company_logo)}}" alt="" class="me-3" style="width: 25% !important;" width="" height="50">
             </div>
-            <?php $user_application_status = $job->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job->id)->first()['user_id']?>
+            <?php $user_application_status = $job->applications->where('user_id', '=', auth()->user()->id)->where('job_id', '=', $job->id)->first()?>
+            {{dd($user_application_status)}}
             <span class="text-primary font-w500 d-block mb-3">{{ "₦".number_format($job->salary_range->start_range, 0, '.', ',').' - '."₦".number_format($job->salary_range->end_range, 0, '.', ',')}}</span>
             <p class="fs-14">{{ substr_replace($job->summary, "...", 150); }}</p>
             <div class="d-flex align-items-center mt-4">

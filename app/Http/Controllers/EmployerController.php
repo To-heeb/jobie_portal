@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Employer;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +31,8 @@ class EmployerController extends Controller
             //'featured_companies' => Company::all(),
             'jobs' => Job::all(),
             'all_employers' => Employer::count(),
+            'all_jobs' => Job::where('company_id', Auth::user()->company_id)->count(),
+            'all_applications' => Application::whereIn('job_id', Job::where('company_id', Auth::user()->company_id)->pluck('id'))->count(),
             'title' => $this->title,
         ]);
     }

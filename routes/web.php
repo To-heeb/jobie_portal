@@ -119,6 +119,7 @@ Route::group([
     Route::post('/login', [EmployerController::class, 'authenticate'])->withoutMiddleware(['auth:employer']);
     Route::get('/profile', [EmployerController::class, 'profile']);
     Route::put('/profile', [EmployerController::class, 'update']);
+    Route::get('/user-profile/{id}', [EmployerController::class, 'user_profile']);
     Route::get('/applications', [EmployerController::class, 'applications']);
     Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth:employer']);
     Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth:employer']);
@@ -134,6 +135,7 @@ Route::group([
         Route::get('/create', [JobController::class, 'create']);
         Route::get('/dashboard', [JobController::class, 'index']);
         Route::post('/store', [JobController::class, 'store']);
+        Route::delete('/{id}', [JobController::class, 'destroy']);
         Route::get('/applications/{id}', [JobController::class, 'applications']);
         Route::get('/job_sub_categories/{id}', [JobSubCategoryController::class, 'get_job_sub_categories']);
     });

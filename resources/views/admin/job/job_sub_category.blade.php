@@ -224,7 +224,8 @@
 						url = url.replace(':id', category_id);
 						var csrf_token = document.querySelector('#csrf_token').value;
 
-						alert(url);
+						//alert(url);
+						
 						fetch(url, 
 						{
 							method: 'DELETE',

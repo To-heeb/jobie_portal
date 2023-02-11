@@ -5,7 +5,7 @@
 		<div class="page-titles">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
-				<li class="breadcrumb-item active"><a href="javascript:void(0)">Datatable</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Jobs</a></li>
 			</ol>
 		</div>
 		
@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Title</th>
+										<th>Applications</th>
                                         <th>Category</th>
                                         <th>Sub-Category</th>
                                         <th>Type</th>
@@ -42,6 +43,7 @@
                                         <tr>
                                             <td>{{$loop->iteration }}</td>
                                             <td>{{$job->title}}</td>
+											<td>{{count($job->applications)}}</td>
                                             <td>{{$job->job_sub_category->job_category->name}}</td>
                                             <td>{{$job->job_sub_category->name}}</td> 
                                             <td>{{ucfirst($job->type)}}</td>
@@ -54,7 +56,7 @@
                                                     <a href="#" class="btn btn-sm btn-primary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-id="{{$job->id}}">View</a>
 													<a href="/employer/jobs/applications/{{$job->id}}" class="btn btn-sm btn-info sharp shadow me-4">Applications</a>
                                                     <a href="/employer/jobs/{{$job->id}}" class="btn btn-sm btn-secondary sharp shadow me-4">Edit</a>
-                                                    <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm">Delete</a>
+                                                    <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm"  data-id="{{$job->id}}">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -68,7 +70,7 @@
 
 			<!-- Large modal -->
 			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
-				<div class="modal-dialog modal-xl">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title"><b id="">View Job</b></h5>
@@ -102,6 +104,8 @@
 					</div>
 				</div>
 			</div>
+
+			<input type="hidden" name="" id="csrf_token" value="{{ csrf_token() }}">
         </div>
     </div>
 @endsection
@@ -168,19 +172,47 @@
 				confirmButtonText: 'Yes, delete it!'
 				}).then((result) => {
 					// make ajax call here
-				if (result.isConfirmed) {
-					Swal.fire(
-					'Deleted!',
-					'Salary Range has been deleted.',
-					'success'
-					)
-				}else{
-					Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Something went wrong!',
+
+					var job_id = event.target.dataset.id;
+					//alert(event.target.dataset.id);
+					var url = '{{  url("/employer/jobs/:id") }}';
+					url = url.replace(':id', job_id);
+					var csrf_token = document.querySelector('#csrf_token').value;
+					
+					alert(url);
+
+					fetch(url, 
+						{
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json',
+								'X-CSRF-TOKEN': csrf_token
+							},
+						})
+					.then((response) => response)
+					.then((data) => {
+						
+						console.log('Success:', data);
+
+						if(data.status === 204){
+							Swal.fire(
+							'Deleted!',
+							'Job has been deleted.',
+							'success'
+							)
+
+							location.reload();
+						}else{
+							Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Something went wrong!',
+							})
+						}
 					})
-				}
+					.catch((error) => {
+						console.log('Error:', error);
+					});
 			})
 		})
 

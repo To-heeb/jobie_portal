@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 use App\Models\Employer;
 use App\Models\Application;
 use Illuminate\Http\Request;
@@ -136,6 +137,13 @@ class EmployerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function user_profile($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('employer.users.show', compact('user'));
     }
 
     // Show Login Form

@@ -7,8 +7,10 @@ use App\Models\Industry;
 use App\Models\JobCategory;
 use App\Models\SalaryRange;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\JobSubCategory;
 use Illuminate\Validation\Rule;
+use App\Models\Application;
 
 class JobController extends Controller
 {
@@ -158,6 +160,20 @@ class JobController extends Controller
     public function destroy($id)
     {
         //
+        $job = Job::find($id);
+
+        if ($job->delete()) {
+
+            return response()->json([
+                'status_message' => 'successful',
+                'message' => 'Delete job successfully',
+            ], Response::HTTP_NO_CONTENT);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Delete job failed',
+        ], Response::HTTP_NOT_FOUND);
     }
 
     public function jobs()
@@ -169,7 +185,8 @@ class JobController extends Controller
 
     public function applications($id)
     {
-
-        return view('employer.applications.job');
+        $applications  = Application::where('job_id', $id)->get();
+        //dd($applications);
+        return view('employer.applications.list', compact('applications'));
     }
 }

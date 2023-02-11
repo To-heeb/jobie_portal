@@ -728,17 +728,18 @@
                 <ul aria-expanded="false">
                     <li><a href="/employer/jobs/create">Add Job</a></li>
                     <li><a href="/employer/jobs">All Jobs</a></li>
-                    <li><a href="/employer/search_job.html">Search Job</a></li>
+                    {{-- <li><a href="/employer/search_job.html">Search Job</a></li> --}}
                 </ul>
             </li>
-			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-				<i class="flaticon-381-notepad-2"></i>
-				<span class="nav-text">Applications</span>
-			</a>
-			<ul aria-expanded="false">
-				<li><a href="/employer/applications">Applications</a></li>
-			</ul>
-		</li>
+			{{-- <li class="has-menu">
+				<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+					<i class="flaticon-381-notepad-2"></i>
+					<span class="nav-text">Applications</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a href="/employer/applications">Applications</a></li>
+				</ul>
+			</li> --}}
 			@endif
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-home"></i>

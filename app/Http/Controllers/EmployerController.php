@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Employer;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -165,6 +166,24 @@ class EmployerController extends Controller
         // 
         $title = $this->title;
         return view('employer.applications.list', compact('title'));
+    }
+
+    public function get_user_details($id)
+    {
+        $user = User::with('skills')->find($id);
+
+        if ($user) {
+            return response()->json([
+                'status_message' => 'successful',
+                'message' => 'User fetched successfully',
+                'user' => $user,
+            ], Response::HTTP_OK);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'User not found',
+        ], Response::HTTP_NOT_FOUND);
     }
 
     public function authenticate(Request $request)

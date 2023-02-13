@@ -736,9 +736,9 @@
                 <ul aria-expanded="false">
                     <li><a href="/admin/jobs">All Jobs</a></li>
                     <li><a href="/admin/jobs/search_jobs">Search Job</a></li>
-					<li><a href="/admin/job_category">Add Job Category</a></li>
-					<li><a href="/admin/job_sub_category">Add Job Sub Category</a></li>
-					<li><a href="/admin/salary_range">Add Salary Range</a></li>
+					<li><a href="/admin/job_category">Job Categories</a></li>
+					<li><a href="/admin/job_sub_category">Job Sub Categories</a></li>
+					<li><a href="/admin/salary_range">Salary Ranges</a></li>
                 </ul>
             </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -751,6 +751,14 @@
                     <li><a href="index_2.html">Company's Statics</a></li>
                 </ul>
             </li>
+			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+				<i class="flaticon-381-home"></i>
+				<span class="nav-text">Skills</span>
+			</a>
+			<ul aria-expanded="false">
+				<li><a href="/admin/skills">Skills</a></li>
+			</ul>
+		</li>
 			<li><a href="/admin/profile"><i class="flaticon-381-user"></i> <span class="nav-text">Profile</span></a></li>	
 			<li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 					<i class="flaticon-381-settings"></i>

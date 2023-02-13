@@ -11,8 +11,8 @@
             <div class="me-auto">
                 <a href="#" class="btn btn-primary btn-rounded me-2 mb-2">ALL</a>
                 <a href="#" class="btn btn-primary btn-rounded me-2 light mb-2">Pending</a>
-                <a href="#" class="btn btn-primary btn-rounded me-2 light mb-2">On-Hold</a>
-                <a href="#" class="btn btn-primary btn-rounded me-2 light mb-2">Candidate</a>
+                <a href="#" class="btn btn-primary btn-rounded me-2 light mb-2">Rejected</a>
+                <a href="#" class="btn btn-primary btn-rounded me-2 light mb-2">Accepted</a>
             </div>
         </div>
     </div>

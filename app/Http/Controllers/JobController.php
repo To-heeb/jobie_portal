@@ -75,9 +75,9 @@ class JobController extends Controller
             "custom_question.*"  => "required_unless:custom_question,null|string|exclude_if:custom_question,null",
         ]);
 
-        //dd($request);
-        $jobInfo['custom_question'] = (!empty($jobInfo['custom_question'])) ? json_encode($jobInfo['custom_question']) : "";
 
+        $jobInfo['custom_question'] = (!empty($jobInfo['custom_question'])) ? json_encode($jobInfo['custom_question']) : "";
+        //dd($request);
         $job = Job::create($jobInfo);
 
         return redirect('/employer/dashboard')->with('success', 'Job successfully created');
@@ -145,10 +145,11 @@ class JobController extends Controller
 
         //dd($request);
         $jobInfo['custom_question'] = (!empty($jobInfo['custom_question'])) ? json_encode($jobInfo['custom_question']) : "";
+        $jobInfo['status'] = $request->status;
 
         $job = Job::updateJob((object) $jobInfo);
 
-        return redirect('/employer/dashboard')->with('success', 'Job successfully updated');
+        return redirect('/employer/jobs')->with('success', 'Job successfully updated');
     }
 
     /**
@@ -188,5 +189,23 @@ class JobController extends Controller
         $applications  = Application::where('job_id', $id)->get();
         //dd($applications);
         return view('employer.applications.list', compact('applications'));
+    }
+
+    public function get_job_details($id)
+    {
+        $job = Job::with(['company', 'job_sub_category'])->find($id);
+
+        if ($job) {
+            return response()->json([
+                'status_message' => 'successful',
+                'message' => 'Job fetched successfully',
+                'job' => $job,
+            ], Response::HTTP_OK);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Job not found',
+        ], Response::HTTP_NOT_FOUND);
     }
 }

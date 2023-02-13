@@ -115,7 +115,7 @@
 										<svg class="me-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<rect width="19" height="19" rx="9.5" fill="#1BD084"/>
 										</svg>
-										Interviews
+										Accepted
 									</div>
 									<div class="fs-14 text-black">
 										<svg class="me-2" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">

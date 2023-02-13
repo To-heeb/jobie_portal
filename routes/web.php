@@ -120,6 +120,7 @@ Route::group([
     Route::get('/profile', [EmployerController::class, 'profile']);
     Route::put('/profile', [EmployerController::class, 'update']);
     Route::get('/user-profile/{id}', [EmployerController::class, 'user_profile']);
+    Route::get('user/details/{id}', [EmployerController::class, 'get_user_details']);
     Route::get('/applications', [EmployerController::class, 'applications']);
     Route::get('/register', [EmployerController::class, 'create'])->withoutMiddleware(['auth:employer']);
     Route::post('/register', [EmployerController::class, 'store'])->withoutMiddleware(['auth:employer']);
@@ -136,7 +137,9 @@ Route::group([
         Route::get('/dashboard', [JobController::class, 'index']);
         Route::post('/store', [JobController::class, 'store']);
         Route::delete('/{id}', [JobController::class, 'destroy']);
+        Route::get('/details/{id}', [JobController::class, 'get_job_details']);
         Route::get('/applications/{id}', [JobController::class, 'applications']);
+        Route::get('/applications/status/{id}', [JobController::class, 'update_application']);
         Route::get('/job_sub_categories/{id}', [JobSubCategoryController::class, 'get_job_sub_categories']);
     });
 

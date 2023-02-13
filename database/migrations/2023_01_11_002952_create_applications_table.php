@@ -18,7 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->foreignId('resume_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->foreignId('cover_letter_id')->nullable()->constrained()->onUpdate('cascade')->restrictOnDelete();
-            $table->integer('job_id');
+            $table->foreignId('job_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->text('custom_response')->nullable();
             $table->enum('status',  ['pending', 'accepted', 'rejected'])->default('pending');
             $table->text('message')->nullable();

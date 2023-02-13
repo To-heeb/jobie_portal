@@ -13,7 +13,7 @@ class CreateUserSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_skills', function (Blueprint $table) {
+        Schema::create('user_skill', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->foreignId('skill_id')->constrained()->onUpdate('cascade')->restrictOnDelete();

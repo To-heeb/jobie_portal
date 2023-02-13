@@ -41,7 +41,7 @@
                                             <td>{{ date("F j, Y", strtotime($application->created_at))}}</td>
                                             <td>
                                                 <div class="d-flex"> 
-                                                    <a href="/user-profile/{{$application->user->id}}" class="btn btn-sm btn-primary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".view-profile-modal" data-id="">View Profile</a>
+                                                    <a href="#" class="btn btn-sm btn-primary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".view-profile-modal" data-id="{{$application->user->id}}">View Profile</a>
                                                     <a href="" class="btn btn-sm btn-secondary sharp shadow me-4" data-bs-toggle="modal" data-bs-target=".view-document-modal" data-cover-letter="" data-resume="">View Document(s)</a>
                                                     <a href="#" class="btn btn-sm sharp shadow btn-danger sweet-confirm" data-id="{{$application->id}}">Status</a>
                                                 </div>
@@ -56,7 +56,7 @@
 			</div>
 
 			<!-- View Profile Modal -->
-			<div class="modal fade view-profile-modal" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
+			<div class="modal fade view-profile-modal" tabindex="-1" role="dialog" aria-hidden="true" id="view_profile_modal">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -79,177 +79,68 @@
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>First Name</label>
-																			<input type="text" class="form-control" placeholder="Enter name">
+																			<p id="first_name">First name</p>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>Middle Name</label>
-																			<input type="text" class="form-control" placeholder="Type here">
+																			<p id="middle_name">Middle Name</p>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>Last Name</label>
-																			<input type="text" class="form-control" placeholder="Last name">
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>Username</label>
-																			<input type="text" class="form-control" placeholder="User name">
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>Password</label>
-																			<input type="password" class="form-control" placeholder="Enter password">
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>Re-Type Password</label>
-																			<input type="password" class="form-control" placeholder="Enter password">
+																			<p id="last_name">Last Name</p>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="mb-5">
-																<div class="title mb-4"><span class="fs-18 text-black font-w600">CONTACT</span></div>
+																<div class="title mb-4"><span class="fs-18 text-black font-w600">ADDRESS</span></div>
 																<div class="row">
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>MobilePhone</label>
-																			<div class="input-group input-icon mb-3">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
-																				</div>
-																				<input type="text" class="form-control" placeholder="Phone no.">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>Whatsapp</label>
-																			<div class="input-group input-icon mb-3">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text" id="basic-addon2"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
-																				</div>
-																				<input type="text" class="form-control" placeholder="Phone no.">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>Email</label>
-																			<div class="input-group input-icon mb-3">
-																				<div class="input-group-prepend">
-																					<span class="input-group-text" id="basic-addon3"><i class="las la-envelope"></i></span>
-																				</div>
-																				<input type="text" class="form-control" placeholder="Enter email">
-																			</div>
-																		</div>
-																	</div>
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>Address</label>
 																			<div class="input-group">
-																				<input type="text" class="form-control" placeholder="Enter adress">
+																				<div class="input-group-prepend">
+																					<span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+																				</div>
+																				<p id="address"></p>
 																			</div>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>City</label>
-																			<select class="form-control">
-																				<option>London</option>
-																				<option>United State</option>
-																				<option>United Kingdom</option>
-																				<option>Germany</option>
-																				<option>Netherland</option>
-																			</select>
+																			<p id="city"></p>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
 																			<label>Country</label>
-																			<select class="form-control">
-																				<option>England</option>
-																				<option>United State</option>
-																				<option>United Kingdom</option>
-																				<option>Germany</option>
-																				<option>Netherland</option>
-																			</select>
+																			<p id="country"></p>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="mb-5">
-																<div class="title mb-4"><span class="fs-18 text-black font-w600">About me</span></div>
+																<div class="title mb-4"><span class="fs-18 text-black font-w600">About</span></div>
 																<div class="row">
 																	<div class="col-xl-12">
 																		<div class="form-group">
-																			<label>Tell About You</label>
-																			<textarea class="form-control" rows="6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum que laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta su
+																			{{-- <label>Tell About You</label> --}}
+																			<textarea class="form-control" rows="6" id="about" readonly>
 																			</textarea>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div>
-																<div class="title mb-4"><span class="fs-18 text-black font-w600">Skils</span></div>
+																<div class="title mb-4"><span class="fs-18 text-black font-w600">SKILLS</span></div>
 																<div class="row">
-																	<div class="col-xl-6">
-																		<div class="media mb-4">
-																			<span class="text-primary progress-icon me-3">78%</span>
-																			<div class="media-body">
-																				<p class="font-w500">Programming</p>
-																				<div class="progress skill-progress" style="height:10px;">
-																					<div class="progress-bar bg-primary progress-animated" style="width: 78%; height:10px;" role="progressbar">
-																						<span class="sr-only">78% Complete</span>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-6">
-																		<div class="media mb-4">
-																			<span class="text-primary progress-icon me-3">65%</span>
-																			<div class="media-body">
-																				<p class="font-w500">Prototyping</p>
-																				<div class="progress skill-progress" style="height:10px;">
-																					<div class="progress-bar bg-primary progress-animated" style="width: 65%; height:10px;" role="progressbar">
-																						<span class="sr-only">65% Complete</span>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-6">
-																		<div class="media mb-4">
-																			<span class="text-primary progress-icon me-3">89%</span>
-																			<div class="media-body">
-																				<p class="font-w500">UI Design</p>
-																				<div class="progress skill-progress" style="height:10px;">
-																					<div class="progress-bar bg-primary progress-animated" style="width: 89%; height:10px;" role="progressbar">
-																						<span class="sr-only">89% Complete</span>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-6">
-																		<div class="media mb-4">
-																			<span class="text-primary progress-icon me-3">94%</span>
-																			<div class="media-body">
-																				<p class="font-w500">Researching</p>
-																				<div class="progress skill-progress" style="height:10px;">
-																					<div class="progress-bar bg-primary progress-animated" style="width: 94%; height:10px;" role="progressbar">
-																						<span class="sr-only">94% Complete</span>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
+																	<div class="col-xl-6" id="skills">
+																		
 																	</div>
 																</div>
 															</div>
@@ -267,33 +158,19 @@
 														<div class="profile-image mb-4">
 															<img src="public/assets/images/avatar/1.jpg" class="rounded-circle" alt="">
 														</div>
-														<h4 class="fs-22 text-black mb-1">Oda Dink</h4>
-														<p class="mb-4">Programmer</p>
-														<div class="row">
-															<div class="col-6">
-																<div class="border rounded p-2">
-																	<h4 class="fs-22 text-black font-w600">228</h4>
-																	<span class="text-black">Following</span>
-																</div>
-															</div>
-															<div class="col-6">
-																<div class="border rounded p-2">
-																	<h4 class="fs-22 text-black font-w600">4,842</h4>
-																	<span class="text-black">Followers</span>
-																</div>
-															</div>
-														</div>
+														<h4 class="fs-22 text-black mb-1" id="full_name">Oda Dink</h4>
+														<p class="mb-4" id="headline"></p>
 													</div>
 													<div class="card-body  activity-card">
 														<div class="d-flex mb-3 align-items-center">
 															<a class="contact-icon me-3" href="#"><i class="fa fa-phone" aria-hidden="true"></i></a>
-															<span class="text-black">+50 123 456 7890</span>
+															<span class="text-black" id="phone_number"></span>
 														</div>
 														<div class="d-flex mb-3 align-items-center">
 															<a class="contact-icon me-3" href="#"><i class="las la-envelope"></i></a>
-															<span class="text-black">info@example.com</span>
+															<span class="text-black text-wrap" style="width: 12rem;"id="email">info@example.com</span>
 														</div>
-														<div class="row text-center mt-2 mt-md-5">
+														{{-- <div class="row text-center mt-2 mt-md-5">
 															<div class="col-4 p-0">
 																<div class="d-inline-block mb-2 relative donut-chart-sale">
 																	<span class="donut" data-peity='{ "fill": ["rgb(255, 142, 38)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>7/9</span>
@@ -315,27 +192,14 @@
 																</div>
 																<span class="d-block">Laravel</span>
 															</div>
-														</div>
+														</div> --}}
 													</div>
 												</div>
 											</div>
 											<div class="col-xl-12 col-lg-6">
 												<div class="card">	
 													<div class="card-header border-0 pb-0">
-														<h4 class="fs-20 text-black">Portofolios</h4>
-														<div class="dropdown float-right custom-dropdown mb-0">
-															<div class="" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-																<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																		<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-																		<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-																		<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-																</svg>
-															</div>
-															<div class="dropdown-menu dropdown-menu-end">
-																<a class="dropdown-item" href="javascript:void(0);">Details</a>
-																<a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
-															</div>
-														</div>
+														<h4 class="fs-20 text-black">Portfolios</h4>
 													</div>
 													<div class="card-body portfolios-card">
 														<div class="d-flex mb-3 align-items-center rounded">
@@ -389,7 +253,7 @@
 			</div>
 
 			{{-- View Document Modal --}}
-			<div class="modal fade view-document-modal" tabindex="-1" role="dialog" aria-hidden="true" id="edit_industry_modal">
+			<div class="modal fade view-document-modal" tabindex="-1" role="dialog" aria-hidden="true" id="view_document_modal">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -436,40 +300,89 @@
 	<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        
-        // (function($) {
-		// 	var table = $('#example5').DataTable({
-		// 		searching: false,
-		// 		paging:true,
-		// 		select: false,
-		// 		//info: false,         
-		// 		lengthChange:false 
-				
-		// 	});
-		// 	$('#example tbody').on('click', 'tr', function () {
-		// 		var data = table.row( this ).data();
-				
-		// 	});
-		// })(jQuery);
-
 		
-		$('#edit_industry_modal').on('show.bs.modal', function(e) {
+		$('#view_profile_modal').on('show.bs.modal', function(e) {
 
-			var industry_id = $(e.relatedTarget).data('id');
-			
-			var url = '{{  url("/admin/industry/:id") }}';
-			url = url.replace(':id', industry_id);
+			var user_id = $(e.relatedTarget).data('id');
+			var url = '{{  url("/employer/user/details/:id") }}';
+			url = url.replace(':id', user_id);
 
-			var industry_name_edit = document.querySelector("#industry_name_edit")
-			var industry_id = document.querySelector("#industry_id")
-			industry_name_edit.value = "";
+			var first_name = document.querySelector("#first_name");
+			var last_name = document.querySelector("#last_name");
+			var email = document.querySelector("#email");
+			var username = document.querySelector("#username");
+			var phone_number = document.querySelector("#phone_number");
+			var state = document.querySelector("#state");
+			var city = document.querySelector("#city");
+			var country = document.querySelector("#country");
+			var address = document.querySelector("#address");
+			var headline = document.querySelector("#headline");
+			var full_name = document.querySelector("#full_name");
+			var email_two = document.querySelector("#email_two");
+			var about = document.querySelector("#about");
+			var skills_div = document.querySelector("#skills");
 
 			fetch(url)
 			.then((response) => response.json())
-			.then((industry_data) => {
-				//console.log(range_data)
-				industry_name_edit.value = industry_data.name;
-				industry_id.value = industry_data.id
+			.then((user_details) => {
+				console.log(user_details);
+				
+				var user = user_details.user;
+				var skills = user_details.user.skills;
+
+				first_name.innerHTML = user.first_name;
+				last_name.innerHTML = user.last_name;
+				email.innerHTML =  user.email;
+				phone_number.innerHTML = user.phone_number;
+				city.innerHTML = user.city;
+				country.innerHTML = user.country;
+				address.innerHTML = user.address;
+				headline.innerHTML = user.headline;
+				full_name.innerHTML = user.last_name+' '+user.first_name;
+				about.innerHTML = user.about;
+				
+
+				var skill_output = "";
+
+				skills.forEach((skill) =>{
+
+					skill_output +=`<div class="media mb-4">
+								<span class="text-primary progress-icon"><i class="fas fa-plus-circle fa-2x mt-3" aria-hidden="true"></i></span>
+								<div class="media-body">
+									<p class="font-w500">${skill.name}</p>
+									<div class="progress skill-progress" style="height:10px;">
+										<div class="progress-bar bg-primary progress-animated" style="width: 100%; height:10px;" role="progressbar">
+											<span class="sr-only">100% Complete</span>
+										</div>
+									</div>
+								</div>
+							</div>`;
+				})
+
+
+				if(skill_output == ""){ 
+					skills_div.innerHTML = '<div class="">No Skill listed yet</div>'
+				}else{
+					skills_div.innerHTML = skill_output
+				}
+
+			})
+			.catch((error) => {
+				console.log('Error:', error);
+			})
+		})
+
+		$('#view_document_modal').on('show.bs.modal', function(e) {
+
+			var user_id = $(e.relatedTarget).data('id');
+			var url = '{{  url("/employer/user/details/:id") }}';
+			url = url.replace(':id', user_id);			
+
+			fetch(url)
+			.then((response) => response.json())
+			.then((user_details) => {
+				console.log(user_details);
+				
 
 			})
 			.catch((error) => {

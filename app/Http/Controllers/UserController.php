@@ -31,6 +31,8 @@ class UserController extends Controller
         return view('user.dashboard', [
             'featured_companies' => Company::all(),
             'recommended_jobs' => Job::all(),
+            'applications' => Application::all(),
+            'accepted_application' => Application::all()->where('status', 'accepted'),
             'title' => "User"
         ]);
     }

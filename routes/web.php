@@ -2,16 +2,20 @@
 
 use App\Models\Job;
 use App\Models\Company;
+use App\Models\EducationDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobSubCategoryController;
+use App\Http\Controllers\EducationDetailController;
+use App\Http\Controllers\ExperienceDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +98,16 @@ Route::group([
         Route::get('/all_jobs', [JobController::class, 'index']);
     });
 
+    Route::group([
+        'prefix' => '/skill',
+        'as' => 'skill.',
+    ], function () {
+        Route::get('/{id}', [SkillController::class, 'show']);
+        Route::put('/', [SkillController::class, 'update']);
+        Route::get('/dashboard', [SkillController::class, 'index']);
+        Route::delete('/{id}', [SkillController::class, 'destroy']);
+        Route::post('/', [SkillController::class, 'store']);
+    });
 
     Route::group([
         'prefix' => '/company',
@@ -148,7 +162,7 @@ Route::group([
         'as' => 'company.',
     ], function () {
         Route::get('/create', [CompanyController::class, 'create']);
-        Route::get('/edit/{:id}', [CompanyController::class, 'edit']);
+        Route::get('/edit/{id}', [CompanyController::class, 'edit']);
         Route::get('/profile/{id}', [CompanyController::class, 'show']);
         Route::put('/profile/{id}', [CompanyController::class, 'update']);
         Route::get('/dashboard', [CompanyController::class, 'index']);
@@ -178,4 +192,25 @@ Route::group([
     Route::get('/companies', [UserController::class, 'companies']);
     Route::get('/company/{id}', [UserController::class, 'company']);
     Route::post('/logout', [UserController::class, 'logout']);
+
+
+    Route::group([
+        'prefix' => '/education',
+        'as' => 'education.',
+    ], function () {
+        Route::post('/', [EducationDetailController::class, 'store']);
+        Route::put('/{id}', [EducationDetailController::class, 'update']);
+        Route::get('/details/{id}', [EducationDetailController::class, 'get_education_details']);
+        Route::delete('/delete', [EducationDetailController::class, 'destroy']);
+    });
+
+    Route::group([
+        'prefix' => '/experience',
+        'as' => 'experience.',
+    ], function () {
+        Route::post('/', [ExperienceDetailController::class, 'store']);
+        Route::put('/{id}', [ExperienceDetailController::class, 'update']);
+        Route::get('/details/{id}', [ExperienceDetailController::class, 'get_experience_details']);
+        Route::delete('/delete', [ExperienceDetailController::class, 'destroy']);
+    });
 });

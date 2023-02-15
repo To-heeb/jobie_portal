@@ -9,56 +9,84 @@
                     <div class="card profile-card">
                         <div class="card-header flex-wrap border-0 pb-0">
                             <h3 class="fs-24 text-black font-w600 me-auto mb-2 pe-3">Edit Profile</h3>
-                            <div class="d-sm-flex d-block">
-                                <div class="d-flex me-5 align-items-center">
-                                    <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" id="customCheckBox1" required>
-                                        <label class="form-check-label" for="customCheckBox1">Available for hire?</label>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn btn-dark light btn-rounded me-3 mb-2">Cancel</a>
-                                <a class="btn btn-primary btn-rounded mb-2" href="#">Save Changes</a>
-                            </div>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="/admin/profile" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="d-sm-flex d-block mb-4">
+                                    <div class="d-flex me-5 align-items-center">
+                                        <div class="form-check custom-checkbox">
+                                            <input type="checkbox" class="form-check-input" id="customCheckBox1" required>
+                                            <label class="form-check-label" for="customCheckBox1">Available for hire?</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="mb-5">
                                     <div class="title mb-4"><span class="fs-18 text-black font-w600">Generals</span></div>
                                     <div class="row">
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Enter name">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Middle Name</label>
-                                                <input type="text" class="form-control" placeholder="Type here">
+                                                <input type="text" name="first_name" class="form-control" placeholder="Enter name" value="{{$user->first_name}}">
+                                                <div class="invalid-feedback">
+                                                    Please Enter Your First Name.
+                                                </div>
+                                                @error('first_name')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last name">
+                                                <input type="text" name="last_name" class="form-control" placeholder="Last name" value="{{$user->last_name}}">
+													<div class="invalid-feedback">
+														Please Enter Your Last Name.
+													</div>
+                                                    @error('last_name')
+                                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                                    @enderror
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="User name">
+                                                <label>Email</label>
+                                                <input type="text" name="email" class="form-control" placeholder="Type here" value="{{$user->email}}">
+                                                <div class="invalid-feedback">
+                                                    Please Enter Your Email.
+                                                </div>
+                                                @error('email')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Profile Photo</label>
+                                                <input type="file" class="form-file-input form-control" name="profile_photo">
+                                                @error('profile_photo')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control" placeholder="Enter password">
+                                                <input type="password" name="password" class="form-control" placeholder="Enter password">
+                                                @error('password')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
                                                 <label>Re-Type Password</label>
-                                                <input type="password" class="form-control" placeholder="Enter password">
+                                                <input type="password" name="password_confirmation" class="form-control" placeholder="Enter password">
+                                                @error('password_confirmation')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -66,47 +94,6 @@
                                 <div class="mb-5">
                                     <div class="title mb-4"><span class="fs-18 text-black font-w600">CONTACT</span></div>
                                     <div class="row">
-                                        <div class="col-xl-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label>MobilePhone</label>
-                                                <div class="input-group input-icon mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control" placeholder="Phone no.">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Whatsapp</label>
-                                                <div class="input-group input-icon mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon2"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control" placeholder="Phone no.">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <div class="input-group input-icon mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon3"><i class="las la-envelope"></i></span>
-                                                    </div>
-                                                    <input type="text" class="form-control" placeholder="Enter email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Enter adress">
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="form-group">
                                                 <label>City</label>
@@ -139,70 +126,91 @@
                                         <div class="col-xl-12">
                                             <div class="form-group">
                                                 <label>Tell About You</label>
-                                                <textarea class="form-control" rows="6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum que laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta su
+                                                <textarea class="form-control" rows="6">{{$user->about}}
                                                 </textarea>
+                                                <div class="invalid-feedback">
+                                                    Please Enter Your First Name.
+                                                </div>
+                                                @error('about')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="title mb-4"><span class="fs-18 text-black font-w600">Skils</span></div>
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <div class="media mb-4">
-                                                <span class="text-primary progress-icon me-3">78%</span>
-                                                <div class="media-body">
-                                                    <p class="font-w500">Programming</p>
-                                                    <div class="progress skill-progress" style="height:10px;">
-                                                        <div class="progress-bar bg-primary progress-animated" style="width: 78%; height:10px;" role="progressbar">
-                                                            <span class="sr-only">78% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="media mb-4">
-                                                <span class="text-primary progress-icon me-3">65%</span>
-                                                <div class="media-body">
-                                                    <p class="font-w500">Prototyping</p>
-                                                    <div class="progress skill-progress" style="height:10px;">
-                                                        <div class="progress-bar bg-primary progress-animated" style="width: 65%; height:10px;" role="progressbar">
-                                                            <span class="sr-only">65% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="media mb-4">
-                                                <span class="text-primary progress-icon me-3">89%</span>
-                                                <div class="media-body">
-                                                    <p class="font-w500">UI Design</p>
-                                                    <div class="progress skill-progress" style="height:10px;">
-                                                        <div class="progress-bar bg-primary progress-animated" style="width: 89%; height:10px;" role="progressbar">
-                                                            <span class="sr-only">89% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="media mb-4">
-                                                <span class="text-primary progress-icon me-3">94%</span>
-                                                <div class="media-body">
-                                                    <p class="font-w500">Researching</p>
-                                                    <div class="progress skill-progress" style="height:10px;">
-                                                        <div class="progress-bar bg-primary progress-animated" style="width: 94%; height:10px;" role="progressbar">
-                                                            <span class="sr-only">94% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                <div class="d-sm-flex d-block">
+                                    <input class="btn btn-primary btn-rounded me-3 mb-2" type="submit" value="Save Changes">
+                                    <input class="btn btn-dark light btn-rounded mb-2" type="reset" value="Cancel">
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card profile-card">
+                        <div class="card-header flex-wrap border-0 pb-0">
+                            <h3 class="fs-24 text-black font-w600 me-auto mb-2 pe-3">Experience</h3>
+                            <a href="#" class="btn btn-sm btn-outline-primary"  data-bs-toggle="modal" data-bs-target=".add-experience-modal">Add Experience</a>
+                        </div>	
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="media mb-4">
+                                            <span class="text-primary progress-icon me-4"><i class="fas fa-building" style="font-size: 30px" aria-hidden="true"></i></span>
+                                            <div class="media-body">
+                                                <p class="font-w350">Programming</p>
+                                                <p>2020 - 2022</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card profile-card">
+                        <div class="card-header flex-wrap border-0 pb-0">
+                            <h3 class="fs-24 text-black font-w600 me-auto mb-2 pe-3">Education</h3>
+                            <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target=".add-education-modal">Add Education</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="media mb-4">
+                                            <span class="text-primary progress-icon me-4"><i class="fas fa-school" style="font-size: 30px" aria-hidden="true"></i></span>
+                                            <div class="media-body">
+                                                <p class="font-w350">Programming</p>
+                                                <p><i class="fas fa-graduation-cap"  aria-hidden="true"></i> 2020 - 2022</p>
+                                                <p><i class="fas fa-book-open"  aria-hidden="true"></i> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card profile-card">
+                        <div class="card-header flex-wrap border-0 pb-0">
+                            <h3 class="fs-24 text-black font-w600 me-auto mb-2 pe-3">Skills</h3>
+                            <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target=".add-skill-modal">Add Skill</a>
+                        </div>
+                        <div class="card-body">
+                     
                         </div>
                     </div>
                 </div>
@@ -218,20 +226,6 @@
                             </div>
                             <h4 class="fs-22 text-black mb-1">Oda Dink</h4>
                             <p class="mb-4">Programmer</p>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="border rounded p-2">
-                                        <h4 class="fs-22 text-black font-w600">228</h4>
-                                        <span class="text-black">Following</span>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="border rounded p-2">
-                                        <h4 class="fs-22 text-black font-w600">4,842</h4>
-                                        <span class="text-black">Followers</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="card-body  activity-card">
                             <div class="d-flex mb-3 align-items-center">
@@ -240,30 +234,7 @@
                             </div>
                             <div class="d-flex mb-3 align-items-center">
                                 <a class="contact-icon me-3" href="#"><i class="las la-envelope"></i></a>
-                                <span class="text-black">info@example.com</span>
-                            </div>
-                            <div class="row text-center mt-2 mt-md-5">
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(255, 142, 38)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>7/9</span>
-                                        <small class="text-black">66%</small>
-                                    </div>
-                                    <span class="d-block">PHP</span>
-                                </div>
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(62, 168, 52)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>4/9</span>
-                                        <small class="text-black">31%</small>
-                                    </div>
-                                    <span class="d-block">Vue</span>
-                                </div>
-                                <div class="col-4 p-0">
-                                    <div class="d-inline-block mb-2 relative donut-chart-sale">
-                                        <span class="donut" data-peity='{ "fill": ["rgb(34, 172, 147)", "rgba(236, 236, 236, 1)"],   "innerRadius": 27, "radius": 10}'>2/9</span>
-                                        <small class="text-black">7%</small>
-                                    </div>
-                                    <span class="d-block">Laravel</span>
-                                </div>
+                                <span class="text-black text-wrap" style="width: 12rem;">info@example.com</span>
                             </div>
                         </div>
                     </div>
@@ -327,6 +298,438 @@
                 </div>
             </div>
         </div>
+
+        {{-- Add Experience Modal --}}
+        <div class="modal fade add-experience-modal" tabindex="-1" role="dialog" aria-hidden="true" id="add_experience_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Add Experience</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><span class="text-danger">*</span> Indicates required</p>
+                        <form class="needs-validation" novalidate action="/user/experience" method="POST" id="add_experience_form">
+                            @csrf
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Please Enter Title.
+                                    </div>
+                                    @error('title')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="employment_type">Employment type <span class="text-danger">*</span></label>
+                                    <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 13% no-repeat;" name="employment_type" id="employment_type" class="form-control" required>
+                                        <option value="">Please select</option>
+                                          <option value="full-time">Full-time</option>
+                                          <option value="part-time">Part-time</option>
+                                          <option value="self-employed">Self-employed</option>
+                                          <option value="freelance">Freelance</option>
+                                          <option value="contract">Contract</option>
+                                          <option value="internship">Internship</option>
+                                          <option value="apprenticeship">Apprenticeship</option>
+                                          <option value="seasonal">Seasonal</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Select Employment type.
+                                    </div>
+                                    @error('employment_type')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="company_name">Company Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="company_name" id="company_name" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Please Enter Company Name.
+                                    </div>
+                                    @error('company_name')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="company_mail">Company Email <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="company_mail" id="company_mail" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Please Enter Company's Email.
+                                    </div>
+                                    @error('company_mail')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="location_type">Location type </label>
+                                    <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 13% no-repeat;" name="location_type" id="location_type" class="form-select form-control" >
+                                        <option value="">Please select</option>
+                                          <option value="on-site">On-site</option>
+                                          <option value="hybrid">Hybrid</option>
+                                          <option value="remote">Remote</option>
+                                    </select>
+                                    @error('location_type')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="currently_working">
+                                        <label class="form-check-label" for="currently_working">
+                                          I am currently working here
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <div class="row">
+                                        <label class="form-label" for="">Start date <span class="text-danger">*</span></label>
+                                        <div class="col">
+                                            <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 15% no-repeat;" name="start_month" id="start_month" class="form-control" required>
+                                                <option value="">Select Month</option>
+                                                  <option value="January">January</option>
+                                                  <option value="February">February</option>
+                                                  <option value="March">March</option>
+                                                  <option value="April">April</option>
+                                                  <option value="May">May</option>
+                                                  <option value="June">June</option>
+                                                  <option value="July">July</option>
+                                                  <option value="August">August</option>
+                                                  <option value="September">September</option>
+                                                  <option value="November">November</option>
+                                                  <option value="December">December</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please Select Month.
+                                            </div>
+                                            @error('start_month')
+                                                <p class="text-danger fs-6">{{ $message }}</p>
+                                            @enderror
+                                          </div>
+                                          <div class="col">
+                                                <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 15% no-repeat;" name="start_year" id="start_year" class="form-control" required>
+                                                    <option value="">Select Year</option>
+                                                   @php for($i = 1923; $i <= date('Y'); $i++): @endphp
+                                                   <option value="{{$i}}">{{$i}}</option>
+                                                   @php endfor; @endphp
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please Select Year.
+                                                </div>
+                                                @error('start_year')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <div class="row">
+                                        <label class="form-label" for="">End date <span class="text-danger">*</span></label>
+                                        <div class="col">
+                                                <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 15% no-repeat;" name="end_month" id="end_month" class="form-control" required>
+                                                    <option value="">Select Month</option>
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please Select Month.
+                                                </div>
+                                                @error('end_month')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
+                                          </div>
+                                          <div class="col">
+                                                <select style="background: url(https://static.thenounproject.com/png/1720660-200.png) 105% / 15% no-repeat;" name="end_year" id="end_year" class="form-control" required>
+                                                    <option value="">Select Year</option>
+                                                    @php for($i = 1923; $i <= date('Y'); $i++): @endphp
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @php endfor; @endphp
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please Select Year.
+                                                </div>
+                                                @error('end_year')
+                                                    <p class="text-danger fs-6">{{ $message }}</p>
+                                                @enderror
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="description">Description </label>
+                                    <textarea id="" cols="30" rows="6" name="description" class="form-control" id="description"></textarea>
+                                    @error('description')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- Edit Experience Modal --}}
+        <div class="modal fade edit-experience-modal" tabindex="-1" role="dialog" aria-hidden="true" id="edit_experience_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Edit Experience</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate action="/admin/industry" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="industry_name_edit">Name</label>
+                                    <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
+                                    <input type="hidden" name="id" id="industry_id">
+                                    <div class="invalid-feedback">
+                                        Please Enter Industry Name.
+                                    </div>
+                                    @error('industry_name_edit')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- Add Education Modal --}}
+        <div class="modal fade add-education-modal" tabindex="-1" role="dialog" aria-hidden="true" id="add_education_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Add Education</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate action="/admin/industry" method="POST" id="add_education_form">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="industry_name_edit">Name</label>
+                                    <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
+                                    <input type="hidden" name="id" id="industry_id">
+                                    <div class="invalid-feedback">
+                                        Please Enter Industry Name.
+                                    </div>
+                                    @error('industry_name_edit')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Edit Education Modal --}}
+        <div class="modal fade edit-education-modal" tabindex="-1" role="dialog" aria-hidden="true" id="edit_education_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Edit Education</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate action="/admin/industry" id='edit_education_form'>
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="industry_name_edit">Name</label>
+                                    <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
+                                    <input type="hidden" name="id" id="industry_id">
+                                    <div class="invalid-feedback">
+                                        Please Enter Industry Name.
+                                    </div>
+                                    @error('industry_name_edit')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- Add Skill Modal --}}
+        <div class="modal fade add-skill-modal" tabindex="-1" role="dialog" aria-hidden="true" id="add_skill_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Add Skill</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate action="/admin/industry" method="POST" id='add_skill_form'>
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="industry_name_edit">Name</label>
+                                    <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
+                                    <input type="hidden" name="id" id="industry_id">
+                                    <div class="invalid-feedback">
+                                        Please Enter Industry Name.
+                                    </div>
+                                    @error('industry_name_edit')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Edit Skill Modal --}}
+        <div class="modal fade add-edit-modal" tabindex="-1" role="dialog" aria-hidden="true" id="edit_skill_modal">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b id="">Edit Skill</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" novalidate action="/admin/industry" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="industry_name_edit">Name</label>
+                                    <input type="text" class="form-control" name="industry_name_edit" id="industry_name_edit" placeholder="" required>
+                                    <input type="hidden" name="id" id="industry_id">
+                                    <div class="invalid-feedback">
+                                        Please Enter Industry Name.
+                                    </div>
+                                    @error('industry_name_edit')
+                                        <p class="text-danger fs-6">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn me-2 btn-primary">Submit</button>
+                        </form>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+@endsection
+
+@section('script');
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins-init/jquery.validate-init.js') }}"></script>
+	<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        (function () {
+			'use strict'
+
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.querySelectorAll('.needs-validation')
+
+			// Loop over them and prevent submission
+			Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+				}, false)
+			})
+		})() 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            //alert("I am here")
+            document.querySelector("#currently_working").addEventListener('change', (event) => {
+
+                if (event.target.checked) {
+                    console.log("Checkbox is checked..");
+                } else {
+                    console.log("Checkbox is not checked..");
+                }
+            })
+
+
+            $('#add_experience_modal').on('hide.bs.modal', function () {
+                //alert(" I am here already")
+                document.getElementById('add_experience_form').reset();
+            });
+
+        })
+    </script>
 @endsection

@@ -726,7 +726,7 @@
             </a>
             <ul aria-expanded="false">
                 <li><a href="/admin/employers">All Employers</a></li>
-                <li><a href="/admin/search_employer">Search Employer</a></li>
+                {{-- <li><a href="/admin/search_employer">Search Employer</a></li> --}}
             </ul>
         </li>
             <li class="has-menu"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

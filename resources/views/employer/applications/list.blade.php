@@ -101,19 +101,13 @@
 																<div class="row">
 																	<div class="col-xl-4 col-sm-6">
 																		<div class="form-group">
-																			<label>Address</label>
+																			<label>City</label>
 																			<div class="input-group">
 																				<div class="input-group-prepend">
 																					<span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
 																				</div>
-																				<p id="address"></p>
+																				<p id="city"></p>
 																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-4 col-sm-6">
-																		<div class="form-group">
-																			<label>City</label>
-																			<p id="city"></p>
 																		</div>
 																	</div>
 																	<div class="col-xl-4 col-sm-6">
@@ -315,7 +309,6 @@
 			var state = document.querySelector("#state");
 			var city = document.querySelector("#city");
 			var country = document.querySelector("#country");
-			var address = document.querySelector("#address");
 			var headline = document.querySelector("#headline");
 			var full_name = document.querySelector("#full_name");
 			var email_two = document.querySelector("#email_two");
@@ -336,7 +329,6 @@
 				phone_number.innerHTML = user.phone_number;
 				city.innerHTML = user.city;
 				country.innerHTML = user.country;
-				address.innerHTML = user.address;
 				headline.innerHTML = user.headline;
 				full_name.innerHTML = user.last_name+' '+user.first_name;
 				about.innerHTML = user.about;

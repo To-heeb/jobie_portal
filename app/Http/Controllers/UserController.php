@@ -191,10 +191,10 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('user.profile', [
-            'featured_companies' => Company::all(),
-            'title' => "User"
-        ]);
+        $user = User::with(['skills', 'expereince_details', 'education_details'])->find(Auth::id());
+        $title =  $this->title;
+
+        return view('user.profile', compact('user', 'title'));
     }
 
     // Authenticate User/ Log In User
